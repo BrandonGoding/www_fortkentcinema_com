@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
-
+from website import omdb_service
 
 class BlogCategory(models.Model):
     name = models.CharField(max_length=65)
@@ -32,9 +32,27 @@ class BlogAuthor(models.Model):
 
 class Movie(models.Model):
     title = models.CharField(max_length=255)
+    imdb_id = models.CharField(max_length=10, unique=True, null=True, blank=True)
+    omdb_response = models.JSONField(null=True)
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if self.omdb_response is None and self.imdb_id:
+            try:
+                imdb_data = omdb_service.get_move_data_from_imdb(self.imdb_id)
+            except Exception as e:
+                print(e)
+                imdb_data = None
+            self.omdb_response = imdb_data
+        super(Movie, self).save(*args, **kwargs)
+
+    @property
+    def poster(self):
+        if not self.omdb_response:
+            return None
+        return self.omdb_response.get("Poster", None)
 
 
 class Post(models.Model):

@@ -18,12 +18,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from django.views.generic import TemplateView
+
 
 from website import views as website_views
 
 urlpatterns = [
     path("", website_views.HomePageTemplateView.as_view(), name="home"),
-    path("blog/", TemplateView.as_view(template_name="blogs/blog_content.html"), name="blog_roll"),
+    path("blog/", website_views.PostListView.as_view(), name="blog_roll"),
+    path("blog/<str:slug>", website_views.PostDetailView.as_view(), name="blog_detail"),
     path("admin/", admin.site.urls)
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
