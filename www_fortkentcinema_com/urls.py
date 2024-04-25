@@ -26,5 +26,6 @@ urlpatterns = [
     path("", website_views.HomePageTemplateView.as_view(), name="home"),
     path("blog/", website_views.PostListView.as_view(), name="blog_roll"),
     path("blog/<str:slug>", website_views.PostDetailView.as_view(), name="blog_detail"),
+    path("memberships/", website_views.MembershipTemplateView.as_view(), name="memberships"),
     path("admin/", admin.site.urls)
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -15,6 +15,11 @@ class HomePageTemplateView(TemplateView):
         return context
 
 
+class MembershipTemplateView(TemplateView):
+    template_name = 'membership.html'
+
+
+
 class PostListView(ListView):
     template_name = 'blogs/post_list.html'
     model = Post

@@ -54,6 +54,12 @@ class Movie(models.Model):
             return None
         return self.omdb_response.get("Poster", None)
 
+    @property
+    def ratings_dict(self):
+        if not self.omdb_response:
+            return None
+        return self.omdb_response.get("Ratings")
+
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
