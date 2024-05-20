@@ -1,0 +1,43 @@
+<!-- templates/index.html -->
+{% extends "_base.html" %}
+{% load static %}
+{% block content %}
+
+
+<section class="bg-white dark:bg-gray-900">
+    <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+        <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Fort Kent Cinema's History.</h2>
+            <p class="mb-4">For over a century, Fort Kent Cinema has been more than just a place to catch a movie. It's been a gathering spot, a memory maker, and a symbol of community pride here in Fort Kent, Maine. From its humble origins as an old barn turned public hall, where movies began to grace its screens as early as 1917, to its official establishment briefly as The Gem and then as The Savoy Theatre in 1918, this cherished venue has remained a constant presence in Fort Kent. Though the original Savoy Theatre stood where our parking lot is today, the heart of the Savoy lives on in the present day Century Theater which stands just a few feet away.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4 mt-8">
+            <img class="w-full h-full object-cover rounded-lg" src="{% static 'img/about/couple-watching-movie.jpg' %}" alt="Couple watching movie">
+            <img class="mt-4 w-full h-full object-cover  lg:mt-10 rounded-lg" src="{% static 'img/about/ladies-watching-movie.jpg' %}" alt="Ladies watching movie">
+        </div>
+    </div>
+</section>
+
+<section class="bg-white dark:bg-gray-900">
+  <div class="py-8 px-4 mx-auto space-y-12 max-w-screen-xl lg:space-y-20 sm:py-16 lg:px-6">
+      <!-- Row -->
+      <div class="gap-8 items-center lg:grid lg:grid-cols-2 xl:gap-16">
+          <div class="text-gray-500 sm:text-lg dark:text-gray-400">
+              <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Fort Kent Cinema <span class="font-extrabold">Mission</span></h2>
+              <p class="mb-8 font-light lg:text-xl">At Fort Kent Cinema, we are dedicated to enriching our community by providing a unique and accessible cinematic experience. We strive to entertain, educate, and inspire audiences of all ages through diverse film offerings that celebrate our local heritage and foster a deeper understanding of the world. As stewards of a long-standing community tradition, we commit to maintaining an inclusive, welcoming environment that brings people together through the power of film.</p>
+
+          </div>
+          <img class="hidden mb-4 w-full lg:mb-0 lg:flex rounded-lg" src="{% static 'img/about/kidswatchingmovie.jpg' %}" alt="kids watching a movie">
+      </div>
+      <!-- Row -->
+      <div class="gap-8 items-center lg:grid lg:grid-cols-2 xl:gap-16">
+          <img class="hidden mb-4 w-full lg:mb-0 lg:flex rounded-lg" src="{% static 'img/about/row-watching-comedy-and-laughing.jpg' %}" alt="movie theater row laughing">
+          <div class="text-gray-500 sm:text-lg dark:text-gray-400">
+              <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Fort Kent Cinema <span class="font-extrabold">Vision</span></h2>
+              <p class="mb-8 font-light lg:text-xl">Our vision is to be a cultural hub in Fort Kent, sustaining the historical legacy of local cinema while evolving to meet contemporary needs. We aim to expand our influence as a center for film appreciation and learning, where the power of movies acts as a catalyst for community engagement and personal growth. Looking ahead, we will innovate and adapt, ensuring that our community not only preserves its cinematic heritage but also embraces the future through expanded programming and educational opportunities.</p>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+{% endblock content %}

@@ -16,16 +16,16 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from wagtail.admin import urls as wagtailadmin_urls
+from wagtail import urls as wagtail_urls
+from wagtail.documents import urls as wagtaildocs_urls
 
 
 from website import views as website_views
 
 urlpatterns = [
-    path("", website_views.HomePageTemplateView.as_view(), name="home"),
-    path("blog/", website_views.PostListView.as_view(), name="blog_roll"),
-    path("blog/<str:slug>", website_views.PostDetailView.as_view(), name="blog_detail"),
-    path("memberships/", website_views.MembershipTemplateView.as_view(), name="memberships"),
-    path("admin/", admin.site.urls)
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('cms/', include(wagtailadmin_urls)),
+    path('documents/', include(wagtaildocs_urls)),
+    path('', include(wagtail_urls)),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

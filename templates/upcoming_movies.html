@@ -1,0 +1,42 @@
+<!-- templates/index.html -->
+{% extends "_base.html" %}
+{% load static %}
+{% block content %}
+
+<section class="bg-white dark:bg-gray-900">
+    <div class="px-4 py-8 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white tracking-tight">Upcoming Movies</h1>
+        <p class="mb-8 font-light text-gray-500 md:text-lg lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">There are some exciting feature films coming out this summer.  </p>
+        <iframe class="mx-auto w-full max-w-2xl h-64 rounded-lg sm:h-96" src="https://www.youtube.com/embed/uJMCNJP2ipI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</section>
+
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+        <div class="grid gap-8 items-center mb-8 lg:mb-24 lg:gap-12 lg:grid-cols-12">
+            <div class="col-span-6 text-center sm:mb-6 lg:text-left lg:mb-0">
+                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl xl:text-6xl dark:text-white">We invest in the world’s potential</h1>
+                <p class="mx-auto mb-6 max-w-xl font-light text-gray-500 lg:mx-0 xl:mb-8 md:text-lg xl:text-xl dark:text-gray-400">Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
+            </div>
+            <div class="col-span-6">
+                <iframe class="mx-auto w-full max-w-xl h-64 rounded-lg sm:h-96" src="https://www.youtube.com/embed/e6yDanmWI1E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+        <div class="grid gap-8 items-center mb-8 lg:mb-24 lg:gap-12 lg:grid-cols-12">
+            <div class="col-span-6">
+                <iframe class="mx-auto w-full max-w-xl h-64 rounded-lg sm:h-96" src="https://www.youtube.com/embed/e6yDanmWI1E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="col-span-6 text-center sm:mb-6 lg:text-left lg:mb-0">
+                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl xl:text-6xl dark:text-white">We invest in the world’s potential</h1>
+                <p class="mx-auto mb-6 max-w-xl font-light text-gray-500 lg:mx-0 xl:mb-8 md:text-lg xl:text-xl dark:text-gray-400">Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

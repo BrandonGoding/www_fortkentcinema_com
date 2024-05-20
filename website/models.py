@@ -1,82 +1,100 @@
 from django.db import models
-from django.utils.text import slugify
-from website import omdb_service
+from wagtail import blocks
 
-class BlogCategory(models.Model):
-    name = models.CharField(max_length=65)
-    slug = models.SlugField()
-    description = models.TextField()
+from wagtail.models import Page
+from wagtail.fields import RichTextField, StreamField
 
-    def __str__(self):
-        return self.name
-
-
-class BlogTag(models.Model):
-    name = models.CharField(max_length=65)
-    slug = models.SlugField()
-    description = models.TextField()
-
-    def __str__(self):
-        return self.name
+# import MultiFieldPanel:
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel
+from website import blocks as website_blocks
+from wagtail.search import index
+from wagtail.snippets.models import register_snippet
 
 
-class BlogAuthor(models.Model):
-    last_name = models.CharField(max_length=65)
-    first_name = models.CharField(max_length=65)
-    avatar = models.ImageField(upload_to='static/img/blog_author/%Y/%m')
-    slug = models.SlugField()
-
-    def __str__(self):
-        return f"{self.last_name}, {self.first_name}"
-
-
+@register_snippet
 class Movie(models.Model):
     title = models.CharField(max_length=255)
-    imdb_id = models.CharField(max_length=10, unique=True, null=True, blank=True)
-    omdb_response = models.JSONField(null=True)
+    imdb_id = models.CharField(max_length=12)
 
     def __str__(self):
         return self.title
 
-    def save(self, *args, **kwargs):
-        if self.omdb_response is None and self.imdb_id:
-            try:
-                imdb_data = omdb_service.get_move_data_from_imdb(self.imdb_id)
-            except Exception as e:
-                print(e)
-                imdb_data = None
-            self.omdb_response = imdb_data
-        super(Movie, self).save(*args, **kwargs)
 
-    @property
-    def poster(self):
-        if not self.omdb_response:
-            return None
-        return self.omdb_response.get("Poster", None)
+class HomePage(Page):
+    template = 'home.html'
+    max_count = 1
 
-    @property
-    def ratings_dict(self):
-        if not self.omdb_response:
-            return None
-        return self.omdb_response.get("Ratings")
+    body = StreamField([
+        ('default_hero_section', website_blocks.DefaultHeroSectionBlock()),
+        ('cta_section_with_checklist', website_blocks.CtaSectionWithChecklistBlock()),
+        ],
+        null=True, blank=True
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body'),
+    ]
 
 
-class Post(models.Model):
-    title = models.CharField(max_length=255)
-    banner_image = models.ImageField(upload_to='static/img/banner_images/%Y/%m', blank=True, null=True)
-    content = models.TextField()
-    author = models.ForeignKey(BlogAuthor, on_delete=models.PROTECT)
-    pub_date = models.DateField('date published')
-    category = models.ForeignKey(BlogCategory, on_delete=models.PROTECT)
-    tags = models.ManyToManyField(BlogTag, blank=True)
-    slug = models.SlugField(null=True, blank=True)
-    movie = models.OneToOneField(Movie, on_delete=models.SET_NULL, blank=True, null=True)
+class BlogIndexPage(Page):
+    template = 'blogs/post_list.html'
+
+    parent_page_types = ['website.HomePage']
+    subpage_types = ['website.BlogPage']
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+
+        # Add extra variables and return the updated context
+        context['blog_entries'] = BlogPage.objects.child_of(self).live()
+        return context
+
+
+@register_snippet
+class BlogAuthor(models.Model):
+    first_name = models.CharField(max_length=25)
+    last_name = models.CharField(max_length=25)
 
     def __str__(self):
-        return self.title
+        return f'{self.last_name}, {self.first_name}'
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(f"review of {self.movie.title}" if self.movie else self.title)
-        super(Post, self).save(*args, **kwargs)
+    class Meta:
+        ordering = ['last_name', 'first_name']
+
+
+class BlogPage(Page):
+    template = 'blogs/post_detail.html'
+    author = models.ForeignKey(BlogAuthor, on_delete=models.PROTECT, null=True, blank=True)
+    movie = models.ForeignKey(Movie, on_delete=models.PROTECT, null=True, blank=True)
+    body = StreamField([
+        ('paragraph', blocks.RichTextBlock()),
+    ])
+    date = models.DateField('Post date')
+    feed_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    search_fields = Page.search_fields + [
+        index.SearchField('body'),
+        index.FilterField('date'),
+    ]
+
+    content_panels = Page.content_panels + [
+        FieldPanel('date'),
+        FieldPanel('author'),
+        FieldPanel('body'),
+        FieldPanel('movie')
+    ]
+
+    promote_panels = [
+        MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+        FieldPanel('feed_image'),
+    ]
+
+    parent_page_types = ['website.BlogIndexPage']
+    subpage_types = []
 
