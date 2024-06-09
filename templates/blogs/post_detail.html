@@ -37,10 +37,10 @@ URL: https://flowbite.com/docs/components/typography/
       <aside class="hidden xl:block" aria-labelledby="sidebar-label">
           <div class="xl:w-[336px] sticky top-6">
               <h3 id="sidebar-label" class="sr-only">Sidebar</h3>
-              {% if post.movie.ratings_dict %}
+              {% if page.movie.ratings_dict %}
               <div class="mb-8">
                   <h4 class="mb-4 text-sm font-bold text-gray-900 dark:text-white uppercase">Movie Ratings</h4>
-                  {% for rating in post.movie.ratings_dict %}
+                  {% for rating in page.movie.ratings_dict %}
                   <div class="mb- flex items-center">
                       <div class="flex flex-row">
                           <h5 class="font-bold text-sm leading-tight dark:text-white text-gray-900 mr-2">{{ rating.Source }}: </h5>
@@ -50,10 +50,10 @@ URL: https://flowbite.com/docs/components/typography/
                   {% endfor %}
               </div>
               {% endif %}
-              {% if post.movie.poster %}
+              {% if page.movie.poster %}
               <div>
                   <a href="#" class="flex justify-center items-center mb-3 p-4 w-full h-auto bg-gray-100 rounded-lg dark:bg-gray-700">
-                      <img src="{{ post.movie.poster }}" alt="{{ post.movie.title }} movie poster" />
+                      <img src="{{ page.movie.poster }}" alt="{{ page.movie.title }} movie poster" />
                   </a>
               </div>
               {% endif %}
