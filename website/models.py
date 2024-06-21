@@ -58,6 +58,7 @@ class HomePage(Page):
     max_count = 1
 
     body = StreamField([
+        ('logo_hero', website_blocks.LogoHeroBlock()),
         ('default_hero_section', website_blocks.DefaultHeroSectionBlock()),
         ('cta_section_with_checklist', website_blocks.CtaSectionWithChecklistBlock()),
         ],

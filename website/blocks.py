@@ -1,6 +1,12 @@
 from wagtail import blocks
 
 
+class LogoHeroBlock(blocks.StructBlock):
+    class Meta:
+        icon = 'image'
+        template = 'blocks/LogoHero.html'
+
+
 class DefaultHeroSectionBlock(blocks.StructBlock):
     top_cta_action = blocks.CharBlock()
     top_cta_text = blocks.CharBlock()
