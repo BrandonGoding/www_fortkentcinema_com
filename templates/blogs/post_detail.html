@@ -1,6 +1,9 @@
 <!-- templates/index.html -->
 {% extends "_base.html" %}
 {% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block title %} <title>Fort Kent Cinema Blog | {{ page.title }}</title> {% endblock %}
+
 {% block content %}
 
 <!--

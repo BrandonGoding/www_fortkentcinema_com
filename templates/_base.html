@@ -7,8 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fort Kent Cinema</title>
-
+    {% block title %} <title>Fort Kent Cinema</title> {% endblock %}
     {% compress css %}
     <link rel="stylesheet" href="{% static 'src/output.css' %}">
     {% endcompress %}
@@ -24,7 +23,7 @@
                 <img src="{% static 'img/FKC_logo_black_FIN.svg' %}?test=1" class="h-6 small:h-9" alt="Fort Kent Cinema logo" />
             </a>
             <div class="flex items-center lg:order-2">
-                <a href="{%  slugurl 'support-fort-kent-cinema' %}" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Support The Cinema</a>
+<!--                <a href="{%  slugurl 'support-fort-kent-cinema' %}" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Support The Cinema</a>-->
                 <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
                     <span class="sr-only">Open main menu</span>
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
@@ -45,16 +44,16 @@
                         {% slugurl 'fort-kent-cinema-blog' as blog_url %}
                         <a href="{{ blog_url }}" class="{% active_class blog_url %}">Blog</a>
                     </li>
-                    <li>
-                        {% slugurl 'join-club-century' as club_century_url %}
-                        <a href="{{ club_century_url }}" class="{% active_class club_century_url %}">Memberships</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Now Playing</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Upcoming Movies</a>
-                    </li>
+<!--                    <li>-->
+<!--                        {% slugurl 'join-club-century' as club_century_url %}-->
+<!--                        <a href="{{ club_century_url }}" class="{% active_class club_century_url %}">Memberships</a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Now Playing</a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Upcoming Movies</a>-->
+<!--                    </li>-->
                 </ul>
             </div>
         </div>
@@ -79,18 +78,18 @@
           <li>
               <a href="{% slugurl 'fort-kent-cinema-blog' %}" class="mr-4 hover:underline md:mr-6">Blog</a>
           </li>
-          <li>
-              <a href="{% slugurl 'join-club-century' %}" class="mr-4 hover:underline md:mr-6 ">Memberships</a>
-          </li>
-          <li>
-              <a href="#" class="mr-4 hover:underline md:mr-6">Now Playing</a>
-          </li>
-          <li>
-              <a href="#" class="mr-4 hover:underline md:mr-6">Upcoming Movies</a>
-          </li>
-          <li>
-              <a href="#" class="mr-4 hover:underline md:mr-6">Contact</a>
-          </li>
+<!--          <li>-->
+<!--              <a href="{% slugurl 'join-club-century' %}" class="mr-4 hover:underline md:mr-6 ">Memberships</a>-->
+<!--          </li>-->
+<!--          <li>-->
+<!--              <a href="#" class="mr-4 hover:underline md:mr-6">Now Playing</a>-->
+<!--          </li>-->
+<!--          <li>-->
+<!--              <a href="#" class="mr-4 hover:underline md:mr-6">Upcoming Movies</a>-->
+<!--          </li>-->
+<!--          <li>-->
+<!--              <a href="#" class="mr-4 hover:underline md:mr-6">Contact</a>-->
+<!--          </li>-->
       </ul>
       <span class="text-sm sm:text-center text-gray-400">© {% now 'Y' %} Fort Kent Cinema LLC. All Rights Reserved.</span>
   </div>
