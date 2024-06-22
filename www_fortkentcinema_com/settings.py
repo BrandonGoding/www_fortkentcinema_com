@@ -15,9 +15,9 @@ import pymysql
 from decouple import config
 
 pymysql.install_as_MySQLdb()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -29,7 +29,6 @@ SECRET_KEY = 'django-insecure-v6kd1qx269wl*qug&#@lwv+zyy^2p5or(ig5#^z%(p5u)%k+b^
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -52,7 +51,6 @@ INSTALLED_APPS = [
     'wagtail.admin',
     'wagtail',
     'website.apps.WebsiteConfig',
-    'compressor',
     'modelcluster',
     'taggit',
 ]
@@ -73,8 +71,7 @@ ROOT_URLCONF = 'www_fortkentcinema_com.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,7 +86,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'www_fortkentcinema_com.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -103,7 +99,6 @@ DATABASES = {
         'PORT': config('DB_PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -123,7 +118,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -135,31 +129,45 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = 'static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+STATIC_URL = 'https://%s/static/' % (config('AWS_S3_CUSTOM_DOMAIN'))
 
-COMPRESS_ROOT = BASE_DIR / 'static'
-
-COMPRESS_ENABLED = True
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+    BASE_DIR / 'static/src',
+]
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-    'compressor.finders.CompressorFinder',
 ]
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_CUSTOM_DOMAIN = config('AWS_S3_CUSTOM_DOMAIN')
+AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME')
+AWS_S3_SIGNATURE_VERSION = config('AWS_S3_SIGNATURE_VERSION')
+AWS_QUERYSTRING_EXPIRE = config('AWS_QUERYSTRING_EXPIRE')
+AWS_CLOUDFRONT_DOMAIN = "cdn.fortkentcinema.com"
+
+# Custom storage classes
+STATICFILES_STORAGE = 'website.storages.StaticStorage'
+DEFAULT_FILE_STORAGE = 'website.storages.MediaStorage'
+
+# Media files
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+MEDIA_ROOT = BASE_DIR / 'media'  # This is only for local development
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 OMDB_API_KEY = config("OMDB_API_KEY")
 
-
 WAGTAIL_SITE_NAME = 'Fort Kent Cinema, LLC'
 WAGTAILADMIN_BASE_URL = 'https://www.fortkentcinema.com'
+
+# Ensure MEDIA_URL and MEDIA_ROOT are set for local development
+# if DEBUG:
+#     MEDIA_URL = '/media/'
+#     MEDIA_ROOT = BASE_DIR / 'media'
