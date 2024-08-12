@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+from core.models import Film
+
 
 class Category(models.Model):
     name = models.CharField(max_length=30)
@@ -37,6 +39,11 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ReviewPost(models.Model):
+    post = models.OneToOneField(Post, on_delete=models.RESTRICT)
+    film = models.ForeignKey(Film, on_delete=models.RESTRICT)
 
 
 class Comment(models.Model):
