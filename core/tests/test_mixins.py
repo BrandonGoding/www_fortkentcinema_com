@@ -1,4 +1,5 @@
 from unittest import TestCase
+from django.db import models
 
 from core.mixins import SlugModelMixin
 
@@ -18,3 +19,6 @@ class SlugModelMixinTests(TestCase):
     def test_missing_slug_attr_raises_exception(self):
         with self.assertRaises(NotImplementedError):
             TestModelNoAttr()
+
+    def test_slug_gets_set_on_save(self):
+        self.assertEqual(self.slug_model.slug, "test-model-name-fields")

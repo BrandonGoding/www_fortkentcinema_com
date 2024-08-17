@@ -20,15 +20,24 @@ class Tag(SlugModelMixin):
 
 
 class Author(SlugModelMixin):
+    slug_attr = 'full_name'
     last_name = models.CharField(max_length=30)
     first_name = models.CharField(max_length=30)
+    avatar = models.ImageField(upload_to='avatars')
 
+    @property
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+    def __str__(self):
+        return f"{self.last_name}, {self.first_name}"
 
 class Post(SlugModelMixin):
     slug_attr = 'title'
 
     title = models.CharField(max_length=30)
     author = models.ForeignKey(User, on_delete=models.RESTRICT)
+    image = models.ImageField(upload_to='posts')
     body = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag)
