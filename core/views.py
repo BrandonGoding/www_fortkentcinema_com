@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-
+from django.utils import timezone
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from core.models import Film, ShowTime
@@ -44,6 +44,6 @@ class HomePage(TemplateView):
             showtimes = ShowTime.objects.filter(start_time__date=date)
             # Get the films associated with those showtimes
             films = Film.objects.filter(showtime__in=showtimes).distinct()
-            films_by_date[date.strftime('%a')] = films
+            films_by_date[date] = films
         return films_by_date
 

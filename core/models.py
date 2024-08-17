@@ -1,3 +1,5 @@
+from django.utils import timezone
+
 from django.db import models
 from django.db.models import TextChoices
 from core.mixins import SlugModelMixin
@@ -12,7 +14,6 @@ class MovieRating(TextChoices):
 
 class Film(SlugModelMixin):
     slug_attr = 'name_and_release_year'
-
     title = models.CharField(max_length=100)
     rating = models.CharField(choices=MovieRating, max_length=5)
     running_time_in_minutes = models.IntegerField(default=0)
@@ -22,6 +23,7 @@ class Film(SlugModelMixin):
     omdb_response = models.JSONField()
     youtube_id = models.CharField(max_length=100)
     banner_image = models.ImageField(upload_to='movies/banners/')
+    poster_image = models.ImageField(upload_to='movies/posters/', null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -48,3 +50,7 @@ class ShowTime(models.Model):
         four_pm = self.start_time.replace(hour=16, minute=0, second=0, microsecond=0)
         # Return True if the start_time is before or at 4:00 PM, otherwise False
         return self.start_time <= four_pm
+
+    @property
+    def is_past(self):
+        return self.start_time < timezone.now()
