@@ -39,40 +39,40 @@
                     <img src="{% static 'logos/White/FKC_logo_white_FIN.png' %}" style="height:40px;"
                          alt="Fort Kent Cinema Logo">
                 </a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar top-bar"></span>
-                    <span class="icon-bar middle-bar"></span>
-                    <span class="icon-bar bottom-bar"></span>
-                </button>
+{#                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">#}
+{#                    <span class="sr-only">Toggle navigation</span>#}
+{#                    <span class="icon-bar top-bar"></span>#}
+{#                    <span class="icon-bar middle-bar"></span>#}
+{#                    <span class="icon-bar bottom-bar"></span>#}
+{#                </button>#}
             </div>
-            <div class="navbar-collapse collapse">
-                <ul id="menu-primary" class="nav navbar-nav">
-                    <li class="active">
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="whats-on.html">What's on</a>
-                    </li>
-                    <li>
-                        <a href="shortcodes.html">Shortcodes</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="news.html">News</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="news-single.html">News single</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="contact.html">Contact</a>
-                    </li>
-                </ul>
-            </div>
+{#            <div class="navbar-collapse collapse">#}
+{#                <ul id="menu-primary" class="nav navbar-nav">#}
+{#                    <li class="active">#}
+{#                        <a href="index.html">Home</a>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="whats-on.html">What's on</a>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="shortcodes.html">Shortcodes</a>#}
+{#                    </li>#}
+{#                    <li class="dropdown">#}
+{#                        <a href="news.html">News</a>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li><a href="news-single.html">News single</a></li>#}
+{#                        </ul>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="contact.html">Contact</a>#}
+{#                    </li>#}
+{#                </ul>#}
+{#            </div>#}
         </div>
     </div>
 
     <!-- Hero -->
-    <div id="hero" class="carousel slide carousel-fade" data-ride="carousel">
+    <div id="hero" class="carousel slide carousel-fade" data-ride="carousel"">
 
         <a href="#afterHeader" class="anchor">
             <img src="{% static 'theme/images/scroll-arrow.svg' %}" alt="Scroll down" class="scroll"/>
@@ -92,14 +92,18 @@
         <div class="carousel-inner">
             {% for film in films %}
                 <div class="item {% if forloop.first %}active{% endif %}"
-                     style="background-image: url('{{ film.banner_image.url }}')">
+                     style="background-image: url('{{ film.banner_image.url }}');background-color:rgba(0, 0, 0, 80%);background-blend-mode: overlay">
                     <!-- Content -->
                     <div class="container">
                         <div class="row blurb scrollme animateme" data-when="exit" data-from="{{ forloop.counter0 }}"
                              data-to="{% if not forloop.last %}{{ forloop.counter }}{% endif %}" data-opacity="0"
                              data-translatey="100">
                             <div class="col-md-9">
-                                <span class="title">Adventure, Animation, Comedy, Family, Fantasy</span>
+                                <span class="title">
+                                    {% for tag in film.tags.all %}
+                                     {{ tag.name }}{% if not forloop.last %}&nbsp;{% endif %}
+                                    {% endfor %}
+                                </span>
                                 <h1>{{ film.title }}</h1>
                                 <p>{{ film.summary }}</p>
                                 <div class="buttons">
@@ -129,13 +133,13 @@
                 <div class="tabs movies">
                     <ul>
                         {% for date in week_dates %}
-                            <li><a href="#{{ date|lower|truncatechars:3 }}">{{ date }}</a></li>
+                            <li><a href="#{{ date|date:"D"|lower|truncatechars:3 }}">{{ date|date:"D"|lower|truncatechars:3 }}</a></li>
                         {% endfor %}
                     </ul>
                     {% for date in week_dates %}
-                        <div id="{{ date|lower|truncatechars:3 }}">
+                        <div id="{{ date|date:"D"|lower|truncatechars:3 }}">
                             {% for the_date, films in films_by_date.items %}
-                                {% if the_date|date:"D"|lower == date|lower|truncatechars:3 %}
+                                {% if the_date|date:"D"|lower == date|date:"D"|lower|truncatechars:3 %}
                                     {% if films %}
                                         {% for film in films %}
                                             <div class="row movie-tabs">
@@ -149,8 +153,8 @@
                                                     <span class="title">Drama</span>
                                                     <h3 class="no-underline">{{ film.title }}</h3>
                                                     <p>{{ film.summary }}</p>
-                                                    <p><a href="single-movie.html" class="arrow-button">Full
-                                                        synopsis</a></p>
+{#                                                    <p><a href="single-movie.html" class="arrow-button">Full#}
+{#                                                        synopsis</a></p>#}
                                                     <div class="row">
                                                         <div class="col-md-8 col-sm-9">
                                                             <hr class="space-10"/>
@@ -176,7 +180,9 @@
                                             </div>
                                         {% endfor %}
                                     {% else %}
-                                        No Films TOday
+                                        <div class="fw-alert fw-alert-warning">
+	                                        <i class="fa fa-warning alert-icon"></i><strong>Closed Today</strong> Sorry but the cinema is closed today, please join us at a later date!
+                                        </div>
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}
@@ -188,6 +194,7 @@
         </div>
     </div>
 
+    {% if upcoming_films %}
     <!-- Section -->
     <section class="dark">
         <div class="container section remove-bottom-padding">
@@ -195,304 +202,100 @@
                 <div class="col-sm-12">
 
                     <h2>Coming soon</h2>
-
-                    <div class="row single-slide slideOne">
-                        <div class="bg" style="background: url(http://via.placeholder.com/1440x880);"></div>
+                    {% for film in upcoming_films %}
+                    <div class="row single-slide {{ film.slug }}">
+                        <div class="bg" style="background: url({{ film.banner_image.url }});background-size: cover;background-color:rgba(0,0,0,70%);background-blend-mode: overlay"></div>
                         <div class="col-sm-5 col-xs-12 slide-content">
-                            <span class="title">Drama, Thriller</span>
-                            <h3 class="no-underline">Deepwater Horizon</h3>
-                            <div class="star-rating">
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                            </div>
+                            <span class="title">{% for tag in film.tags.all %}{{ tag }}&nbsp;{% endfor %}</span>
+                            <h3 class="no-underline">{{ film.title }}</h3>
+{#                            <div class="star-rating">#}
+{#                                <i class="material-icons">star_rate</i>#}
+{#                                <i class="material-icons">star_rate</i>#}
+{#                                <i class="material-icons">star_rate</i>#}
+{#                                <i class="material-icons">star_rate</i>#}
+{#                                <i class="material-icons">star_rate</i>#}
+{#                            </div>#}
                             <div class="date">
                                 <i class="material-icons">date_range</i> 30 September, 2017
                             </div>
-                            <p>A dramatization of the April 2010 disaster, when the offshore drilling rig Deepwater
-                                Horizon exploded and created the worst oil spill in U.S. history.</p>
-                            <p><a href="#" class="arrow-button">More info</a></p>
+                            <p>{{ film.summary }}</p>
+{#                            <p><a href="#" class="arrow-button">More info</a></p>#}
                         </div>
                         <div class="col-sm-6 col-xs-12 col-sm-push-1 slide-video">
-                            <a href="https://youtu.be/ScMzIvxBSi4" data-vbtype="video" class="venobox video">
+                            <a href="https://youtu.be/{{ film.youtube_id }}" data-vbtype="video" class="venobox video">
                                 <i class="material-icons">play_arrow</i>
-                                <img src="http://via.placeholder.com/555x335" alt=""/>
+                                <img src="{{ film.banner_image.url }}" alt=""/>
                             </a>
                         </div>
                     </div>
-
-                    <div class="row single-slide slideTwo">
-                        <div class="bg" style="background: url(http://via.placeholder.com/1440x880);"></div>
-                        <div class="col-sm-5 slide-content">
-                            <span class="title">Action, Adventure, Sci-Fi</span>
-                            <h3 class="no-underline">X-Men: Days of Future Past</h3>
-                            <div class="star-rating">
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons grey">star_rate</i>
-                            </div>
-                            <div class="date">
-                                <i class="material-icons">date_range</i> 07 September, 2018
-                            </div>
-                            <p>The X-Men send Wolverine to the past in a desperate effort to change history and prevent
-                                an event that results in doom for both humans and mutants.</p>
-                            <p><a href="#" class="arrow-button">More info</a></p>
-                        </div>
-                        <div class="col-sm-6 col-sm-push-1 slide-video">
-                            <a href="https://youtu.be/ScMzIvxBSi4" data-vbtype="video" class="venobox video">
-                                <i class="material-icons">play_arrow</i>
-                                <img src="http://via.placeholder.com/555x335" alt=""/>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="row single-slide slideThree">
-                        <div class="bg" style="background: url(http://via.placeholder.com/1440x880);"></div>
-                        <div class="col-sm-5 slide-content">
-                            <span class="title">Comedy, Crime</span>
-                            <h3 class="no-underline">The Hangover Part III</h3>
-                            <div class="star-rating">
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                            </div>
-                            <div class="date">
-                                <i class="material-icons">date_range</i> 30 September, 2017
-                            </div>
-                            <p>When one of their own is kidnapped by an angry gangster, the Wolf Pack must track down
-                                Mr. Chow, who has escaped from prison and is on the run.</p>
-                            <p><a href="#" class="arrow-button">More info</a></p>
-                        </div>
-                        <div class="col-sm-6 col-sm-push-1 slide-video">
-                            <a href="https://youtu.be/ScMzIvxBSi4" data-vbtype="video" class="venobox video">
-                                <i class="material-icons">play_arrow</i>
-                                <img src="http://via.placeholder.com/555x335" alt=""/>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="row single-slide slideFour">
-                        <div class="bg" style="background: url(http://via.placeholder.com/1440x880);"></div>
-                        <div class="col-sm-5 slide-content">
-                            <span class="title">Action, Adventure, Sci-Fi</span>
-                            <h3 class="no-underline">Transformers: Age of Extinction</h3>
-                            <div class="star-rating">
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                            </div>
-                            <div class="date">
-                                <i class="material-icons">date_range</i> 15 April, 2018
-                            </div>
-                            <p>Autobots must escape sight from a bounty hunter who has taken control of the human
-                                serendipity: Unexpectedly, Optimus Prime and his remaining gang turn to a mechanic, his
-                                daughter, and her back street racing boyfriend for help.</p>
-                            <p><a href="#" class="arrow-button">More info</a></p>
-                        </div>
-                        <div class="col-sm-6 col-sm-push-1 slide-video">
-                            <a href="https://youtu.be/ScMzIvxBSi4" data-vbtype="video" class="venobox video">
-                                <i class="material-icons">play_arrow</i>
-                                <img src="http://via.placeholder.com/555x335" alt=""/>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="row single-slide slideFive">
-                        <div class="bg" style="background: url(http://via.placeholder.com/1440x880);"></div>
-                        <div class="col-sm-5 slide-content">
-                            <span class="title">Action, Adventure, Drama</span>
-                            <h3 class="no-underline">End of an empire</h3>
-                            <div class="star-rating">
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons grey">star_rate</i>
-                            </div>
-                            <div class="date">
-                                <i class="material-icons">date_range</i> 15 April, 2018
-                            </div>
-                            <p>A growing nation of genetically evolved apes led by Caesar is threatened by a band of
-                                human survivors of the devastating virus unleashed a decade earlier.</p>
-                            <p><a href="#" class="arrow-button">More info</a></p>
-                        </div>
-                        <div class="col-sm-6 col-sm-push-1 slide-video">
-                            <a href="https://youtu.be/ScMzIvxBSi4" data-vbtype="video" class="venobox video">
-                                <i class="material-icons">play_arrow</i>
-                                <img src="http://via.placeholder.com/555x335" alt=""/>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="row single-slide slideSix">
-                        <div class="bg" style="background: url(http://via.placeholder.com/1440x880);"></div>
-                        <div class="col-sm-5 slide-content">
-                            <span class="title">Crime, Thriller, Drama</span>
-                            <h3 class="no-underline">The comedian</h3>
-                            <div class="star-rating">
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                            </div>
-                            <div class="date">
-                                <i class="material-icons">date_range</i> 15 April, 2018
-                            </div>
-                            <p>After the death of his parents during World War II, young Hannibal Lecter moves in with
-                                his beautiful aunt and begins plotting revenge on the barbarians responsible for his
-                                sister's death.</p>
-                            <p><a href="#" class="arrow-button">More info</a></p>
-                        </div>
-                        <div class="col-sm-6 col-sm-push-1 slide-video">
-                            <a href="https://youtu.be/ScMzIvxBSi4" data-vbtype="video" class="venobox video">
-                                <i class="material-icons">play_arrow</i>
-                                <img src="http://via.placeholder.com/555x335" alt=""/>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="row single-slide slideSeven">
-                        <div class="bg" style="background: url(http://via.placeholder.com/1440x880);"></div>
-                        <div class="col-sm-5 slide-content">
-                            <span class="title">Adventure, Drama, Sci-Fi </span>
-                            <h3 class="no-underline">Locked out</h3>
-                            <div class="star-rating">
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                                <i class="material-icons">star_rate</i>
-                            </div>
-                            <div class="date">
-                                <i class="material-icons">date_range</i> 15 April, 2018
-                            </div>
-                            <p>An astronaut becomes stranded on Mars after his team assume him dead, and must rely on
-                                his ingenuity to find a way to signal to Earth that he is alive.</p>
-                            <p><a href="#" class="arrow-button">More info</a></p>
-                        </div>
-                        <div class="col-sm-6 col-sm-push-1 slide-video">
-                            <a href="http://www.google.com" class="video">
-                                <i class="material-icons">play_arrow</i>
-                                <img src="http://via.placeholder.com/555x335" alt=""/>
-                            </a>
-                        </div>
-                    </div>
+                    {% endfor %}
 
                     <div class="slick-carousel" id="comingSoon">
-                        <div data-dynamicclass="slideOne">
+                        {% for film in upcoming_films %}
+                        <div data-dynamicclass="{{ film.slug }}">
                             <a href="#">
-                                <img src="http://via.placeholder.com/265x340" alt="">
+                                <img src="{{ film.poster_image.url }}" alt="{{ film.tite }} poster">
                             </a>
-                            <h5 class="left no-underline">Deepwater horizon</h5>
-                            <span class="release-date">07 September, 2017</span>
+                            <h5 class="left no-underline">{{ film.title }}</h5>
+                            <span class="release-date">{{ film.release_date }}</span>
                         </div>
-                        <div data-dynamicclass="slideTwo">
-                            <a href="#">
-                                <img src="http://via.placeholder.com/265x340" alt="">
-                            </a>
-                            <h5 class="left no-underline">Too fast</h5>
-                            <span class="release-date">15 April, 2017</span>
-                        </div>
-                        <div data-dynamicclass="slideThree">
-                            <a href="#">
-                                <img src="http://via.placeholder.com/265x340" alt="">
-                            </a>
-                            <h5 class="left no-underline">The Hangover: Part III</h5>
-                            <span class="release-date">30 September, 2017</span>
-                        </div>
-                        <div data-dynamicclass="slideFour">
-                            <a href="#">
-                                <img src="http://via.placeholder.com/265x340" alt="">
-                            </a>
-                            <h5 class="left no-underline">Transformers: Age of Extinction</h5>
-                            <span class="release-date">15 April, 2018</span>
-                        </div>
-                        <div data-dynamicclass="slideFive">
-                            <a href="#">
-                                <img src="http://via.placeholder.com/265x340" alt="">
-                            </a>
-                            <h5 class="left no-underline">End of an empire</h5>
-                            <span class="release-date">19 October, 2018</span>
-                        </div>
-                        <div data-dynamicclass="slideSix">
-                            <a href="#">
-                                <img src="http://via.placeholder.com/265x340" alt="">
-                            </a>
-                            <h5 class="left no-underline">Hanibal Rising</h5>
-                            <span class="release-date">21 November, 2018</span>
-                        </div>
-                        <div data-dynamicclass="slideSeven">
-                            <a href="#">
-                                <img src="http://via.placeholder.com/265x340" alt="">
-                            </a>
-                            <h5 class="left no-underline">Locked out</h5>
-                            <span class="release-date">01 December, 2018</span>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
+    {% endif %}
     <!-- Section -->
-    <div class="container section small-padding">
-        <div class="row">
-            <div class="col-sm-12 cta">
-                <p>Need help? Contact our support team on</p>
-                <p class="gradient-text">0330 123 4567</p>
-            </div>
-        </div>
-    </div>
+{#    <div class="container section small-padding">#}
+{#        <div class="row">#}
+{#            <div class="col-sm-12 cta">#}
+{#                <p>Need help? Contact our support team on</p>#}
+{#                <p class="gradient-text">0330 123 4567</p>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-sm-3">
-                    <h6>Get in touch</h6>
-                    <ul>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Give us feedback</a></li>
-                        <li><a href="#">Contact us</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <h6>About Movie star</h6>
-                    <ul>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Find us</a></li>
-                        <li><a href="#">Schedule</a></li>
-                        <li><a href="#">News</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <h6>Legal stuff</h6>
-                    <ul>
-                        <li><a href="#">Terms &amp; Conditions</a></li>
-                        <li><a href="#">Privacy policy</a></li>
-                        <li><a href="#">Cookie policy</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <h6>Connect with us</h6>
-                    <ul>
-                        <li><a href="#"><i class="fa fa-facebook"></i> Facebook</a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i> Twitter</a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i> Google +</a></li>
-                    </ul>
-                </div>
-            </div>
+{#            <div class="row">#}
+{#                <div class="col-sm-3">#}
+{#                    <h6>Get in touch</h6>#}
+{#                    <ul>#}
+{#                        <li><a href="#">FAQs</a></li>#}
+{#                        <li><a href="#">Give us feedback</a></li>#}
+{#                        <li><a href="#">Contact us</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#                <div class="col-sm-3">#}
+{#                    <h6>About Movie star</h6>#}
+{#                    <ul>#}
+{#                        <li><a href="#">About us</a></li>#}
+{#                        <li><a href="#">Find us</a></li>#}
+{#                        <li><a href="#">Schedule</a></li>#}
+{#                        <li><a href="#">News</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#                <div class="col-sm-3">#}
+{#                    <h6>Legal stuff</h6>#}
+{#                    <ul>#}
+{#                        <li><a href="#">Terms &amp; Conditions</a></li>#}
+{#                        <li><a href="#">Privacy policy</a></li>#}
+{#                        <li><a href="#">Cookie policy</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#                <div class="col-sm-3">#}
+{#                    <h6>Connect with us</h6>#}
+{#                    <ul>#}
+{#                        <li><a href="#"><i class="fa fa-facebook"></i> Facebook</a></li>#}
+{#                        <li><a href="#"><i class="fa fa-twitter"></i> Twitter</a></li>#}
+{#                        <li><a href="#"><i class="fa fa-google-plus"></i> Google +</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#            </div>#}
             <div class="copyright">
-                <p>2017 &copy; Movie Star / <a href="http://www.klevermedia.co.uk">Web design by Klever media</a></p>
+                <p>2024 &copy; Fort Kent Cinema, LLC </p>
             </div>
         </div>
     </footer>

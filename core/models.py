@@ -2,6 +2,7 @@ from django.utils import timezone
 
 from django.db import models
 from django.db.models import TextChoices
+
 from core.mixins import SlugModelMixin
 
 
@@ -15,6 +16,7 @@ class MovieRating(TextChoices):
 class Film(SlugModelMixin):
     slug_attr = 'name_and_release_year'
     title = models.CharField(max_length=100)
+    tags = models.ManyToManyField("blog.Tag", blank=True)
     rating = models.CharField(choices=MovieRating, max_length=5)
     running_time_in_minutes = models.IntegerField(default=0)
     release_date = models.DateField()

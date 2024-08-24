@@ -6,6 +6,7 @@ from core.mixins import SlugModelMixin
 
 
 class Category(SlugModelMixin):
+    slug_attr = "name"
     name = models.CharField(max_length=30)
 
     def __str__(self):
@@ -13,6 +14,7 @@ class Category(SlugModelMixin):
 
 
 class Tag(SlugModelMixin):
+    slug_attr = "name"
     name = models.CharField(max_length=30)
 
     def __str__(self):
