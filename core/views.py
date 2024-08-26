@@ -35,17 +35,32 @@ class HomePage(TemplateView):
     def _get_films_in_next_two_weeks():
         today = timezone.now()
         two_weeks_from_now = today + timedelta(weeks=2)
-        return Film.objects.filter(
-            showtime__start_time__range=(today, two_weeks_from_now)
-        ).distinct()
+
+        # Filter showtimes within the next two weeks
+        showtimes = ShowTime.objects.filter(
+            start_time__range=(today, two_weeks_from_now)
+        ).order_by('start_time')
+
+        # Get distinct films based on the filtered showtimes
+        film_ids = showtimes.values_list('film_id', flat=True).distinct()
+
+        # Fetch the films by their IDs, preserving the order
+        films = Film.objects.filter(id__in=film_ids).distinct()
+
+        return films[:2]
 
     @staticmethod
     def _get_upcoming_films():
-        today = timezone.now()
-        end_of_week = (today + timedelta(days=(6 - today.weekday()))).replace(
-            hour=23, minute=59, second=59, microsecond=999999
-        )
-        # Filter films with showtimes after the current week
-        return Film.objects.filter(
-            showtime__start_time__gt=end_of_week
+        today = timezone.now().date()
+        end_of_today = today + timedelta(days=1)  # End of today
+
+        # Exclude films with showtimes today
+        films_playing_today = Film.objects.filter(
+            showtime__start_time__date__lte=today
         ).distinct()
+
+        # Include films with showtimes after today, excluding those playing today
+        return Film.objects.filter(
+            showtime__start_time__date__gte=end_of_today
+        ).exclude(id__in=films_playing_today).distinct()
+
