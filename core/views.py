@@ -1,9 +1,7 @@
 from django.utils import timezone
-from django.shortcuts import render
 from django.views.generic import TemplateView
-from core.models import Film, ShowTime
-from datetime import timedelta
-
+from datetime import timedelta, datetime
+from .models import Film, ShowTime
 
 class HomePage(TemplateView):
     template_name = 'core/index.html'
@@ -25,10 +23,14 @@ class HomePage(TemplateView):
 
     @staticmethod
     def _films_for_week_dates(week_dates):
-        films_by_date = {
-            date: Film.objects.filter(showtime__start_time__date=date).distinct()
-            for date in week_dates
-        }
+        films_by_date = {}
+        for date in week_dates:
+            start_of_day = timezone.make_aware(datetime.combine(date, datetime.min.time()))
+            end_of_day = timezone.make_aware(datetime.combine(date, datetime.max.time()))
+            films = Film.objects.filter(
+                showtime__start_time__range=(start_of_day, end_of_day)
+            ).distinct()
+            films_by_date[date] = films
         return films_by_date
 
     @staticmethod
@@ -36,31 +38,27 @@ class HomePage(TemplateView):
         today = timezone.now()
         two_weeks_from_now = today + timedelta(weeks=2)
 
-        # Filter showtimes within the next two weeks
-        showtimes = ShowTime.objects.filter(
-            start_time__range=(today, two_weeks_from_now)
-        ).order_by('start_time')
+        # Get films with showtimes within the next two weeks
+        films = Film.objects.filter(
+            showtime__start_time__range=(today, two_weeks_from_now)
+        ).distinct().order_by('showtime__start_time')
 
-        # Get distinct films based on the filtered showtimes
-        film_ids = showtimes.values_list('film_id', flat=True).distinct()
-
-        # Fetch the films by their IDs, preserving the order
-        films = Film.objects.filter(id__in=film_ids).distinct()
-
-        return films[:2]
+        return films[:2]  # Get the first two films
 
     @staticmethod
     def _get_upcoming_films():
-        today = timezone.now().date()
-        end_of_today = today + timedelta(days=1)  # End of today
+        today = timezone.now()
+        end_of_today = today + timedelta(days=1)
 
-        # Exclude films with showtimes today
+        start_of_day = timezone.make_aware(datetime.combine(today, datetime.min.time()))
+        end_of_day = timezone.make_aware(datetime.combine(today, datetime.max.time()))
         films_playing_today = Film.objects.filter(
-            showtime__start_time__date__lte=today
+            showtime__start_time__range=(start_of_day, end_of_day)
         ).distinct()
 
-        # Include films with showtimes after today, excluding those playing today
-        return Film.objects.filter(
-            showtime__start_time__date__gte=end_of_today
-        ).exclude(id__in=films_playing_today).distinct()
+        # Films with showtimes after today, excluding those playing today
+        upcoming_films = Film.objects.filter(
+            showtime__start_time__gte=end_of_today
+        ).exclude(id__in=films_playing_today.values('id')).distinct()
 
+        return upcoming_films

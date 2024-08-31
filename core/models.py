@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.db import models
 from django.db.models import TextChoices
 
+from core import omdb_service
 from core.mixins import SlugModelMixin
 
 
@@ -22,13 +23,23 @@ class Film(SlugModelMixin):
     release_date = models.DateField()
     summary = models.TextField()
     omdb_id = models.CharField(max_length=100)
-    omdb_response = models.JSONField()
+    omdb_response = models.JSONField(null=True, blank=True)
     youtube_id = models.CharField(max_length=100)
     banner_image = models.ImageField(upload_to='movies/banners/')
     poster_image = models.ImageField(upload_to='movies/posters/', null=True, blank=True)
 
     def __str__(self):
         return self.title
+    
+    def save(self, *args, **kwargs):
+        if self.omdb_response is None and self.omdb_id:
+            try:
+                imdb_data = omdb_service.get_move_data_from_imdb(self.omdb_id)
+            except Exception as e:
+                print(e)
+                imdb_data = None
+            self.omdb_response = imdb_data
+        super(Film, self).save(*args, **kwargs)
 
     @property
     def release_year(self):
@@ -38,6 +49,13 @@ class Film(SlugModelMixin):
     def name_and_release_year(self):
         return f"{self.title} - {self.release_year}"
 
+    @property
+    def first_showing(self):
+        return self.showtime_set.all().order_by('start_time').first()
+
+    @property
+    def last_showing(self):
+        return self.showtime_set.all().order_by('-start_time').first()
 
 class ShowTime(models.Model):
     film = models.ForeignKey(to=Film, on_delete=models.CASCADE)

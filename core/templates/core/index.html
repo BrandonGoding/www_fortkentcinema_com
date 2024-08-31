@@ -5,7 +5,33 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Movie Star - Cinema HTML Template</title>
+
+     <title>Fort Kent Cinema | First Run & Classic Movies in Fort Kent Maine</title>
+    <meta name="description" content="Discover a unique small town movie-going experience at Fort Kent Cinema. Enjoy first run, indie films, classic movies, and delicious concessions in Northern Maine.">
+
+    <meta property="og:title" content="Fort Kent Cinema | First Run, Indie Films & Classic Movies">
+    <meta property="og:description" content="Discover a unique small town movie-going experience at Fort Kent Cinema. Enjoy first run, indie films, classic movies in Northern Maine.">
+<!--    <meta property="og:image" content="[URL to a relevant image]">-->
+    <meta property="og:url" content="https://www.fortkentcinema.com">
+
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "MovieTheater",
+        "name": "Fort Kent Cinema",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "13 Hall Street",
+          "addressLocality": "Fort Kent",
+          "addressRegion": "Maine",
+          "postalCode": "04743"
+        },
+        "telephone": "(207) 231-5287",
+        "sameAs": "https://www.facebook.com/FortKentCinema",
+        "url": "https://www.fortkentcinema.com"
+      }
+      </script>
+
     <link rel="icon" type="image/png" href="{% static 'theme/images/favicon.png' %}"/>
     <link href="{% static 'theme/css/slick.css' %}" rel="stylesheet">
     <link href="{% static 'theme/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -150,7 +176,11 @@
                                                     </a>
                                                 </div>
                                                 <div class="col-md-10 col-sm-9">
-                                                    <span class="title">Drama</span>
+                                                    <span class="title">
+                                                        {% for tag in film.tags.all %}
+                                                         {{ tag.name }}{% if not forloop.last %}&nbsp;{% endif %}
+                                                        {% endfor %}
+                                                    </span>
                                                     <h3 class="no-underline">{{ film.title }}</h3>
                                                     <p>{{ film.summary }}</p>
 {#                                                    <p><a href="single-movie.html" class="arrow-button">Full#}
@@ -216,7 +246,7 @@
 {#                                <i class="material-icons">star_rate</i>#}
 {#                            </div>#}
                             <div class="date">
-                                <i class="material-icons">date_range</i> {{ film.release_date }}
+                                <i class="material-icons">date_range</i> {{ film.first_showing.start_time|date:"M/d" }} - {{ film.last_showing.start_time|date:"M/d/y" }}
                             </div>
                             <p>{{ film.summary }}</p>
 {#                            <p><a href="#" class="arrow-button">More info</a></p>#}
@@ -237,7 +267,7 @@
                                 <img src="{{ film.poster_image.url }}" alt="{{ film.tite }} poster">
                             </a>
                             <h5 class="left no-underline">{{ film.title }}</h5>
-                            <span class="release-date">{{ film.release_date }}</span>
+                            <span class="release-date">Release Date: {{ film.release_date }}</span>
                         </div>
                         {% endfor %}
                     </div>

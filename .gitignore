@@ -165,4 +165,10 @@ core/templates/movie-star-distribute/*
 core/static/theme/
 core/static/theme/*
 
+movies/
 movies/*
+movies/posters/
+movies/posters/*
+movies/banners/*
+html/*
+.DS_Store
