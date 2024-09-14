@@ -1,10 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block structured_data %}
+    <script type="application/ld+json">
+      {
+          "@context": "http://schema.org",
+          "@type": "BlogPosting",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://www.fortkentcinema.com/the-fort-kent-cinema-blog/{{ post.slug }}"
+          },
+          "headline": "{{ post.title }}",
+          "description": "A review of the movie {{ post.film.title }}",
+          "image": "{{ post.image.url }}",  
+          "author": {
+            "@type": "Person",
+            "name": "{{ post.author.full_name }}"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Fort Kent Cinema",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "{% static 'logos/Black/FKC_logo_black_FIN.png' %}"
+            }
+          },
+          "datePublished": "{{ post.published_date }}",
+          "dateModified": "{{ post.published_date }}"
+        }
+      </script>
+    {% endblock %}
+
+{% block content %}
+
+    	<!-- Hero -->
+			<div id="content_hero" style="background-image: url({{ post.image.url }})">
+
+				<img src="{% static 'theme/images/scroll-arrow.svg' %}" alt="Scroll down" class="scroll" />
+
+				<!-- Content -->
+				<div class="container">
+					<div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0" data-translatey="100">
+						<div class="col-md-9">
+							<span class="title">{{ post.category.name }}</span>
+							<h1>{{ post.title }}</h1>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- Section -->
+			<div class="container section news">
+				<div class="row">
+					<div class="col-sm-7">
+{#                        <div class="col-sm-12">#}
+						<article>
+							<span class="categories">{{ post.author.full_name }} - {{ post.published_date }}</span>
+							<h2 class="no-underline">{{ post.title }}</h2>
+							{{ post.body|linebreaks }}
+
+
+							<div class="bordered">
+								<div class="single-tags">
+									<i class="material-icons">label</i> <a href="#">Animation</a>, <a href="#">Movie nights</a>, <a href="#">Kids</a>
+								</div>
+								<div class="social-share">
+									<a href="#">
+										Share this
+										<i class="material-icons">share</i>
+									</a>
+									<div class="share">
+										<a href="#">
+											<i class="fa fa-facebook"></i>
+										</a>
+										<a href="#">
+											<i class="fa fa-twitter"></i>
+										</a>
+										<a href="#">
+											<i class="fa fa-pinterest"></i>
+										</a>
+										<a href="#">
+											<i class="fa fa-google-plus"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+
+						</article>
+					</div>
+
+
+                    {% include 'blog/partials/blog_sidebar.html' %}
+
+
+				</div>
+			</div>
+
+{% endblock %}

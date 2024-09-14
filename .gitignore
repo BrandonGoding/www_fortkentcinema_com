@@ -169,6 +169,11 @@ movies/
 movies/*
 movies/posters/
 movies/posters/*
+movies/banners/
 movies/banners/*
 html/*
 .DS_Store
+posts/
+posts/*
+avatars/
+avatars/*

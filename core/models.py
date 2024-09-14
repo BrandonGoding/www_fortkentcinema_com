@@ -17,7 +17,6 @@ class MovieRating(TextChoices):
 class Film(SlugModelMixin):
     slug_attr = 'name_and_release_year'
     title = models.CharField(max_length=100)
-    tags = models.ManyToManyField("blog.Tag", blank=True)
     rating = models.CharField(choices=MovieRating, max_length=5)
     running_time_in_minutes = models.IntegerField(default=0)
     release_date = models.DateField()
@@ -25,7 +24,7 @@ class Film(SlugModelMixin):
     omdb_id = models.CharField(max_length=100)
     omdb_response = models.JSONField(null=True, blank=True)
     youtube_id = models.CharField(max_length=100)
-    banner_image = models.ImageField(upload_to='movies/banners/')
+    banner_image = models.ImageField(upload_to='movies/banners/', null=True, blank=True)
     poster_image = models.ImageField(upload_to='movies/posters/', null=True, blank=True)
 
     def __str__(self):
