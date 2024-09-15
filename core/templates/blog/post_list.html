@@ -50,23 +50,36 @@
 
 
 
-{#			<!-- Pagination -->#}
-{#			<div class="section small-padding border-top">#}
-{#				<div class="container">#}
-{#					<div class="row">#}
-{#						<div class="col-sm-12">#}
-{#							<ul class="pagination">#}
-{#								<li><a href="#">Prev</a></li>#}
-{#								<li><a href="#">1</a></li>#}
-{#								<li><a href="#" class="active">2</a></li>#}
-{#								<li><span>&hellip;</span></li>#}
-{#								<li><a href="#">7</a></li>#}
-{#								<li><a href="#">8</a></li>#}
-{#								<li><a href="#">Next</a></li>#}
-{#							</ul>#}
-{#						</div>#}
-{#					</div>#}
-{#				</div>#}
-{#			</div>#}
+			<!-- Pagination -->
+    {% if is_paginated %}
+			<div class="section small-padding border-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<ul class="pagination">
 
+								{% if page_obj.has_previous %}
+                                    <li>
+                                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                                    </li>
+                                {% endif %}
+
+                                {% for page_num in page_obj.paginator.page_range %}
+                                    <li class="{% if page_obj.number == page_num %}active{% endif %}">
+                                        <a href="?page={{ page_num }}">{{ page_num }}</a>
+                                    </li>
+                                {% endfor %}
+
+								{% if page_obj.has_next %}
+                                    <li>
+                                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                                    </li>
+                                {% endif %}
+
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+            {% endif %}
 {% endblock %}
