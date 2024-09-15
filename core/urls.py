@@ -6,8 +6,8 @@ from django.views.generic import TemplateView
 from core import views as core_views
 from django_distill import distill_path
 
-app_name = 'core'
+app_name = "core"
 
 urlpatterns = [
-    distill_path('', core_views.HomePage.as_view(), name="homepage"),
+    distill_path("", core_views.HomePage.as_view(), name="homepage"),
 ]

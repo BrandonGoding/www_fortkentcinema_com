@@ -15,7 +15,7 @@ class MovieRating(TextChoices):
 
 
 class Film(SlugModelMixin):
-    slug_attr = 'name_and_release_year'
+    slug_attr = "name_and_release_year"
     title = models.CharField(max_length=100)
     rating = models.CharField(choices=MovieRating, max_length=5)
     running_time_in_minutes = models.IntegerField(default=0)
@@ -24,12 +24,12 @@ class Film(SlugModelMixin):
     omdb_id = models.CharField(max_length=100)
     omdb_response = models.JSONField(null=True, blank=True)
     youtube_id = models.CharField(max_length=100)
-    banner_image = models.ImageField(upload_to='movies/banners/', null=True, blank=True)
-    poster_image = models.ImageField(upload_to='movies/posters/', null=True, blank=True)
+    banner_image = models.ImageField(upload_to="movies/banners/", null=True, blank=True)
+    poster_image = models.ImageField(upload_to="movies/posters/", null=True, blank=True)
 
     def __str__(self):
         return self.title
-    
+
     def save(self, *args, **kwargs):
         if self.omdb_response is None and self.omdb_id:
             try:
@@ -50,11 +50,12 @@ class Film(SlugModelMixin):
 
     @property
     def first_showing(self):
-        return self.showtime_set.all().order_by('start_time').first()
+        return self.showtime_set.all().order_by("start_time").first()
 
     @property
     def last_showing(self):
-        return self.showtime_set.all().order_by('-start_time').first()
+        return self.showtime_set.all().order_by("-start_time").first()
+
 
 class ShowTime(models.Model):
     film = models.ForeignKey(to=Film, on_delete=models.CASCADE)

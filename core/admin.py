@@ -1,5 +1,7 @@
 from django.contrib import admin
-from . import models as core_models  # Adjust the import if your models are in a different module
+from . import (
+    models as core_models,
+)  # Adjust the import if your models are in a different module
 
 
 class ShowTimeInline(admin.TabularInline):
@@ -12,4 +14,6 @@ class FilmAdmin(admin.ModelAdmin):
 
 
 admin.site.register(core_models.Film, FilmAdmin)
-admin.site.register(core_models.ShowTime)  # This is optional if you want to also have a separate admin for ShowTime
+admin.site.register(
+    core_models.ShowTime
+)  # This is optional if you want to also have a separate admin for ShowTime

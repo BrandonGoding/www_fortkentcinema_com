@@ -7,14 +7,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0003_alter_post_tags'),
-        ('core', '0009_alter_film_omdb_response'),
+        ("blog", "0003_alter_post_tags"),
+        ("core", "0009_alter_film_omdb_response"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='post',
-            name='film',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='core.film'),
+            model_name="post",
+            name="film",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="core.film",
+            ),
         ),
     ]

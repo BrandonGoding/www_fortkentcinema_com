@@ -5,6 +5,7 @@ from core.models import Film
 from core.mixins import SlugModelMixin
 from django.template.defaultfilters import slugify
 
+
 class Category(SlugModelMixin):
     slug_attr = "name"
     name = models.CharField(max_length=30)
@@ -22,10 +23,10 @@ class Tag(SlugModelMixin):
 
 
 class Author(SlugModelMixin):
-    slug_attr = 'full_name'
+    slug_attr = "full_name"
     last_name = models.CharField(max_length=30)
     first_name = models.CharField(max_length=30)
-    avatar = models.ImageField(upload_to='avatars')
+    avatar = models.ImageField(upload_to="avatars")
 
     @property
     def full_name(self):
@@ -36,12 +37,16 @@ class Author(SlugModelMixin):
 
 
 class Post(SlugModelMixin):
-    slug_attr = 'title'
+    slug_attr = "title"
 
     title = models.CharField(max_length=30)
-    film = models.ForeignKey(to='core.Film', on_delete=models.SET_NULL, null=True, blank=True)
-    author = models.ForeignKey(Author, on_delete=models.RESTRICT, blank=True, null=True, related_name='posts')
-    image = models.ImageField(upload_to='posts')
+    film = models.ForeignKey(
+        to="core.Film", on_delete=models.SET_NULL, null=True, blank=True
+    )
+    author = models.ForeignKey(
+        Author, on_delete=models.RESTRICT, blank=True, null=True, related_name="posts"
+    )
+    image = models.ImageField(upload_to="posts")
     body = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag, blank=True)

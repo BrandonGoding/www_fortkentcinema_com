@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0009_alter_film_omdb_response'),
+        ("core", "0009_alter_film_omdb_response"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='film',
-            name='banner_image',
-            field=models.ImageField(blank=True, null=True, upload_to='movies/banners/'),
+            model_name="film",
+            name="banner_image",
+            field=models.ImageField(blank=True, null=True, upload_to="movies/banners/"),
         ),
     ]

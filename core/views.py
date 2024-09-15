@@ -3,15 +3,16 @@ from django.views.generic import TemplateView
 from datetime import timedelta, datetime
 from .models import Film, ShowTime
 
+
 class HomePage(TemplateView):
-    template_name = 'core/index.html'
+    template_name = "core/index.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['week_dates'] = self._get_week_dates()
-        context['films_by_date'] = self._films_for_week_dates(context['week_dates'])
+        context["week_dates"] = self._get_week_dates()
+        context["films_by_date"] = self._films_for_week_dates(context["week_dates"])
         context["films"] = self._get_films_in_next_two_weeks()
-        context['upcoming_films'] = self._get_upcoming_films()
+        context["upcoming_films"] = self._get_upcoming_films()
         return context
 
     @staticmethod
@@ -25,8 +26,12 @@ class HomePage(TemplateView):
     def _films_for_week_dates(week_dates):
         films_by_date = {}
         for date in week_dates:
-            start_of_day = timezone.make_aware(datetime.combine(date, datetime.min.time()))
-            end_of_day = timezone.make_aware(datetime.combine(date, datetime.max.time()))
+            start_of_day = timezone.make_aware(
+                datetime.combine(date, datetime.min.time())
+            )
+            end_of_day = timezone.make_aware(
+                datetime.combine(date, datetime.max.time())
+            )
             films = Film.objects.filter(
                 showtime__start_time__range=(start_of_day, end_of_day)
             ).distinct()
@@ -39,9 +44,11 @@ class HomePage(TemplateView):
         two_weeks_from_now = today + timedelta(weeks=2)
 
         # Get films with showtimes within the next two weeks
-        films = Film.objects.filter(
-            showtime__start_time__range=(today, two_weeks_from_now)
-        ).distinct().order_by('showtime__start_time')
+        films = (
+            Film.objects.filter(showtime__start_time__range=(today, two_weeks_from_now))
+            .distinct()
+            .order_by("showtime__start_time")
+        )
 
         return films[:2]  # Get the first two films
 
@@ -57,8 +64,10 @@ class HomePage(TemplateView):
         ).distinct()
 
         # Films with showtimes after today, excluding those playing today
-        upcoming_films = Film.objects.filter(
-            showtime__start_time__gte=end_of_today
-        ).exclude(id__in=films_playing_today.values('id')).distinct()
+        upcoming_films = (
+            Film.objects.filter(showtime__start_time__gte=end_of_today)
+            .exclude(id__in=films_playing_today.values("id"))
+            .distinct()
+        )
 
-        return upcoming_films
+        return upcoming_films.order_by('showtime__start_time')

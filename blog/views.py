@@ -9,8 +9,10 @@ class BlogRoll(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(BlogRoll, self).get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
-        context['tags'] = Tag.objects.annotate(blog_count=Count('post')).filter(blog_count__gt=0)
+        context["categories"] = Category.objects.all()
+        context["tags"] = Tag.objects.annotate(blog_count=Count("post")).filter(
+            blog_count__gt=0
+        )
         return context
 
 
@@ -19,6 +21,8 @@ class BlogDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(BlogDetailView, self).get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
-        context['tags'] = Tag.objects.annotate(blog_count=Count('post')).filter(blog_count__gt=0)
+        context["categories"] = Category.objects.all()
+        context["tags"] = Tag.objects.annotate(blog_count=Count("post")).filter(
+            blog_count__gt=0
+        )
         return context

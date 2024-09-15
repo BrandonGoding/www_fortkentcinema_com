@@ -7,27 +7,45 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Film',
+            name="Film",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('slug', models.SlugField(blank=True, null=True, unique=True)),
-                ('title', models.CharField(max_length=100)),
-                ('rating', models.CharField(choices=[('G', 'G'), ('PG', 'Pg'), ('PG-13', 'Pg 13'), ('R', 'R')], max_length=5)),
-                ('running_time_in_minutes', models.IntegerField(default=0)),
-                ('release_date', models.DateField()),
-                ('summary', models.TextField()),
-                ('omdb_id', models.CharField(max_length=100)),
-                ('omdb_response', models.JSONField()),
-                ('youtube_id', models.CharField(max_length=100)),
-                ('banner_image', models.ImageField(upload_to='movies/banners/')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("slug", models.SlugField(blank=True, null=True, unique=True)),
+                ("title", models.CharField(max_length=100)),
+                (
+                    "rating",
+                    models.CharField(
+                        choices=[
+                            ("G", "G"),
+                            ("PG", "Pg"),
+                            ("PG-13", "Pg 13"),
+                            ("R", "R"),
+                        ],
+                        max_length=5,
+                    ),
+                ),
+                ("running_time_in_minutes", models.IntegerField(default=0)),
+                ("release_date", models.DateField()),
+                ("summary", models.TextField()),
+                ("omdb_id", models.CharField(max_length=100)),
+                ("omdb_response", models.JSONField()),
+                ("youtube_id", models.CharField(max_length=100)),
+                ("banner_image", models.ImageField(upload_to="movies/banners/")),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

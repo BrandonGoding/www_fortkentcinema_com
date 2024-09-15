@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title_and_meta %}
+     <title>Fort Kent Cinema | A review of the movie {{ post.film.title }}</title>
+    <meta name="description" content="{{ post.body|truncatechars:160 }}">
+
+    <meta property="og:title" content="Fort Kent Cinema | A review of the movie {{ post.film.title}}">
+    <meta property="og:description" content="{{ post.body|truncatechars:160 }}">
+    <meta property="og:image" content="https://www.fortkentcinema.com{{ post.image.url }}">
+    <meta property="og:url" content="https://www.fortkentcinema.com/the-fort-kent-cinema-blog/{{ post.slug }}">
+{% endblock %}
+
 {% block structured_data %}
     <script type="application/ld+json">
       {
@@ -12,7 +22,7 @@
           },
           "headline": "{{ post.title }}",
           "description": "A review of the movie {{ post.film.title }}",
-          "image": "{{ post.image.url }}",  
+          "image": "https://www.fortkentcinema.com{{ post.image.url }}",
           "author": {
             "@type": "Person",
             "name": "{{ post.author.full_name }}"

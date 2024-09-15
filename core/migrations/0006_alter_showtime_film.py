@@ -7,13 +7,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0005_alter_showtime_film'),
+        ("core", "0005_alter_showtime_film"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='showtime',
-            name='film',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='showings', to='core.film'),
+            model_name="showtime",
+            name="film",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="showings",
+                to="core.film",
+            ),
         ),
     ]

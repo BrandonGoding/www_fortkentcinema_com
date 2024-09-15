@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0008_film_tags'),
+        ("core", "0008_film_tags"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='film',
-            name='omdb_response',
+            model_name="film",
+            name="omdb_response",
             field=models.JSONField(blank=True, null=True),
         ),
     ]

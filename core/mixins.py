@@ -1,6 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 
+
 class SlugModelMixin(models.Model):
     slug = models.SlugField(unique=True, null=True, blank=True)
 
