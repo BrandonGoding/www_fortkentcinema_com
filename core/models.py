@@ -33,7 +33,7 @@ class Film(SlugModelMixin):
     def save(self, *args, **kwargs):
         if self.omdb_response is None and self.omdb_id:
             try:
-                imdb_data = omdb_service.get_move_data_from_imdb(self.omdb_id)
+                imdb_data = omdb_service.get_movie_data_from_imdb(self.omdb_id)
             except Exception as e:
                 print(e)
                 imdb_data = None
@@ -74,3 +74,6 @@ class ShowTime(models.Model):
     @property
     def is_past(self):
         return self.start_time < timezone.now()
+
+    class Meta:
+        ordering = ["start_time"]

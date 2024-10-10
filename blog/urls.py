@@ -7,6 +7,8 @@ from blog.models import Post
 from blog import views as blog_views
 from django_distill import distill_path
 
+from core.models import Film
+
 app_name = "blog"
 
 

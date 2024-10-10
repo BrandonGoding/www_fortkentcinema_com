@@ -23,7 +23,7 @@
         <div class="carousel-inner">
             {% for film in films %}
                 <div class="item {% if forloop.first %}active{% endif %}"
-                     style="background-image: url('{{ film.banner_image.url }}');background-color:rgba(0, 0, 0, 80%);background-blend-mode: overlay">
+                     style="background-image: url('{{ film.banner_image.url }}');background-color:rgba(0, 0, 0, 80%);background-blend-mode: overlay; max-height: 900px">
                     <!-- Content -->
                     <div class="container">
                         <div class="row blurb scrollme animateme" data-when="exit" data-from="{{ forloop.counter0 }}"
@@ -75,7 +75,7 @@
                                         {% for film in films %}
                                             <div class="row movie-tabs">
                                                 <div class="col-md-2 col-sm-3">
-                                                    <a href="single-movie.html">
+                                                    <a href="{% url 'core:film_detail' film.slug %}">
                                                         <img src="{{ film.poster_image.url }}"
                                                              alt="{{ film.title }} poster" style="width: 100%; height: 300px; object-fit: cover;"/>
                                                     </a>
@@ -88,8 +88,8 @@
                                                 {% endif %}
                                                     <h3 class="no-underline">{{ film.title }}</h3>
                                                     <p>{{ film.summary }}</p>
-{#                                                    <p><a href="single-movie.html" class="arrow-button">Full#}
-{#                                                        synopsis</a></p>#}
+                                                    <p><a href="{% url 'core:film_detail' film.slug %}" class="arrow-button">Full
+                                                        synopsis</a></p>
                                                     <div class="row">
                                                         <div class="col-md-8 col-sm-9">
                                                             <hr class="space-10"/>
@@ -156,7 +156,7 @@
                                 <i class="material-icons">date_range</i> {{ film.first_showing.start_time|date:"M/d" }} - {{ film.last_showing.start_time|date:"M/d/y" }}
                             </div>
                             <p>{{ film.summary }}</p>
-{#                            <p><a href="#" class="arrow-button">More info</a></p>#}
+                            <p><a href="{% url 'core:film_detail' film.slug %}" class="arrow-button">More info</a></p>
                         </div>
                         <div class="col-sm-6 col-xs-12 col-sm-push-1 slide-video">
                             <a href="https://youtu.be/{{ film.youtube_id }}" data-vbtype="video" class="venobox video">

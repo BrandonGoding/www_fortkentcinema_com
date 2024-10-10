@@ -1,5 +1,5 @@
 from django.utils import timezone
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 from datetime import timedelta, datetime
 from .models import Film, ShowTime
 
@@ -49,25 +49,55 @@ class HomePage(TemplateView):
             .distinct()
             .order_by("showtime__start_time")
         )
-
         return films[:2]  # Get the first two films
 
     @staticmethod
     def _get_upcoming_films():
         today = timezone.now()
-        end_of_today = today + timedelta(days=1)
+        end_of_today = timezone.make_aware(datetime.combine(today, datetime.max.time()))
 
-        start_of_day = timezone.make_aware(datetime.combine(today, datetime.min.time()))
-        end_of_day = timezone.make_aware(datetime.combine(today, datetime.max.time()))
-        films_playing_today = Film.objects.filter(
-            showtime__start_time__range=(start_of_day, end_of_day)
+        # Get films that are playing today or in the past
+        films_playing_today_or_past = Film.objects.filter(
+            showtime__start_time__lt=end_of_today
         ).distinct()
 
-        # Films with showtimes after today, excluding those playing today
+        # Get distinct upcoming films, excluding those playing today or in the past
         upcoming_films = (
             Film.objects.filter(showtime__start_time__gte=end_of_today)
-            .exclude(id__in=films_playing_today.values("id"))
+            .exclude(id__in=films_playing_today_or_past.values_list("id", flat=True))
             .distinct()
         )
 
-        return upcoming_films.order_by('showtime__start_time')
+        # Sort by the next available showtime
+        return sorted(upcoming_films, key=lambda film: film.showtime_set.first().start_time)
+
+
+class RentTheCinemaPage(TemplateView):
+    template_name = "core/rent-the-cinema.html"
+
+
+class FilmDetailView(DetailView):
+    model = Film
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     showtime_list = {}
+    #
+    #     # Fetch showtimes and order by start_time (date and time are ordered)
+    #     showtimes = self.object.showtime_set.all().order_by("start_time")
+    #
+    #     # Populate the showtime_list dictionary with dates as keys and showtimes as values
+    #     for showtime in showtimes:
+    #         showtime_date = showtime.start_time.date()
+    #
+    #         # Initialize the date key if it doesn't exist
+    #         if showtime_date not in showtime_list:
+    #             showtime_list[showtime_date] = []
+    #
+    #         # Append the showtime to the correct date
+    #         showtime_list[showtime_date].append(showtime.start_time)
+    #
+    #     # Add the showtime list to the context
+    #     context["showtime_list"] = showtime_list
+    #     return context
+

@@ -6,7 +6,7 @@ from django.db.models import Count
 class BlogRoll(ListView):
     context_object_name = "blog_posts"
     queryset = Post.objects.all().order_by("-published_date")
-    paginate_by = 6
+    paginate_by = 20
 
     def get_context_data(self, **kwargs):
         context = super(BlogRoll, self).get_context_data(**kwargs)

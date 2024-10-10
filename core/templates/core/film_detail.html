@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+    <!-- Hero -->
+			<div id="content_hero" style="background-image: url({{ film.banner_image.url }})">
+
+				<img src="{% static 'theme/images/scroll-arrow.svg' %}" alt="Scroll down" class="scroll" />
+
+				<!-- Content -->
+				<div class="container">
+					<div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0" data-translatey="100">
+						<div class="col-md-9">
+                            {% if film.omdb_response.Genre %}
+							<span class="title">{{ film.omdb_response.Genre }}</span>
+                            {% endif %}
+							<h1>{{ film.title }}</h1>
+							<p>{{ film.summary }}</p>
+							<div class="buttons">
+								<span class="certificate">
+									{{ film.rating }}
+								</span>
+								<a href="https://youtu.be/{{ film.youtube_id }}" data-vbtype="video" class="venobox btn btn-default">
+									<i class="material-icons">play_arrow</i>
+									<span>Play trailer</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- Section -->
+			<div class="container section single-movie">
+				<div class="row">
+					<div class="col-sm-7">
+						<h2>Synopsis</h2>
+						<div class="row">
+							<div class="col-sm-5">
+								<img src="{% if film.omdb_response.Poster %}{{ film.omdb_response.Poster }}{% else %}{{ film.poster_image.url }}{% endif %}" style="max-width:265px;max-height: 340px;" alt="Transformers: The Last Knight" class="poster">
+								<div class="share">
+									<a href="#">
+										<i class="fa fa-facebook"></i>
+									</a>
+									<a href="#">
+										<i class="fa fa-twitter"></i>
+									</a>
+									<a href="#">
+										<i class="fa fa-pinterest"></i>
+									</a>
+									<a href="#">
+										<i class="fa fa-google-plus"></i>
+									</a>
+								</div>
+							</div>
+							<div class="col-sm-7">
+								{% if film.omdb_response.Plot %}
+                                <h3 class="no-underline">The plot</h3>
+								<p>{{ film.omdb_response.Plot }}</p>
+                                {% endif %}
+								<ul class="movie-info">
+                                    {% if film.omdb_response.Director %}
+									<li><i>Director</i> {{ film.omdb_response.Director }}</li>
+                                    {% endif %}
+                                    {% if film.omdb_response.Writer %}
+									<li><i>Writer(s)</i> {{ film.omdb_response.Writer }}</li>
+                                    {% endif %}
+                                    {% if film.omdb_response.Actors %}
+									<li><i>Starring</i> {{ film.omdb_response.Actors }}</li>
+                                    {% endif %}
+                                    {% if film.omdb_response.Released %}
+									<li><i>Release date</i> {{ film.omdb_response.Released }}</li>
+                                    {% endif %}
+                                    {% if film.omdb_response.Runtime %}
+									<li><i>Running time</i> {{ film.omdb_response.Runtime }}</li>
+                                    {% endif %}
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4 col-sm-push-1">
+                    {% if showtime_list %}
+                        <h2>Viewing times</h2>
+                        <ul class="show-times">
+                            {% for showtime_date, showtime_times in showtime_list.items %}
+                                <li>
+                                    <i>{{ showtime_date|date:"l m/j/y" }}</i>
+                                    {% for time in showtime_times %}
+                                        <span class="time">{{ time|date:"g:i A" }}</span>
+                                    {% endfor %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    
+            
+                            {% if film.omdb_response.Ratings %}
+                                <div class="widget">
+                                    <h3>Film Ratings</h3>
+                                    <ul>
+                                    {% for rating in film.omdb_response.Ratings %}
+                                        <li><strong>{{ rating.Source }}</strong>: {{ rating.Value }}</li>
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        <div class="widget">
+                            <h3>Trailer</h3>
+                            <div class="embed-responsive embed-responsive-16by9">
+                              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ film.youtube_id }}?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    
+                    
+                    </div>
+				</div>
+			</div>
+
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Hero -->
+			<div id="content_hero" style="background-image: url({% static 'backgrounds/film-reels.jpg' %})">
+
+				<!-- Content -->
+				<div class="container">
+					<div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0" data-translatey="100">
+						<div class="col-md-9">
+							<span class="title">Fort Kent Cinema</span>
+							<h1>Rent The Cinema</h1>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+            <div class="container section news">
+				<div class="row">
+					<div class="col-sm-12">
+						<h2>Rental Options</h2>
+						<hr class="space-40" />
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="icon-box">
+									<i class="material-icons">cake</i>
+									<h4>Birthday Party<br/>&nbsp;</h4>
+									<p>Celebrate your special day at Fort Kent Cinema! Our theater offers a fun and memorable birthday party experience for kids and adults alike. Rent out the space for a private movie screening with your friends and family, complete with the latest films and a personalized touch. We'll take care of the setup, and you can bring your favorite snacks or enjoy our delicious concessions. Make your birthday an unforgettable movie experience at Fort Kent Cinema—where every birthday is a blockbuster!</p>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="icon-box">
+									<i class="material-icons">sports_esports</i>
+									<h4>BYOC<br/><small>Bring Your Own Console</small></h4>
+									<p>Level up your gaming experience by playing on the big screen at Fort Kent Cinema! Bring your favorite gaming console, plug it into our HDMI input, and immerse yourself in epic adventures or friendly competitions with your friends in a way you've never experienced before. Whether it's a co-op session or a high-stakes tournament, playing your games on the theater’s massive screen with surround sound takes the action to the next level. Perfect for parties, tournaments, or just an unforgettable gaming session!</p>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="icon-box">
+									<i class="material-icons">theaters</i>
+									<h4>Movies on Demand<br/>&nbsp;</h4>
+									<p>Create your own cinematic experience with a private movie screening at Fort Kent Cinema! With our Movies on Demand option, groups of 10 or more can rent the theater for an exclusive showing of the latest films. Whether it’s for a school event, corporate gathering, or a fun night out with friends and family, you’ll have the entire theater to yourselves. Enjoy the big screen, comfortable seating, and our delicious concessions, all tailored to your group. Make your next outing unforgettable with Movies on Demand at Fort Kent Cinema!</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+{% endblock %}

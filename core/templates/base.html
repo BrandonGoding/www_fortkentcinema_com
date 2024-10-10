@@ -55,6 +55,81 @@
         .navbar {
             background-color: rgba(16, 16, 16, 50%);
         }
+
+        .pacman {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          background: #F2D648;
+          position: relative;
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
+
+        .pacman__eye {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          top: 20px;
+          right: 40px;
+          background: rgb(16,16,16);
+        }
+
+        .pacman__mouth {
+          background: rgb(16,16,16);;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
+          animation-name: eat;
+          animation-duration: 0.7s;
+          animation-iteration-count: infinite;
+        }
+
+        .pacman__food {
+          position: absolute;
+          width: 15px;
+          height: 15px;
+          background: #FFF;
+          border-radius: 50%;
+          top: 40%;
+          left: 120px;
+          animation-name: food;
+          animation-duration: 0.7s;
+          animation-iteration-count: infinite;
+        }
+
+        @keyframes eat {
+          0% {
+            clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
+          }
+          25% {
+            clip-path: polygon(100% 60%, 44% 48%, 100% 40%);
+          }
+          50% {
+            clip-path: polygon(100% 50%, 44% 48%, 100% 50%);
+          }
+          75% {
+            clip-path: polygon(100% 59%, 44% 48%, 100% 35%);
+          }
+          100% {
+            clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
+          }
+        }
+
+        @keyframes food {
+          0% {
+            transform: translateX(0);
+            opacity: 1;
+          }
+          100% {
+            transform: translateX(-50px);
+            opacity: 0;
+          }
+        }
+
+
     </style>
 </head>
 <body>
@@ -85,6 +160,9 @@
                     <li class="{% active_url 'blog:blog-roll' %}">
                         <a href="{% url 'blog:blog-roll' %}">Blog</a>
                     </li>
+                    <li class="{% active_url 'core:rent-the-cinema' %}">
+                        <a href="{% url 'core:rent-the-cinema' %}">Rentals</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -92,44 +170,46 @@
 
    {% block content %}
     {% endblock %}
+
     <!-- Footer -->
     <footer>
         <div class="container">
-{#            <div class="row">#}
-{#                <div class="col-sm-3">#}
-{#                    <h6>Get in touch</h6>#}
-{#                    <ul>#}
-{#                        <li><a href="#">FAQs</a></li>#}
-{#                        <li><a href="#">Give us feedback</a></li>#}
-{#                        <li><a href="#">Contact us</a></li>#}
-{#                    </ul>#}
-{#                </div>#}
-{#                <div class="col-sm-3">#}
-{#                    <h6>About Movie star</h6>#}
-{#                    <ul>#}
-{#                        <li><a href="#">About us</a></li>#}
-{#                        <li><a href="#">Find us</a></li>#}
-{#                        <li><a href="#">Schedule</a></li>#}
-{#                        <li><a href="#">News</a></li>#}
-{#                    </ul>#}
-{#                </div>#}
-{#                <div class="col-sm-3">#}
+            <div class="row">
+                <div class="col-sm-3">
+                    <h6>Current High Score <br /><em>21,720 - Brandon</em></h6>
+                  <div class="pacman">
+                     <div class="pacman__eye"></div>
+                     <div class="pacman__mouth"></div>
+                     <div class="pacman__food"></div>
+                  </div>
+                    <h6>Beat the Pac-Man High Score and get a free movie ticket</h6>
+                </div>
+                <div class="col-sm-3">
+                    <h6>The Fort Kent Cinema</h6>
+                    <ul>
+                        <li><a href="{% url 'core:homepage' %}">Home</a></li>
+                        <li><a href="{% url 'blog:blog-roll' %}">Blog</a></li>
+                        <li><a href="{% url 'core:rent-the-cinema' %}">Rentals</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
 {#                    <h6>Legal stuff</h6>#}
 {#                    <ul>#}
 {#                        <li><a href="#">Terms &amp; Conditions</a></li>#}
 {#                        <li><a href="#">Privacy policy</a></li>#}
 {#                        <li><a href="#">Cookie policy</a></li>#}
 {#                    </ul>#}
-{#                </div>#}
-{#                <div class="col-sm-3">#}
-{#                    <h6>Connect with us</h6>#}
-{#                    <ul>#}
-{#                        <li><a href="#"><i class="fa fa-facebook"></i> Facebook</a></li>#}
-{#                        <li><a href="#"><i class="fa fa-twitter"></i> Twitter</a></li>#}
-{#                        <li><a href="#"><i class="fa fa-google-plus"></i> Google +</a></li>#}
-{#                    </ul>#}
-{#                </div>#}
-{#            </div>#}
+                </div>
+                <div class="col-sm-3">
+                    <h6>Connect with us</h6>
+                    <ul>
+                        <li><a href="https://www.facebook.com/FortKentCinema"><i class="fa fa-facebook"></i> Facebook</a></li>
+                        <li><a href="https://github.com/BrandonGoding/www_fortkentcinema_com"><i class="fa fa-github"></i> Github</a></li>
+                        <li><a href="https://www.instagram.com/fortkentcinema/"><i class="fa fa-instagram"></i> Instagram</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
             <div class="copyright">
                 <p>2024 &copy; Fort Kent Cinema, LLC </p>
             </div>
