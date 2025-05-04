@@ -152,7 +152,6 @@ if ENVIRONMENT == "production":
     DEFAULT_FILE_STORAGE = "website.storage_backends.PublicMediaStorage"
 
     STATICFILES_LOCATION = "static"
-    STATIC_ROOT = "/%s/" % STATICFILES_LOCATION
     STATIC_URL = "//%s/%s/" % (AWS_CLOUDFRONT_DOMAIN, STATICFILES_LOCATION)
     STATICFILES_STORAGE = "website.storage_backends.StaticStorage"
 else:
