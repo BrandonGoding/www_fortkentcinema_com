@@ -33,4 +33,3 @@ typing_extensions==4.13.2
 urllib3==2.4.0
 wagtail==6.4.1
 Willow==1.10.0
-requirements
