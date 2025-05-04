@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
+    "website.apps.WebsiteConfig",
     "modelcluster",
     "taggit",
     "compressor",
