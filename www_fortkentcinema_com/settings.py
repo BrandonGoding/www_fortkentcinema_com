@@ -142,8 +142,10 @@ STATIC_URL = "static/"
 if ENVIRONMENT == "production":
     AWS_STORAGE_BUCKET_NAME = "cdn.fortkentcinema.com"
     AWS_CLOUDFRONT_DOMAIN = "cdn.fortkentcinema.com"
+    AWS_S3_CUSTOM_DOMAIN = AWS_CLOUDFRONT_DOMAIN
     AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
+    AWS_S3_REGION_NAME = "us-east-1"
 
     AWS_PUBLIC_MEDIA_LOCATION = "media"
     AWS_PRIVATE_MEDIA_LOCATION = "private-media"
@@ -152,14 +154,14 @@ if ENVIRONMENT == "production":
     DEFAULT_FILE_STORAGE = "website.storage_backends.PublicMediaStorage"
 
     STATICFILES_LOCATION = "static"
+    STATIC_ROOT = "/%s/" % STATICFILES_LOCATION
     STATIC_URL = "//%s/%s/" % (AWS_CLOUDFRONT_DOMAIN, STATICFILES_LOCATION)
     STATICFILES_STORAGE = "website.storage_backends.StaticStorage"
 else:
     STATIC_URL = "static/"
     MEDIA_URL = "media/"
     MEDIA_ROOT = BASE_DIR / "media"
-
-STATIC_ROOT = BASE_DIR / "staticfiles"
+    STATIC_ROOT = BASE_DIR / "staticfiles/static"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 

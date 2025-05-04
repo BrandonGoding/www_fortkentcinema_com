@@ -140,3 +140,4 @@ GitHub.sublime-settings
 node_modules/
 static/CACHE/
 .idea/
+staticfiles/
