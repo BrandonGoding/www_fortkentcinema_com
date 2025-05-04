@@ -140,8 +140,8 @@ STATIC_URL = "static/"
 
 
 if ENVIRONMENT == "production":
-    AWS_STORAGE_BUCKET_NAME = "cdn.fortkentoc.org"
-    AWS_CLOUDFRONT_DOMAIN = "cdn.fortkentoc.org"
+    AWS_STORAGE_BUCKET_NAME = "cdn.fortkentcinema.com"
+    AWS_CLOUDFRONT_DOMAIN = "cdn.fortkentcinema.com"
     AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
 
