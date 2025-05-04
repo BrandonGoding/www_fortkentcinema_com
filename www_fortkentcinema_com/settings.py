@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
+    "website.apps.WebsiteConfig",
     "modelcluster",
     "taggit",
     "compressor",
@@ -135,9 +136,9 @@ STATIC_URL = "static/"
 
 COMPRESS_ROOT = BASE_DIR / "static"
 
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = False
 
-STATICFILES_FINDERS = ("compressor.finders.CompressorFinder",)
+# STATICFILES_FINDERS = ("compressor.finders.CompressorFinder",)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
