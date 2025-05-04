@@ -15,13 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+from django.conf import settings
 from django.urls import path, include
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("", include(wagtail_urls)),
     path("fort-kent-cinema-cms/", include(wagtailadmin_urls)),
     path("fort-kent-cinema-documents/", include(wagtaildocs_urls)),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    )
