@@ -9,6 +9,15 @@
     <h3>Now Playing</h3>
     <h4>THUNDERBOLTS*</h4>
 
+
+    {% if recent_posts %}
+    <h3>Recent Movie Reviews</h3>
+        {% for post in recent_posts %}
+        <h4>{{ post.title }}</h4>
+        <p>A Review of the Film: {{ post.film.title }}</p>
+        <p><a href="{{ post.get_absolute_url }}">Read Review</a></p>
+        {% endfor %}
+    {% endif %}
 {% endblock content %}
 
 {% block additional_meta_data %}
