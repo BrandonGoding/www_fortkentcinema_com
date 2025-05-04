@@ -67,7 +67,7 @@ class MovieReviewPage(SeoMixin, Page):
         blank=True,
         related_name="reviews",
     )
-    post_date = models.DateField("Post Date", auto_now_add=True)
+    post_date = models.DateField(null=True, blank=True)
     body = RichTextField(blank=True)
 
     parent_page_types = ["website.BlogRoll"]
