@@ -23,9 +23,9 @@ from wagtail.documents import urls as wagtaildocs_urls
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path("", include(wagtail_urls)),
     path("fort-kent-cinema-cms/", include(wagtailadmin_urls)),
     path("fort-kent-cinema-documents/", include(wagtaildocs_urls)),
+    path("", include(wagtail_urls)),
 ]
 
 
