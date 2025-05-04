@@ -9,25 +9,17 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+from decouple import config
 from pathlib import Path
+import pymysql
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+pymysql.install_as_MySQLdb()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = (
-    "django-insecure-5puhz_*-0sya@8s6e^ymvr*w_iz_omq3n&#(+f%!#ehs!el4kl"
-)
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+ENVIRONMENT = config("ENVIRONMENT", cast=str, default="development")
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
 
 # Application definition
@@ -90,16 +82,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "www_fortkentcinema_com.wsgi.application"
 
-
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+if ENVIRONMENT == "production":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": config("MYSQL_DB"),
+            "USER": config("MYSQL_USER"),
+            "PASSWORD": config("MYSQL_PASSWORD"),
+            "HOST": config("MYSQL_HOST"),
+            "PORT": config("MYSQL_PORT"),
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 
 # Password validation
@@ -126,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/New_York"
 
 USE_I18N = True
 
@@ -138,21 +138,43 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-COMPRESS_ROOT = BASE_DIR / "static"
 
-COMPRESS_ENABLED = False
+if ENVIRONMENT == "production":
+    AWS_STORAGE_BUCKET_NAME = "cdn.fortkentoc.org"
+    AWS_CLOUDFRONT_DOMAIN = "cdn.fortkentoc.org"
+    AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
 
-# STATICFILES_FINDERS = ("compressor.finders.CompressorFinder",)
+    AWS_PUBLIC_MEDIA_LOCATION = "media"
+    AWS_PRIVATE_MEDIA_LOCATION = "private-media"
+    MEDIA_ROOT = "/%s/" % AWS_PUBLIC_MEDIA_LOCATION
+    MEDIA_URL = "//%s/%s/" % (AWS_CLOUDFRONT_DOMAIN, AWS_PUBLIC_MEDIA_LOCATION)
+    DEFAULT_FILE_STORAGE = "website.storage_backends.PublicMediaStorage"
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+    STATICFILES_LOCATION = "static"
+    STATIC_ROOT = "/%s/" % STATICFILES_LOCATION
+    STATIC_URL = "//%s/%s/" % (AWS_CLOUDFRONT_DOMAIN, STATICFILES_LOCATION)
+    STATICFILES_STORAGE = "website.storage_backends.StaticStorage"
+else:
+    STATIC_URL = "static/"
+    MEDIA_URL = "media/"
+    MEDIA_ROOT = BASE_DIR / "media"
+
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+STATICFILES_FINDERS = [
+    "compressor.finders.CompressorFinder",
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+COMPRESS_ROOT = BASE_DIR / "static"
+COMPRESS_ENABLED = False
+
 # WAGTAIL SPECIFIC SETTINGS
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10_000
-WAGTAIL_SITE_NAME = "My Example Site"
-WAGTAILADMIN_BASE_URL = "http://example.com"
+WAGTAIL_SITE_NAME = "Fort Kent Cinema"
+WAGTAILADMIN_BASE_URL = "https://www.fortkentcinema.com"
 WAGTAILDOCS_EXTENSIONS = [
     "csv",
     "docx",

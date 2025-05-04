@@ -10,6 +10,7 @@ django-compressor==4.5.1
 django-filter==25.1
 django-modelcluster==6.4
 django-permissionedforms==0.1
+django-storages==1.14.6
 django-stubs-ext==5.2.0
 django-taggit==6.1.0
 django-tasks==0.6.1
@@ -23,6 +24,8 @@ laces==0.1.2
 openpyxl==3.1.5
 pillow==11.2.1
 pillow_heif==0.21.0
+PyMySQL==1.1.1
+python-decouple==3.8
 rcssmin==1.1.2
 requests==2.32.3
 rjsmin==1.2.2
@@ -32,4 +35,5 @@ telepath==0.3.1
 typing_extensions==4.13.2
 urllib3==2.4.0
 wagtail==6.4.1
+wagtail-seo==3.0.0
 Willow==1.10.0
