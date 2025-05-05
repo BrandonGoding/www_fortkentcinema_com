@@ -1,6 +1,6 @@
-<!-- templates/index.html -->
-
 {% extends "_base.html" %}
+{% load wagtailcore_tags %}
+
 
 {% block content %}
     <h1>Fort Kent Cinema</h1>
@@ -16,14 +16,40 @@
         <li>Sunday, May 11th 5pm</li>
     </ul>
 
-{#    {% if recent_posts %}#}
-{#    <h3>Recent Movie Reviews</h3>#}
-{#        {% for post in recent_posts %}#}
-{#        <h4>{{ post.title }}</h4>#}
-{#        <p>A Review of the Film: {{ post.film.title }}</p>#}
-{#        <p><a href="{{ post.get_absolute_url }}">Read Review</a></p>#}
-{#        {% endfor %}#}
-{#    {% endif %}#}
+
+    <h3>Recent Movie Reviews</h3>
+{% if recent_posts %}
+    <section class="bg-white dark:bg-gray-900">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+            <div class="text-center">
+                <div>
+                    <h2 class="text-3xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl mb-5">
+                        Fort Kent Cinema Blog
+                    </h2>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+                {% for post in recent_posts %}
+                    {% if forloop.first %}
+                       <a href="{% pageurl post %}" class="p-8 col-span-2 text-left h-96 bg-[url('')] bg-no-repeat bg-cover bg-center bg-gray-500 bg-blend-multiply hover:bg-blend-normal">
+                    {% else %}
+                        <a href="{% pageurl post %}" class="p-8 col-span-2 md:col-span-1 text-left h-96 bg-[url('')] bg-no-repeat bg-cover bg-center bg-gray-500 bg-blend-multiply hover:bg-blend-normal">
+                    {% endif %}
+                    <h3 class="mb-5 max-w-xl text-5xl font-extrabold tracking-tight leading-tight text-white">
+                        {{ post.title }}<br/>
+                        <span class="text-2xl font-normal text-gray-300">A Review of the Film: {{ post.film.title }}</span>
+                    </h3>
+                    <button type="button" class="inline-flex items-center px-4 py-2.5 font-medium text-center text-white border border-white rounded-lg hover:bg-white hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-700">
+                        Show more
+                    </button>
+                </a>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+{% endif %}
+
 {% endblock content %}
 
 {% block additional_meta_data %}

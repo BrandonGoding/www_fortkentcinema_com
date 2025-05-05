@@ -21,6 +21,9 @@ class Film(models.Model):
     title = models.CharField(max_length=255)
     imdb_id = models.CharField(max_length=25, unique=True)
 
+    def __str__(self):
+        return self.title
+
 
 # Page Models
 
@@ -39,9 +42,10 @@ class HomePage(SeoMixin, Page):
             blog_roll.get_children()
             .live()
             .public()
+            .specific()  # <- important: cast to subclass like MovieReviewPage
             .order_by("-first_published_at")[:3]
             if blog_roll
-            else []
+            else None
         )
         return context
 
@@ -53,12 +57,12 @@ class BlogRoll(SeoMixin, Page):
 
 
 class MovieReviewPage(SeoMixin, Page):
-    film = models.ForeignKey(
+    film = models.OneToOneField(
         Film,
         on_delete=models.RESTRICT,
         null=True,
         blank=True,
-        related_name="reviews",
+        related_name="review",
     )
     author = models.ForeignKey(
         BlogAuthor,
