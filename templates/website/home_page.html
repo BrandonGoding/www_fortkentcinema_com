@@ -3,51 +3,95 @@
 
 
 {% block content %}
-    <h1>Fort Kent Cinema</h1>
-    <h2>13 Hall Street<br/>Fort Kent, Maine 04743</h2>
+    <div class="bg-white">
+  <div class="relative isolate px-6 pt-14 lg:px-8">
+    <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+      <div class="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+    <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+{#      <div class="hidden sm:mb-8 sm:flex sm:justify-center">#}
+{#        <div class="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">#}
+{#          Announcing our next round of funding. <a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>#}
+{#        </div>#}
+{#      </div>#}
+      <div class="text-center">
+        <h1 class="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl">Fort Kent Cinema</h1>
+{#        <p class="mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.</p>#}
+{#        <div class="mt-10 flex items-center justify-center gap-x-6">#}
+{#          <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get started</a>#}
+{#          <a href="#" class="text-sm/6 font-semibold text-gray-900">Learn more <span aria-hidden="true">→</span></a>#}
+{#        </div>#}
+      </div>
+    </div>
+    <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+      <div class="relative left-[calc(50%+3rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+  </div>
+</div>
 
-    <h3>Now Playing</h3>
-    <h4>THUNDERBOLTS*</h4>
-    <h5>Showtime</h5>
-    <ul style="list-style-type: none;">
-        <li>Thursday, May 8th 6pm</li>
-        <li>Friday, May 9th 6pm</li>
-        <li>Saturday, May 10th 3pm & 6pm</li>
-        <li>Sunday, May 11th 5pm</li>
-    </ul>
+<div class="bg-white">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl sm:text-center">
+      <h2 class="text-base/7 font-semibold text-indigo-600">Now Playing</h2>
+      <p class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl sm:text-balance">THUNDERBOLTS*</p>
+      <p class="mt-6 text-lg/8 text-gray-600">
+          Thursday, May 8th 6pm<br />
+          Friday, May 9th 6pm<br />
+          Saturday, May 10th 3pm & 6pm<br />
+          Sunday, May 11th 5pm<br />
+      </p>
+    </div>
+  </div>
+  <div class="relative overflow-hidden pt-16">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
 
+    </div>
+  </div>
 
-    <h3>Recent Movie Reviews</h3>
+</div>
+
 {% if recent_posts %}
-    <section class="bg-white dark:bg-gray-900">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
-            <div class="text-center">
-                <div>
-                    <h2 class="text-3xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl mb-5">
-                        Fort Kent Cinema Blog
-                    </h2>
-                </div>
-            </div>
-            <div class="grid grid-cols-2 gap-2">
-                {% for post in recent_posts %}
-                    {% if forloop.first %}
-                       <a href="{% pageurl post %}" class="p-8 col-span-2 text-left h-96 bg-[url('')] bg-no-repeat bg-cover bg-center bg-gray-500 bg-blend-multiply hover:bg-blend-normal">
-                    {% else %}
-                        <a href="{% pageurl post %}" class="p-8 col-span-2 md:col-span-1 text-left h-96 bg-[url('')] bg-no-repeat bg-cover bg-center bg-gray-500 bg-blend-multiply hover:bg-blend-normal">
-                    {% endif %}
-                    <h3 class="mb-5 max-w-xl text-5xl font-extrabold tracking-tight leading-tight text-white">
-                        {{ post.title }}<br/>
-                        <span class="text-2xl font-normal text-gray-300">A Review of the Film: {{ post.film.title }}</span>
-                    </h3>
-                    <button type="button" class="inline-flex items-center px-4 py-2.5 font-medium text-center text-white border border-white rounded-lg hover:bg-white hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-700">
-                        Show more
-                    </button>
-                </a>
-                {% endfor %}
+    <div class="bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <h2 class="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">The Fort Kent Cinema Blog</h2>
+{#      <p class="mt-2 text-lg/8 text-gray-600">Learn how to grow your business with our expert advice.</p>#}
+    </div>
+    <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+         {% for post in recent_posts %}
 
-            </div>
+      <article class="flex max-w-xl flex-col items-start justify-between">
+        <div class="flex items-center gap-x-4 text-xs">
+          <time datetime="2020-03-16" class="text-gray-500">{{ post.post_date }}</time>
+          <a href="#" class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Rick's Reviews</a>
         </div>
-    </section>
+        <div class="group relative">
+          <h3 class="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+            <a href="{% pageurl post %}">
+              <span class="absolute inset-0"></span>
+                {{ post.title }}
+            </a>
+          </h3>
+          <p class="mt-5 line-clamp-3 text-sm/6 text-gray-600">{{ post.body|striptags  }}</p>
+        </div>
+        <div class="relative mt-8 flex items-center gap-x-4">
+          <div class="text-sm/6">
+            <p class="font-semibold text-gray-900">
+              <a href="#">
+                <span class="absolute inset-0"></span>
+                  Author: {{ post.author }}
+              </a>
+            </p>
+          </div>
+        </div>
+      </article>
+{% endfor %}
+    </div>
+  </div>
+</div>
+
+
+
 {% endif %}
 
 {% endblock content %}
