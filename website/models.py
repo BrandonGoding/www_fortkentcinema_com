@@ -60,8 +60,8 @@ class Film(ClusterableModel):
 
 
 class Schedule(ClusterableModel):
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    start_date = models.DateField()
+    end_date = models.DateField()
     film = ParentalKey(
         "Film",
         on_delete=models.CASCADE,
