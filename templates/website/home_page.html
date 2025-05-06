@@ -33,13 +33,20 @@
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl sm:text-center">
       <h2 class="text-base/7 font-semibold text-indigo-600">Now Playing</h2>
-      <p class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl sm:text-balance">THUNDERBOLTS*</p>
+        {% for film in now_playing %}
+      <h3 class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl sm:text-balance">{{ film.title }}</h3>
       <p class="mt-6 text-lg/8 text-gray-600">
-          Thursday, May 8th 6pm<br />
-          Friday, May 9th 6pm<br />
-          Saturday, May 10th 3pm & 6pm<br />
-          Sunday, May 11th 5pm<br />
+        {% if film.get_showtimes %}
+            {% for date, showtime_list in film.get_showtimes.items %}
+            <p><strong>{{ date }}:</strong>
+                {% for showtime in showtime_list %}
+                    {{ showtime.start_date_time|date:"g:i A" }}{% if showtime.is_matinee %} (Matinee){% endif %}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        {% endfor %}
+      {% endif %}
       </p>
+        {% endfor %}
     </div>
   </div>
   <div class="relative overflow-hidden pt-16">
