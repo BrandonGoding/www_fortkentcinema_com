@@ -112,12 +112,14 @@ class HomePage(SeoMixin, Page):
 
     def _get_now_playing(self):
         """This method gets films, where a schedule's start date is in the past and end date is in the future"""
-        now_playing = []
-        for schedule in Schedule.objects.all():
-            if schedule.start_date <= timezone.now() <= schedule.end_date:
-                now_playing.append(schedule.film)
-        return now_playing
+        now = timezone.now()
+        active_schedules = Schedule.objects.filter(
+            start_date__lte=now,
+            end_date__gte=now
+        ).select_related('film')
 
+        # Use a set to avoid duplicate films
+        return list({schedule.film for schedule in active_schedules})
     def _get_recent_posts(self):
         blog_roll = self.get_children().live().public().type(BlogRoll).first()
         all_posts = (
