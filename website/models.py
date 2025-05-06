@@ -62,17 +62,9 @@ class BlogRoll(SeoMixin, Page):
     def get_context(self, request, *args, **kwargs):
         """ THIS IS TEMPORARY """
         context = super().get_context(request, *args, **kwargs)
-        blog_roll = self.get_children().live().public().type(BlogRoll).first()
-        all_posts = (
-            blog_roll.get_children()
-            .live()
-            .public()
-            .specific()  # <- important: cast to subclass like MovieReviewPage
-            if blog_roll
-            else None
-        )
+        blog_roll = self.get_children().live().specific()
         context["recent_posts"] = sorted(
-            [post for post in all_posts if hasattr(post, "post_date")],
+            [post for post in blog_roll if hasattr(post, "post_date")],
             key=lambda p: p.post_date,
             reverse=True
         )
