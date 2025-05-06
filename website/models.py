@@ -8,6 +8,8 @@ from wagtail.models import Page
 from wagtail.snippets.models import register_snippet
 from wagtailseo.models import SeoMixin, SeoType
 
+MATINEE_HOUR_THRESHOLD = 17
+
 
 # Snippets Models
 @register_snippet
@@ -93,7 +95,7 @@ class Showtime(ClusterableModel):
 
     @property
     def is_matinee(self):
-        return self.start_date_time.hour < 17
+        return self.start_date_time.hour < MATINEE_HOUR_THRESHOLD
 
 
 # Page Models
@@ -114,12 +116,12 @@ class HomePage(SeoMixin, Page):
         """This method gets films, where a schedule's start date is in the past and end date is in the future"""
         now = timezone.now()
         active_schedules = Schedule.objects.filter(
-            start_date__lte=now,
-            end_date__gte=now
-        ).select_related('film')
+            start_date__lte=now, end_date__gte=now
+        ).select_related("film")
 
         # Use a set to avoid duplicate films
         return list({schedule.film for schedule in active_schedules})
+
     def _get_recent_posts(self):
         blog_roll = self.get_children().live().public().type(BlogRoll).first()
         all_posts = (
