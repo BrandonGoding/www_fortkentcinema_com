@@ -38,14 +38,18 @@ class HomePage(SeoMixin, Page):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         blog_roll = self.get_children().live().public().type(BlogRoll).first()
-        context["recent_posts"] = (
+        all_posts = (
             blog_roll.get_children()
             .live()
             .public()
             .specific()  # <- important: cast to subclass like MovieReviewPage
-            .order_by("-first_published_at")[:3]
             if blog_roll
             else None
+        )
+        context["recent_posts"] = sorted(
+            [post for post in all_posts if hasattr(post, "post_date")],
+            key=lambda p: p.post_date,
+            reverse=True
         )
         return context
 
