@@ -50,7 +50,7 @@ class HomePage(SeoMixin, Page):
             [post for post in all_posts if hasattr(post, "post_date")],
             key=lambda p: p.post_date,
             reverse=True
-        )
+        )[:3]
         return context
 
 
@@ -58,6 +58,25 @@ class BlogRoll(SeoMixin, Page):
     max_count = 1
     parent_page_types = ["website.HomePage"]
     promote_panels = SeoMixin.seo_panels
+
+    def get_context(self, request, *args, **kwargs):
+        """ THIS IS TEMPORARY """
+        context = super().get_context(request, *args, **kwargs)
+        blog_roll = self.get_children().live().public().type(BlogRoll).first()
+        all_posts = (
+            blog_roll.get_children()
+            .live()
+            .public()
+            .specific()  # <- important: cast to subclass like MovieReviewPage
+            if blog_roll
+            else None
+        )
+        context["recent_posts"] = sorted(
+            [post for post in all_posts if hasattr(post, "post_date")],
+            key=lambda p: p.post_date,
+            reverse=True
+        )
+        return context
 
 
 class MovieReviewPage(SeoMixin, Page):
