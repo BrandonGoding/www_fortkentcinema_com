@@ -41,7 +41,7 @@
             <p><strong>{{ date }}:</strong>
                 {% for showtime in showtime_list %}
                     {{ showtime.start_date_time|date:"g:i A" }}{% if showtime.is_matinee %} (Matinee){% endif %}{% if not forloop.last %}, {% endif %}
-                {% endfor %}
+            {% endfor %}
             </p>
         {% endfor %}
       {% endif %}

@@ -1,5 +1,6 @@
 from django.db import models
-from django.utils import timezone
+from django.utils.timezone import now as timezone_now
+from datetime import date
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.admin.panels import FieldPanel, InlinePanel
@@ -113,14 +114,24 @@ class HomePage(SeoMixin, Page):
         return context
 
     def _get_now_playing(self):
-        """This method gets films, where a schedule's start date is in the past and end date is in the future"""
-        now = timezone.now()
-        active_schedules = Schedule.objects.filter(
-            start_date__lte=now, end_date__gte=now
-        ).select_related("film")
+        """
+        Return films that have active schedules AND at least one showtime that is today or in the future.
+        """
+        now = timezone_now()
 
-        # Use a set to avoid duplicate films
-        return list({schedule.film for schedule in active_schedules})
+        active_schedules = Schedule.objects.filter(
+            start_date__lte=now.date(),  # Use .date() because these are DateFields
+            end_date__gte=now.date(),
+        ).prefetch_related("showtimes", "film__schedules")
+
+        films_with_upcoming_showtimes = set()
+
+        for schedule in active_schedules:
+            upcoming_showtimes = schedule.showtimes.filter(start_date_time__gte=now)
+            if upcoming_showtimes.exists():
+                films_with_upcoming_showtimes.add(schedule.film)
+
+        return list(films_with_upcoming_showtimes)
 
     def _get_recent_posts(self):
         blog_roll = self.get_children().live().public().type(BlogRoll).first()
