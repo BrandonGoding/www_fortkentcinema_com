@@ -1,6 +1,5 @@
 from django.db import models
-from django.utils.timezone import now as timezone_now
-from datetime import date
+from django.utils import timezone
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.admin.panels import FieldPanel, InlinePanel
@@ -98,6 +97,10 @@ class Showtime(ClusterableModel):
     def is_matinee(self):
         return self.start_date_time.hour < MATINEE_HOUR_THRESHOLD
 
+    @property
+    def is_after_now(self):
+        return self.start_date_time > timezone.now()
+
 
 # Page Models
 class HomePage(SeoMixin, Page):
@@ -114,24 +117,13 @@ class HomePage(SeoMixin, Page):
         return context
 
     def _get_now_playing(self):
-        """
-        Return films that have active schedules AND at least one showtime that is today or in the future.
-        """
-        now = timezone_now()
-
+        """This method gets films, where a schedule's start date is in the past and end date is in the future"""
+        now = timezone.now()
         active_schedules = Schedule.objects.filter(
-            start_date__lte=now.date(),  # Use .date() because these are DateFields
-            end_date__gte=now.date(),
-        ).prefetch_related("showtimes", "film__schedules")
-
-        films_with_upcoming_showtimes = set()
-
-        for schedule in active_schedules:
-            upcoming_showtimes = schedule.showtimes.filter(start_date_time__gte=now)
-            if upcoming_showtimes.exists():
-                films_with_upcoming_showtimes.add(schedule.film)
-
-        return list(films_with_upcoming_showtimes)
+            start_date__lte=now, end_date__gte=now
+        ).select_related("film")
+        # Use a set to avoid duplicate films
+        return list({schedule.film for schedule in active_schedules})
 
     def _get_recent_posts(self):
         blog_roll = self.get_children().live().public().type(BlogRoll).first()
