@@ -97,10 +97,6 @@ class Showtime(ClusterableModel):
     def is_matinee(self):
         return self.start_date_time.hour < MATINEE_HOUR_THRESHOLD
 
-    @property
-    def is_after_now(self):
-        return self.start_date_time > timezone.datetime.now()
-
 
 # Page Models
 class HomePage(SeoMixin, Page):
