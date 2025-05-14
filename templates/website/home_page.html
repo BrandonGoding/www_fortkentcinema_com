@@ -37,10 +37,10 @@
       <h3 class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl sm:text-balance">{{ film.title }}</h3>
       <p class="mt-6 text-lg/8 text-gray-600">
         {% if film.get_showtimes %}
-            {% for date, is_after_now, showtime_list in film.get_showtimes.items %}
+            {% for date, showtime_list in film.get_showtimes.items %}
             <p><strong>{{ date }}:</strong>
                 {% for showtime in showtime_list %}
-                    {% if is_after_now %}
+                    {% if showtime.is_after_now %}
                     {{ showtime.start_date_time|date:"g:i A" }}{% if showtime.is_matinee %} (Matinee){% endif %}{% if not forloop.last %}, {% endif %}
                     {% endif %}
                 {% endfor %}
