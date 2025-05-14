@@ -40,7 +40,9 @@
             {% for date, showtime_list in film.get_showtimes.items %}
             <p><strong>{{ date }}:</strong>
                 {% for showtime in showtime_list %}
+                    {% if not showtime.has_started %}
                     {{ showtime.start_date_time|date:"g:i A" }}{% if showtime.is_matinee %} (Matinee){% endif %}{% if not forloop.last %}, {% endif %}
+                    {% endif %}
                 {% endfor %}
             </p>
         {% endfor %}

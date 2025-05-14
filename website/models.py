@@ -52,6 +52,7 @@ class Film(ClusterableModel):
                     {
                         "start_date_time": showtime.start_date_time,
                         "is_matinee": showtime.is_matinee,
+                        "has_started": showtime.has_started,
                     }
                 )
 
@@ -96,6 +97,10 @@ class Showtime(ClusterableModel):
     @property
     def is_matinee(self):
         return self.start_date_time.hour < MATINEE_HOUR_THRESHOLD
+
+    @property
+    def has_started(self):
+        return self.start_date_time < timezone.now()
 
 
 # Page Models
