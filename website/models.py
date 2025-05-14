@@ -46,15 +46,16 @@ class Film(ClusterableModel):
                 "start_date_time"
             ):
                 date = showtime.start_date_time.date()
-                if date not in showtimes and date >= timezone.now().date():
-                    showtimes[date] = []
-                showtimes[date].append(
-                    {
-                        "start_date_time": showtime.start_date_time,
-                        "is_matinee": showtime.is_matinee,
-                        "has_started": showtime.has_started,
-                    }
-                )
+                if date >= timezone.now().date():
+                    if date not in showtimes:
+                        showtimes[date] = []
+                    showtimes[date].append(
+                        {
+                            "start_date_time": showtime.start_date_time,
+                            "is_matinee": showtime.is_matinee,
+                            "has_started": showtime.has_started,
+                        }
+                    )
 
         # optionally: ensure the outer date keys are sorted too
         return dict(sorted(showtimes.items()))
