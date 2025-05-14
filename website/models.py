@@ -46,7 +46,7 @@ class Film(ClusterableModel):
                 "start_date_time"
             ):
                 date = showtime.start_date_time.date()
-                if date not in showtimes:
+                if date not in showtimes and date >= timezone.now().date():
                     showtimes[date] = []
                 showtimes[date].append(
                     {
