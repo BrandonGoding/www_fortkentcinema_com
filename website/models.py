@@ -99,7 +99,7 @@ class Showtime(ClusterableModel):
 
     @property
     def is_after_now(self):
-        return self.start_date_time > timezone.now()
+        return self.start_date_time > timezone.datetime.now()
 
 
 # Page Models
