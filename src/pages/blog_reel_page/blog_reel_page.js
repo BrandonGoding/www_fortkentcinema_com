@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./blog_reel.scss";
 import SectionHeading from "../../components/section_heading/section_heading";
 import blogFile from "./blogs.json";
