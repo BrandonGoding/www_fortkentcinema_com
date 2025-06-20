@@ -1,0 +1,44 @@
+@import '../../styles/variables.scss';
+
+.rates {
+  padding: $padding-large;
+  color: $accent-color;
+  font-family: $font-secondary;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .rates-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $padding-large;
+    justify-content: center;
+
+    .rateItem{
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+    h3 {
+      color: $secondary-color;
+      font-size: $font-size-medium;
+      margin-bottom: $padding-small;
+      font-family: $font-primary;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+
+      li {
+        margin-bottom: $padding-small;
+        font-size: $font-size-small;
+        text-align: left;
+      }
+    }
+
+}

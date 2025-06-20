@@ -1,0 +1,37 @@
+@import '../../styles/variables.scss';
+
+.calendar-container {
+  max-width: 1400px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 24px;
+
+  .fc-toolbar-title {
+    color: black;
+  }
+
+  @media (max-width: 768px){
+    margin: 15px;
+      .fc-today-button {
+      display: none !important;
+    }
+  }
+
+  .fc {
+    color: #000; // Sets the text color to black
+  }
+
+  .fc-event{
+    background-color: $primary-color !important; /* Red for now-playing events */
+    border-color: white;
+
+    .fc-event-main {
+      color: $secondary-color !important; /* Ensures text is white */
+      padding: 0 5px;
+    }
+
+  }
+
+}

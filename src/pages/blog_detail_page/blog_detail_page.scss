@@ -1,0 +1,83 @@
+/* General Blog Styling */
+.blog-container {
+  max-width: 1200px;
+  margin:50px auto 0 auto;
+    font-family: 'Cinzel', serif; /* A vintage-style font */
+    background-color: #f5f5dc; /* Light sepia tone */
+    color: #333; /* Dark text for readability */
+    padding: 40px;
+    border: 5px solid #000; /* Film reel border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+/* Blog Title Styling */
+.blog-title {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #b22222; /* Marquee-style red */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 3px solid #b22222;
+    margin-bottom: 20px;
+}
+
+/* Blog Subtitle Styling */
+.blog-subtitle {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+/* Blog Content Styling */
+.blog-content {
+    line-height: 1.8;
+    font-size: 1.2rem;
+    text-align: left;
+}
+
+/* Author Section Styling */
+.blog-author {
+    font-size: 1rem;
+    text-align: right;
+    font-style: italic;
+    margin-top: 0;
+    color: #777;
+}
+
+/* Add a Film Reel Effect */
+.blog-container::before,
+.blog-container::after {
+    content: '';
+    display: block;
+    height: 20px;
+    width: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        #000,
+        #000 10px,
+        #f5f5dc 10px,
+        #f5f5dc 20px
+    );
+}
+
+/* Author Name Styling */
+h4 {
+  margin-top:0;
+    font-size: 1.2rem;
+    text-align: center;
+    color: #444; /* Neutral dark tone */
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+/* Post Date Styling */
+h5 {
+  margin-top:0;
+    font-size: 1rem;
+    text-align: center;
+    color: #666; /* Subtle gray tone */
+    margin-bottom: 20px;
+    font-style: italic;
+}

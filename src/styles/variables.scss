@@ -1,0 +1,22 @@
+// www/src/styles/variables.scss
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap');
+
+// Colors
+$primary-color: #800020; // Deep Burgundy
+$secondary-color: #FFD700; // Gold
+$accent-color: #FFFFF0; // Ivory
+$background-color: #000000; // Black
+
+// Fonts
+$font-primary: 'Cinzel', serif;
+$font-secondary: 'Lato', sans-serif;
+
+// Font sizes
+$font-size-large: 1.8rem;
+$font-size-medium: 1.5rem;
+$font-size-small: 1.2rem;
+
+// Spacing
+$padding-small: 10px;
+$padding-medium: 15px;
+$padding-large: 20px;

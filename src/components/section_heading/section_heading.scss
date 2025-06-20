@@ -1,0 +1,9 @@
+@import '../../styles/variables.scss';
+
+  h2 {
+    font-family: $font-primary;
+    color: $secondary-color;
+    margin-bottom: $padding-medium;
+    font-size: $font-size-large;
+    text-align: center;
+  }

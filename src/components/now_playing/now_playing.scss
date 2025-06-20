@@ -1,0 +1,40 @@
+@import '../../styles/variables.scss';
+
+.now-playing {
+  padding: $padding-large;
+  color: $accent-color;
+  font-family: $font-secondary;
+
+  .movies-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $padding-large;
+    justify-content: center;
+  }
+}
+
+.movie-info {
+    margin-bottom: $padding-medium;
+    h3 {
+      font-family: $font-primary;
+      color: $secondary-color;
+      font-size: $font-size-medium;
+      margin-bottom: 5px;
+    }
+    p {
+      margin: 0 0 5px 0;
+      font-size: $font-size-small;
+    }
+    .movie-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+  }
+
+@media (max-width: 700px) {
+  .now-playing .movies-list {
+    flex-direction: column;
+    gap: $padding-medium;
+  }
+}

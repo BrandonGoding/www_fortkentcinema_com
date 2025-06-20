@@ -1,0 +1,20 @@
+body {
+    background: linear-gradient(to bottom, #000000, #1a1a1a); /* Subtle black gradient for a classic look */ /* Subtle gradient for a classic look */
+    color: #FFD700; /* Gold text color for contrast */
+    font-family: 'Lato', sans-serif; /* Secondary font for body text */
+    margin: 0 0 100px 0;
+    padding: 0;
+    min-height: 100vh; /* Ensure body fills the viewport */
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto; /* Center horizontally */
+    flex: 1; /* Fill vertical space */
+    padding: 20px; /* Add some padding for spacing */
+    background-color: #FFFFF0; /* Ivory background for content */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    border-radius: 8px; /* Rounded corners for a polished look */
+}

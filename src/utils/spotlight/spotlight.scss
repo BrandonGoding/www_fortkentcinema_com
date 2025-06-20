@@ -1,0 +1,8 @@
+.spotlight {
+  position: relative;
+  transition: box-shadow 0.3s ease;
+}
+
+.spotlight:hover {
+  box-shadow: 0 0 50px 20px rgba(255, 255, 255, 0.5);
+}
