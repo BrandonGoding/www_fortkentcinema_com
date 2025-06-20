@@ -23,7 +23,7 @@ const BlogRollPage = () => {
             <div className="blog-roll">
                 {blogPosts.map((post, idx) => (
                     <div key={idx} style={{ position: "relative" }}>
-    <img src={post.image || placeHolder} alt={post.title} className="blog-post-image" />
+    <img src={post.header_image || placeHolder} alt={post.title} className="blog-post-image" />
     <div className="blog-post-overlay">
         <h3>{post.title}</h3>
         <h4>{post.subtitle}</h4>

@@ -24,7 +24,8 @@
         margin: auto;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: $padding-large;
+        column-gap: $padding-large;
+        row-gap: 100px;
         justify-items: center;
 
         @media (max-width: 1200px) {
@@ -38,11 +39,11 @@
         .blog-post-image {
             width: 100%;
             max-width: 300px;
-            height: auto;
+            height: 100%;
             object-fit: cover;
             display: block;
             margin: 0 auto;
-            margin-bottom: 45px;
+            border-radius: 0 0 10px 10px;
         }
 
         .blog-post-content {
@@ -69,7 +70,7 @@
     padding: 1rem;
     border-radius: 0 0 10px 10px;
     text-align: center;
-        margin-bottom: 45px;
+
 
 
     h4, h5 {
