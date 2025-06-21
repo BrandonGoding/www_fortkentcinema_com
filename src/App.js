@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route, useLocation} from 'react-router-dom';
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import HeroSection from "./components/hero_section/hero_section";
@@ -11,6 +11,8 @@ import './utils/spotlight/spotlight.scss';
 import ComingSoonPage from "./pages/coming_soon_page/coming_soon_page";
 import BlogRollPage from "./pages/blog_reel_page/blog_reel_page";
 import BlogDetailPage from "./pages/blog_detail_page/blog_detail_page";
+import {useEffect} from "react";
+import {initGA, trackPageview} from "./analytics";
 
 const films  = [
     { title: 'Karate Kid: Legends', start: '2025-06-06', end: '2025-06-20', rating: "PG-13", length: "1h 34m", youtubeId: "LhRXf-yEQqA", imdbId: "tt1674782" },
@@ -24,6 +26,16 @@ const films  = [
 
 
 function App() {
+    const location = useLocation();
+
+      useEffect(() => {
+        initGA();
+      }, []);
+
+      useEffect(() => {
+        trackPageview(location.pathname + location.search);
+      }, [location]);
+
     return (
         <Router>
             <div className="App">
