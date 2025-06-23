@@ -1,0 +1,713 @@
+[
+    {
+        "id": "81ed3fc3-e8ec-41b7-aa95-09fca951397e",
+        "bookings": [
+            {
+                "id": 1,
+                "booking_start_date": "2025-04-04",
+                "booking_end_date": "2025-04-17",
+                "confirmed": true,
+                "film": "81ed3fc3-e8ec-41b7-aa95-09fca951397e"
+            }
+        ],
+        "slug": "a-minecraft-movie",
+        "title": "A Minecraft Movie",
+        "imdb_id": "tt3566834",
+        "youtube_id": "wJO_vIDZn-I",
+        "omdb_json": null
+    },
+    {
+        "id": "6416917d-7329-478a-ae25-251ba85ea9a7",
+        "bookings": [
+            {
+                "id": 2,
+                "booking_start_date": "2024-06-28",
+                "booking_end_date": "2024-07-11",
+                "confirmed": true,
+                "film": "6416917d-7329-478a-ae25-251ba85ea9a7"
+            }
+        ],
+        "slug": "a-quiet-place-day-one",
+        "title": "A Quiet Place: Day One",
+        "imdb_id": "tt13433802",
+        "youtube_id": "YPY7J-flzE8",
+        "omdb_json": null
+    },
+    {
+        "id": "57add9cb-f20a-4df8-9d7a-8c7f9470aeb1",
+        "bookings": [
+            {
+                "id": 3,
+                "booking_start_date": "2024-08-30",
+                "booking_end_date": "2024-09-12",
+                "confirmed": true,
+                "film": "57add9cb-f20a-4df8-9d7a-8c7f9470aeb1"
+            }
+        ],
+        "slug": "alien-romulus",
+        "title": "Alien: Romulus",
+        "imdb_id": "tt18412256",
+        "youtube_id": "OzY2r2JXsDM",
+        "omdb_json": null
+    },
+    {
+        "id": "725ccb33-dd5d-402e-a300-7b22866ced93",
+        "bookings": [
+            {
+                "id": 4,
+                "booking_start_date": "2025-01-17",
+                "booking_end_date": "2025-01-30",
+                "confirmed": true,
+                "film": "725ccb33-dd5d-402e-a300-7b22866ced93"
+            }
+        ],
+        "slug": "autumn-and-the-black-jaguar",
+        "title": "Autumn and the Black Jaguar",
+        "imdb_id": "tt16740144",
+        "youtube_id": "Y7wWZsTRr4I",
+        "omdb_json": null
+    },
+    {
+        "id": "e6b7d0a4-637f-438d-9765-7a60593a2176",
+        "bookings": [
+            {
+                "id": 5,
+                "booking_start_date": "2024-09-06",
+                "booking_end_date": "2024-06-19",
+                "confirmed": true,
+                "film": "e6b7d0a4-637f-438d-9765-7a60593a2176"
+            }
+        ],
+        "slug": "beetlejuice-beetlejuice",
+        "title": "Beetlejuice Beetlejuice",
+        "imdb_id": "tt2049403",
+        "youtube_id": "As-vKW4ZboU",
+        "omdb_json": null
+    },
+    {
+        "id": "03b6bf88-5a64-4368-992f-66d1d36db7e1",
+        "bookings": [
+            {
+                "id": 6,
+                "booking_start_date": "2025-01-10",
+                "booking_end_date": "2025-01-23",
+                "confirmed": true,
+                "film": "03b6bf88-5a64-4368-992f-66d1d36db7e1"
+            }
+        ],
+        "slug": "bonhoeffer",
+        "title": "Bonhoeffer",
+        "imdb_id": "tt26237514",
+        "youtube_id": "WZM90izJ8sI",
+        "omdb_json": null
+    },
+    {
+        "id": "c5e212d8-c4b5-457f-bd49-62221e80f6ea",
+        "bookings": [
+            {
+                "id": 7,
+                "booking_start_date": "2025-02-14",
+                "booking_end_date": "2025-02-27",
+                "confirmed": true,
+                "film": "c5e212d8-c4b5-457f-bd49-62221e80f6ea"
+            }
+        ],
+        "slug": "captain-america-brave-new-world",
+        "title": "Captain America: Brave New World",
+        "imdb_id": "tt14513804",
+        "youtube_id": "1pHDWnXmK7Y",
+        "omdb_json": null
+    },
+    {
+        "id": "250bd1c7-3b95-4ba0-8f66-322e59dc4f4f",
+        "bookings": [
+            {
+                "id": 8,
+                "booking_start_date": "2024-07-26",
+                "booking_end_date": "2024-08-15",
+                "confirmed": true,
+                "film": "250bd1c7-3b95-4ba0-8f66-322e59dc4f4f"
+            }
+        ],
+        "slug": "deadpool-wolverine",
+        "title": "Deadpool & Wolverine",
+        "imdb_id": "tt6263850",
+        "youtube_id": "73_1biulkYk",
+        "omdb_json": null
+    },
+    {
+        "id": "37ab5e6b-6980-4220-850d-e4e23a714bcb",
+        "bookings": [
+            {
+                "id": 9,
+                "booking_start_date": "2024-07-03",
+                "booking_end_date": "2024-07-25",
+                "confirmed": true,
+                "film": "37ab5e6b-6980-4220-850d-e4e23a714bcb"
+            }
+        ],
+        "slug": "despicable-me-4",
+        "title": "Despicable Me 4",
+        "imdb_id": "tt7510222",
+        "youtube_id": "qQlr9-rF32A",
+        "omdb_json": null
+    },
+    {
+        "id": "2f3cad4b-20bd-4cb5-ad74-9f2ba004f6e0",
+        "bookings": [
+            {
+                "id": 10,
+                "booking_start_date": "2025-01-31",
+                "booking_end_date": "2025-02-27",
+                "confirmed": true,
+                "film": "2f3cad4b-20bd-4cb5-ad74-9f2ba004f6e0"
+            }
+        ],
+        "slug": "dog-man",
+        "title": "Dog Man",
+        "imdb_id": "tt10954718",
+        "youtube_id": "QaJbAennB_Q",
+        "omdb_json": null
+    },
+    {
+        "id": "056e0cd5-e4f9-4e05-bf6a-13805fd9cf1d",
+        "bookings": [
+            {
+                "id": 11,
+                "booking_start_date": "2024-08-23",
+                "booking_end_date": "2024-08-29",
+                "confirmed": true,
+                "film": "056e0cd5-e4f9-4e05-bf6a-13805fd9cf1d"
+            }
+        ],
+        "slug": "dune-part-two",
+        "title": "Dune: Part Two",
+        "imdb_id": "tt15239678",
+        "youtube_id": "Way9Dexny3w",
+        "omdb_json": null
+    },
+    {
+        "id": "714fc9f9-9bb9-4d89-9ff3-1fa50b571f3e",
+        "bookings": [
+            {
+                "id": 12,
+                "booking_start_date": "2025-06-20",
+                "booking_end_date": "2025-07-10",
+                "confirmed": true,
+                "film": "714fc9f9-9bb9-4d89-9ff3-1fa50b571f3e"
+            }
+        ],
+        "slug": "elio",
+        "title": "Elio",
+        "imdb_id": "tt4900148",
+        "youtube_id": "ETVi5_cnnaE",
+        "omdb_json": null
+    },
+    {
+        "id": "31b216db-b832-4b2f-9e50-54d91604d41a",
+        "bookings": [
+            {
+                "id": 13,
+                "booking_start_date": "2025-01-03",
+                "booking_end_date": "2025-01-09",
+                "confirmed": true,
+                "film": "31b216db-b832-4b2f-9e50-54d91604d41a"
+            }
+        ],
+        "slug": "gladiator-ii",
+        "title": "Gladiator II",
+        "imdb_id": "tt9218128",
+        "youtube_id": "4rgYUipGJNo",
+        "omdb_json": null
+    },
+    {
+        "id": "15dc3a72-6d61-4931-bbd4-ef2fb038a1ff",
+        "bookings": [
+            {
+                "id": 14,
+                "booking_start_date": "2024-08-16",
+                "booking_end_date": "2024-08-29",
+                "confirmed": true,
+                "film": "15dc3a72-6d61-4931-bbd4-ef2fb038a1ff"
+            },
+            {
+                "id": 15,
+                "booking_start_date": "2024-08-16",
+                "booking_end_date": "2024-08-29",
+                "confirmed": true,
+                "film": "15dc3a72-6d61-4931-bbd4-ef2fb038a1ff"
+            }
+        ],
+        "slug": "harold-and-the-purple-crayon",
+        "title": "Harold and the Purple Crayon",
+        "imdb_id": "tt1609486",
+        "youtube_id": "WojIv-PVYm8",
+        "omdb_json": null
+    },
+    {
+        "id": "58907653-1692-4eb3-a418-1f48d5850a09",
+        "bookings": [
+            {
+                "id": 16,
+                "booking_start_date": "2025-06-13",
+                "booking_end_date": "2025-07-01",
+                "confirmed": true,
+                "film": "58907653-1692-4eb3-a418-1f48d5850a09"
+            }
+        ],
+        "slug": "how-to-train-your-dragon",
+        "title": "How to Train Your Dragon",
+        "imdb_id": "tt26743210",
+        "youtube_id": "22w7z_lT6YM",
+        "omdb_json": null
+    },
+    {
+        "id": "903d5c6e-9c2f-4b1b-8ba7-9dbd80e4f7b0",
+        "bookings": [
+            {
+                "id": 17,
+                "booking_start_date": "2024-08-30",
+                "booking_end_date": "2024-09-05",
+                "confirmed": true,
+                "film": "903d5c6e-9c2f-4b1b-8ba7-9dbd80e4f7b0"
+            },
+            {
+                "id": 18,
+                "booking_start_date": "2024-07-12",
+                "booking_end_date": "2024-07-25",
+                "confirmed": true,
+                "film": "903d5c6e-9c2f-4b1b-8ba7-9dbd80e4f7b0"
+            }
+        ],
+        "slug": "inside-out-ii",
+        "title": "Inside Out II",
+        "imdb_id": "tt22022452",
+        "youtube_id": "LEjhY15eCx0",
+        "omdb_json": null
+    },
+    {
+        "id": "776445cb-1774-4a4a-820e-893b62e45836",
+        "bookings": [
+            {
+                "id": 19,
+                "booking_start_date": "2024-08-09",
+                "booking_end_date": "2024-08-22",
+                "confirmed": true,
+                "film": "776445cb-1774-4a4a-820e-893b62e45836"
+            }
+        ],
+        "slug": "it-ends-with-us",
+        "title": "It Ends with Us",
+        "imdb_id": "tt10655524",
+        "youtube_id": "0x-HhWm5K3U",
+        "omdb_json": null
+    },
+    {
+        "id": "dfbc2650-8bf6-4d69-b2b7-03232134d800",
+        "bookings": [
+            {
+                "id": 20,
+                "booking_start_date": "2024-10-04",
+                "booking_end_date": "2024-10-17",
+                "confirmed": true,
+                "film": "dfbc2650-8bf6-4d69-b2b7-03232134d800"
+            }
+        ],
+        "slug": "joker-folie-a-deux",
+        "title": "Joker: Folie à Deux",
+        "imdb_id": "tt11315808",
+        "youtube_id": "xy8aJw1vYHo",
+        "omdb_json": null
+    },
+    {
+        "id": "cb1c380b-ba82-4871-8c1e-d60e9a116222",
+        "bookings": [
+            {
+                "id": 21,
+                "booking_start_date": "2025-07-02",
+                "booking_end_date": "2025-07-24",
+                "confirmed": true,
+                "film": "cb1c380b-ba82-4871-8c1e-d60e9a116222"
+            }
+        ],
+        "slug": "jurassic-world-rebirth",
+        "title": "Jurassic World: Rebirth",
+        "imdb_id": "tt31036941",
+        "youtube_id": "smavD1fopZ8",
+        "omdb_json": null
+    },
+    {
+        "id": "aea41a8e-1a45-459d-8651-f140567102bd",
+        "bookings": [
+            {
+                "id": 22,
+                "booking_start_date": "2025-06-06",
+                "booking_end_date": "2025-06-19",
+                "confirmed": true,
+                "film": "aea41a8e-1a45-459d-8651-f140567102bd"
+            }
+        ],
+        "slug": "karate-kid-legends",
+        "title": "Karate Kid: Legends",
+        "imdb_id": "tt1674782",
+        "youtube_id": "LhRXf-yEQqA",
+        "omdb_json": null
+    },
+    {
+        "id": "83581e4c-2412-46d3-a386-6bd32aa2e569",
+        "bookings": [
+            {
+                "id": 23,
+                "booking_start_date": "2025-05-23",
+                "booking_end_date": "2025-06-12",
+                "confirmed": true,
+                "film": "83581e4c-2412-46d3-a386-6bd32aa2e569"
+            }
+        ],
+        "slug": "lilo-and-stitch",
+        "title": "Lilo and Stitch",
+        "imdb_id": "tt11655566",
+        "youtube_id": "VWqJifMMgZE",
+        "omdb_json": null
+    },
+    {
+        "id": "5d149a6c-81d2-48ec-a57b-b18ecef0b64e",
+        "bookings": [
+            {
+                "id": 24,
+                "booking_start_date": "2024-11-01",
+                "booking_end_date": "2024-11-21",
+                "confirmed": true,
+                "film": "5d149a6c-81d2-48ec-a57b-b18ecef0b64e"
+            }
+        ],
+        "slug": "lost-on-a-mountain-in-maine",
+        "title": "Lost on a Mountain in Maine",
+        "imdb_id": "tt2965408",
+        "youtube_id": "a7lsCqJS3kg",
+        "omdb_json": null
+    },
+    {
+        "id": "5c00b70d-ac1a-4867-9ef4-c7b519b09978",
+        "bookings": [
+            {
+                "id": 25,
+                "booking_start_date": "2025-05-23",
+                "booking_end_date": "2025-06-05",
+                "confirmed": true,
+                "film": "5c00b70d-ac1a-4867-9ef4-c7b519b09978"
+            }
+        ],
+        "slug": "mission-impossible-the-final-reckoning",
+        "title": "Mission Impossible: The Final Reckoning",
+        "imdb_id": "tt9603208",
+        "youtube_id": "fsQgc9pCyDU",
+        "omdb_json": null
+    },
+    {
+        "id": "5ea395c1-6d2b-4d68-8613-39db2a3d6291",
+        "bookings": [
+            {
+                "id": 26,
+                "booking_start_date": "2024-11-29",
+                "booking_end_date": "2024-12-19",
+                "confirmed": true,
+                "film": "5ea395c1-6d2b-4d68-8613-39db2a3d6291"
+            }
+        ],
+        "slug": "moana-2",
+        "title": "Moana 2",
+        "imdb_id": "tt13622970",
+        "youtube_id": "hDZ7y8RP5HE",
+        "omdb_json": null
+    },
+    {
+        "id": "95ff74e2-ddf5-40d1-a2bd-3ec4b49141f1",
+        "bookings": [
+            {
+                "id": 27,
+                "booking_start_date": "2024-12-20",
+                "booking_end_date": "2025-01-09",
+                "confirmed": true,
+                "film": "95ff74e2-ddf5-40d1-a2bd-3ec4b49141f1"
+            }
+        ],
+        "slug": "mufasa",
+        "title": "Mufasa",
+        "imdb_id": "tt13186482",
+        "youtube_id": "o17MF9vnabg",
+        "omdb_json": null
+    },
+    {
+        "id": "1045ff4a-9241-406d-b3ec-4546e0c8f6e8",
+        "bookings": [
+            {
+                "id": 28,
+                "booking_start_date": "2025-01-24",
+                "booking_end_date": "2025-02-06",
+                "confirmed": true,
+                "film": "1045ff4a-9241-406d-b3ec-4546e0c8f6e8"
+            }
+        ],
+        "slug": "nosferatu",
+        "title": "Nosferatu",
+        "imdb_id": "tt5040012",
+        "youtube_id": "nulvWqYUM8k",
+        "omdb_json": null
+    },
+    {
+        "id": "1249aa6e-4ac7-49b6-a02f-3b40dbacffd2",
+        "bookings": [
+            {
+                "id": 29,
+                "booking_start_date": "2024-11-15",
+                "booking_end_date": "2024-11-28",
+                "confirmed": true,
+                "film": "1249aa6e-4ac7-49b6-a02f-3b40dbacffd2"
+            }
+        ],
+        "slug": "red-one",
+        "title": "Red One",
+        "imdb_id": "tt14948432",
+        "youtube_id": "ipukN6qOg00",
+        "omdb_json": null
+    },
+    {
+        "id": "dc91c583-ba71-4b62-9797-5f3ee9e52dfd",
+        "bookings": [
+            {
+                "id": 30,
+                "booking_start_date": "2024-10-18",
+                "booking_end_date": "2024-10-31",
+                "confirmed": true,
+                "film": "dc91c583-ba71-4b62-9797-5f3ee9e52dfd"
+            }
+        ],
+        "slug": "smile-2",
+        "title": "Smile 2",
+        "imdb_id": "tt29268110",
+        "youtube_id": "0HY6QFlBzUY",
+        "omdb_json": null
+    },
+    {
+        "id": "5ecd4c05-753f-4670-9e25-9dffb1bad7f6",
+        "bookings": [
+            {
+                "id": 31,
+                "booking_start_date": "2025-03-21",
+                "booking_end_date": "2025-04-03",
+                "confirmed": true,
+                "film": "5ecd4c05-753f-4670-9e25-9dffb1bad7f6"
+            }
+        ],
+        "slug": "snow-white",
+        "title": "Snow White",
+        "imdb_id": "tt6208148",
+        "youtube_id": "iV46TJKL8cU",
+        "omdb_json": null
+    },
+    {
+        "id": "6b9b811d-3150-47b5-b098-1ef9d01a2066",
+        "bookings": [
+            {
+                "id": 32,
+                "booking_start_date": "2024-12-20",
+                "booking_end_date": "2025-01-02",
+                "confirmed": true,
+                "film": "6b9b811d-3150-47b5-b098-1ef9d01a2066"
+            }
+        ],
+        "slug": "sonic-the-hedgehog-iii",
+        "title": "Sonic The Hedgehog III",
+        "imdb_id": "tt18259086",
+        "youtube_id": "qSu6i2iFMO0",
+        "omdb_json": null
+    },
+    {
+        "id": "5d08d68e-8532-4bb9-8530-f36952a3debe",
+        "bookings": [
+            {
+                "id": 33,
+                "booking_start_date": "2024-09-13",
+                "booking_end_date": "2024-09-26",
+                "confirmed": true,
+                "film": "5d08d68e-8532-4bb9-8530-f36952a3debe"
+            }
+        ],
+        "slug": "the-critic",
+        "title": "The Critic",
+        "imdb_id": "tt13457790",
+        "youtube_id": "Nyy4yTjhAko",
+        "omdb_json": null
+    },
+    {
+        "id": "7239756a-a413-4622-a737-6557a10ff33d",
+        "bookings": [
+            {
+                "id": 34,
+                "booking_start_date": "2025-07-25",
+                "booking_end_date": "2025-08-14",
+                "confirmed": true,
+                "film": "7239756a-a413-4622-a737-6557a10ff33d"
+            }
+        ],
+        "slug": "the-fantastic-four-first-steps",
+        "title": "The Fantastic Four: First Steps",
+        "imdb_id": "tt10676052",
+        "youtube_id": "pAsmrKyMqaA",
+        "omdb_json": null
+    },
+    {
+        "id": "2a57fefe-6747-43f1-93f2-d69989ffc5c5",
+        "bookings": [
+            {
+                "id": 35,
+                "booking_start_date": "2025-04-18",
+                "booking_end_date": "2025-05-01",
+                "confirmed": true,
+                "film": "2a57fefe-6747-43f1-93f2-d69989ffc5c5"
+            }
+        ],
+        "slug": "the-king-of-kings",
+        "title": "The King of Kings",
+        "imdb_id": "tt7967302",
+        "youtube_id": "HDhet3EVRac",
+        "omdb_json": null
+    },
+    {
+        "id": "85b9fa32-0e74-48ff-8768-77cc0c6ec956",
+        "bookings": [
+            {
+                "id": 36,
+                "booking_start_date": "2025-08-01",
+                "booking_end_date": "2025-08-14",
+                "confirmed": false,
+                "film": "85b9fa32-0e74-48ff-8768-77cc0c6ec956"
+            }
+        ],
+        "slug": "the-naked-gun",
+        "title": "The Naked Gun",
+        "imdb_id": "tt3402138",
+        "youtube_id": "uLguU7WLreA",
+        "omdb_json": null
+    },
+    {
+        "id": "654dc873-c58f-4dc8-8f62-6ff177896be5",
+        "bookings": [
+            {
+                "id": 37,
+                "booking_start_date": "2024-10-18",
+                "booking_end_date": "2024-10-24",
+                "confirmed": true,
+                "film": "654dc873-c58f-4dc8-8f62-6ff177896be5"
+            }
+        ],
+        "slug": "the-shining",
+        "title": "The Shining",
+        "imdb_id": "tt0081505",
+        "youtube_id": "S014oGZiSdI",
+        "omdb_json": null
+    },
+    {
+        "id": "a57407b1-6e9f-453b-905d-583234f355a7",
+        "bookings": [
+            {
+                "id": 38,
+                "booking_start_date": "2024-09-27",
+                "booking_end_date": "2024-10-17",
+                "confirmed": true,
+                "film": "a57407b1-6e9f-453b-905d-583234f355a7"
+            }
+        ],
+        "slug": "the-wild-robot",
+        "title": "The Wild Robot",
+        "imdb_id": "tt29623480",
+        "youtube_id": "67vbA5ZJdKQ",
+        "omdb_json": null
+    },
+    {
+        "id": "f7ac64a4-7004-4c58-a079-f3d04595ea38",
+        "bookings": [
+            {
+                "id": 39,
+                "booking_start_date": "2025-05-02",
+                "booking_end_date": "2025-05-22",
+                "confirmed": true,
+                "film": "f7ac64a4-7004-4c58-a079-f3d04595ea38"
+            }
+        ],
+        "slug": "thunderbolts",
+        "title": "Thunderbolts*",
+        "imdb_id": "tt20969586",
+        "youtube_id": "-sAOWhvheK8",
+        "omdb_json": null
+    },
+    {
+        "id": "8ad00aff-387f-4379-add7-7687aa627036",
+        "bookings": [
+            {
+                "id": 40,
+                "booking_start_date": "2024-09-20",
+                "booking_end_date": "2024-10-03",
+                "confirmed": true,
+                "film": "8ad00aff-387f-4379-add7-7687aa627036"
+            }
+        ],
+        "slug": "transformers-one",
+        "title": "Transformers One",
+        "imdb_id": "tt8864596",
+        "youtube_id": "rmJXXKDrsM",
+        "omdb_json": null
+    },
+    {
+        "id": "77448882-8346-426d-96e5-8d043147a62c",
+        "bookings": [
+            {
+                "id": 41,
+                "booking_start_date": "2024-07-26",
+                "booking_end_date": "2024-08-08",
+                "confirmed": true,
+                "film": "77448882-8346-426d-96e5-8d043147a62c"
+            }
+        ],
+        "slug": "twisters",
+        "title": "Twisters",
+        "imdb_id": "tt12584954",
+        "youtube_id": "wdok0rZdmx4",
+        "omdb_json": null
+    },
+    {
+        "id": "89cd1922-c12e-48f0-a385-79295fb54667",
+        "bookings": [
+            {
+                "id": 42,
+                "booking_start_date": "2024-10-25",
+                "booking_end_date": "2024-11-14",
+                "confirmed": true,
+                "film": "89cd1922-c12e-48f0-a385-79295fb54667"
+            }
+        ],
+        "slug": "venom-the-last-dance",
+        "title": "Venom: The Last Dance",
+        "imdb_id": "tt16366836",
+        "youtube_id": "__2bjWbetsA",
+        "omdb_json": null
+    },
+    {
+        "id": "c934cf69-a690-4d37-a8ac-2b183bfd3a5e",
+        "bookings": [
+            {
+                "id": 43,
+                "booking_start_date": "2024-11-29",
+                "booking_end_date": "2024-12-19",
+                "confirmed": true,
+                "film": "c934cf69-a690-4d37-a8ac-2b183bfd3a5e"
+            }
+        ],
+        "slug": "wicked",
+        "title": "Wicked",
+        "imdb_id": "tt1262426",
+        "youtube_id": "6COmYeLsz4c",
+        "omdb_json": null
+    }
+]
