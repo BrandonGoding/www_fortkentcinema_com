@@ -16,8 +16,8 @@ const RATE_LIST = [
     title: "Popcorn Rates",
     items: [
         {variation: "Small", price: 4.00},
-        {variation: "Medium", price: 5.50},
-        {variation: "Large", price: 6.75},
+        {variation: "Medium", price: 6.00},
+        {variation: "Large", price: 7.00},
         {variation: "Jumbo", price: 8.00},
         {variation: "Big Ol Bag", price: 10.00}
     ]
