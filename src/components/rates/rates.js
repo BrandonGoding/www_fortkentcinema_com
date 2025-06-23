@@ -9,8 +9,8 @@ const RATE_LIST = [
     items: [
       {variation: "Adults", price: 10.00},
       {variation: "Children (12 & under)", price: 9.00},
-      {variation: "Seniors (65+)", price: 9.00},
-      {variation: "Military & First Responders", price: 8.00}
+      {variation: "Seniors (65+)", price: 9.00},git
+        {variation: "Matinee/Discount Night", price: 6.00},
     ]
   },{
     title: "Popcorn Rates",
