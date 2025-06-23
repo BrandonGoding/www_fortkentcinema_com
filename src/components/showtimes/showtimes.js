@@ -3,21 +3,23 @@ import React, { useState } from 'react';
 import SectionHeading from "../section_heading/section_heading";
 import RedCard from "../red_card/red_card";
 
-  const DAYS = ['Thursday', 'Friday', 'Saturday', 'Sunday'];
-  const DAY_ABBR = ['Thu', 'Fri', 'Sat', 'Sun'];
+  const DAYS = ['Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  const DAY_ABBR = ['Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   const SHOWTIMES = {
-    Thursday: ['6:00 PM'],
-    Friday: ['6:00 PM'],
-    Saturday: ['3:00 PM', '6:00 PM'],
-    Sunday: ['5:00 PM'],
+    Wednesday: ['7:30 PM'],
+    Thursday: ['7:30 PM'],
+    Friday: ['7:30 PM'],
+    Saturday: ['3:00 PM', '7:30 PM'],
+    Sunday: ['2:00 PM', '5:00 PM'],
   };
 
   const getTodayIndex = () => {
     const jsDay = new Date().getDay(); // 0=Sun, 1=Mon, ..., 6=Sat
-    if (jsDay === 4) return 0; // Thursday
-    if (jsDay === 5) return 1; // Friday
-    if (jsDay === 6) return 2; // Saturday
-    if (jsDay === 0) return 3; // Sunday
+    if (jsDay === 3) return 0; // Wednesday
+    if (jsDay === 4) return 1; // Thursday
+    if (jsDay === 5) return 2; // Friday
+    if (jsDay === 6) return 3; // Saturday
+    if (jsDay === 0) return 4; // Sunday
     return null; // Mon-Wed
   };
 
@@ -46,8 +48,8 @@ import RedCard from "../red_card/red_card";
             ) : (
               <ul>
                 {SHOWTIMES[selectedDay].map((time, index) => (
-                  <li key={index} className={time === '3:00 PM' ? 'matinee' : ''}>
-                    {time} {time === '3:00 PM' && '( matinee )'}
+                  <li key={index} className={time === '3:00 PM' || time === '2:00 PM' ? 'matinee' : ''}>
+                    {time} {(time === '3:00 PM' || time === '2:00 PM') && '( matinee )'}
                   </li>
                 ))}
               </ul>
