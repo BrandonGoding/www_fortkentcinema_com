@@ -1,7 +1,7 @@
 import './header.scss';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-
+import { FaBars } from 'react-icons/fa';
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -18,9 +18,7 @@ const Header = () => {
                     aria-label="Toggle menu"
                     onClick={() => setMenuOpen(!menuOpen)}
                 >
-                    <span />
-                    <span />
-                    <span />
+                <FaBars />
                 </button>
                 <nav className={`navigation${menuOpen ? ' open' : ''}`}>
                     <Link to="/fort-kent-cinema-blog" className="nav-link" onClick={() => setMenuOpen(false)}>

@@ -59,23 +59,20 @@
             }
 
             .hamburger {
+                color: #007aff;
                 display: none;
                 flex-direction: column;
                 justify-content: center;
-                width: 2rem;
-                height: 2rem;
-                background: none;
-                border: none;
+                align-items: center;
+                width: 2.5rem;
+                height: 2.5rem;
+                background: white;
+                border: 2px solid #007aff;
+                border-radius: 50%;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
                 cursor: pointer;
-                span {
-                    display: block;
-                    height: 3px;
-                    width: 100%;
-                    background: #007aff;
-                    margin: 4px 0;
-                    border-radius: 2px;
-                    transition: 0.3s;
-                }
+                position: relative;
+                z-index: 201;
             }
 
             .navigation {
