@@ -1,83 +1,96 @@
-/* General Blog Styling */
-.blog-container {
-  max-width: 1200px;
-  margin:50px auto 0 auto;
-    font-family: 'Cinzel', serif; /* A vintage-style font */
-    background-color: #f5f5dc; /* Light sepia tone */
-    color: #333; /* Dark text for readability */
-    padding: 40px;
-    border: 5px solid #000; /* Film reel border */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-}
+@import '../../styles/variables.scss';
 
-/* Blog Title Styling */
-.blog-title {
-    font-size: 2.5rem;
-    text-align: center;
-    color: #b22222; /* Marquee-style red */
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-bottom: 3px solid #b22222;
-    margin-bottom: 20px;
-}
+    .blog-container {
+      max-width: 1200px;
+      margin: 40px auto 75px auto;
+      font-family: $font-primary, 'Segoe UI', Arial, sans-serif;
+      background-color: #fff;
+      color: #222;
+      padding: 40px 28px;
+      border-radius: 20px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      border: none;
+      position: relative;
+    }
 
-/* Blog Subtitle Styling */
-.blog-subtitle {
-    font-size: 1.5rem;
-    text-align: center;
-    color: #555;
-    font-style: italic;
-    margin-bottom: 5px;
-}
+    .blog-title {
+      font-size: 2.5rem;
+      text-align: center;
+      color: $accent-color;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-bottom: 3px solid $accent-color;
+      margin-bottom: 20px;
+      font-family: inherit;
+    }
 
-/* Blog Content Styling */
-.blog-content {
-    line-height: 1.8;
-    font-size: 1.2rem;
-    text-align: left;
-}
+    .blog-subtitle {
+      font-size: 1.5rem;
+      text-align: center;
+      color: #555;
+      font-style: italic;
+      margin-bottom: 5px;
+      font-family: inherit;
+    }
 
-/* Author Section Styling */
-.blog-author {
-    font-size: 1rem;
-    text-align: right;
-    font-style: italic;
-    margin-top: 0;
-    color: #777;
-}
+    .blog-content {
+      line-height: 1.8;
+      font-size: 1.18rem;
+      text-align: left;
+      color: #222;
+      font-family: inherit;
+    }
 
-/* Add a Film Reel Effect */
-.blog-container::before,
-.blog-container::after {
-    content: '';
-    display: block;
-    height: 20px;
-    width: 100%;
-    background: repeating-linear-gradient(
+    .blog-author {
+      font-size: 1rem;
+      text-align: right;
+      font-style: italic;
+      margin-top: 0;
+      color: #777;
+      font-family: inherit;
+    }
+
+    h4 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      text-align: center;
+      color: #444;
+      margin-bottom: 0;
+      font-weight: bold;
+      font-family: inherit;
+    }
+
+    h5 {
+      margin-top: 0;
+      font-size: 1rem;
+      text-align: center;
+      color: #666;
+      margin-bottom: 20px;
+      font-style: italic;
+      font-family: inherit;
+    }
+
+    /* Optional: Keep or modernize the film reel effect */
+    .blog-container::before,
+    .blog-container::after {
+      content: '';
+      display: block;
+      height: 20px;
+      width: 100%;
+      background: repeating-linear-gradient(
         90deg,
         #000,
         #000 10px,
-        #f5f5dc 10px,
-        #f5f5dc 20px
-    );
-}
+        #fff 10px,
+        #fff 20px
+      );
+      border-radius: 20px 20px 0 0;
+    }
 
-/* Author Name Styling */
-h4 {
-  margin-top:0;
-    font-size: 1.2rem;
-    text-align: center;
-    color: #444; /* Neutral dark tone */
-    margin-bottom: 0;
-    font-weight: bold;
-}
-
-/* Post Date Styling */
-h5 {
-  margin-top:0;
-    font-size: 1rem;
-    text-align: center;
-    color: #666; /* Subtle gray tone */
-    margin-bottom: 20px;
-    font-style: italic;
-}
+    @media (max-width: 700px) {
+      .blog-container {
+        border-radius: 0;
+        box-shadow: none;
+        padding: 24px 8px;
+      }
+    }

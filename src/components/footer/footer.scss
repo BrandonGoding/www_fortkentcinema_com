@@ -1,73 +1,74 @@
 @import '../../styles/variables';
 
-            .footer {
-                position: fixed;
-                z-index: 100;
-                bottom: 0;
-                width: 100%;
-                background-color: $primary-color;
-                color: $secondary-color;
-                padding: 4px 0;
-                box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-            }
+                .footer {
+                    position: fixed;
+                    z-index: 100;
+                    bottom: 0;
+                    width: 100%;
+                    background: #fff;
+                    color: #222;
+                    padding: 12px 0 8px 0;
+                    box-shadow: 0 -2px 16px rgba(0,0,0,0.06);
+                    border-top-left-radius: 20px;
+                    border-top-right-radius: 20px;
+                    transition: box-shadow 0.2s;
+                }
 
-            .footer-content {
-                font-family: $font-secondary;
-                font-size: $font-size-small;
-                max-width: 1400px;
-                margin: 0 auto;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                flex-wrap: wrap;
-                padding-left: $padding-small; // Default padding for smaller screens
-                padding-right: $padding-small;
-            }
-
-            .footer-content p {
-                margin: 0;
-            }
-
-            .social-links {
-                display: flex;
-                gap: $padding-small;
-            }
-
-            .social-links a {
-                color: $secondary-color;
-                text-decoration: none;
-                transition: color 0.3s ease;
-                font-size: $font-size-small;
-            }
-
-            .social-links a:hover {
-                color: $accent-color;
-            }
-
-            @media (max-width: 768px) {
                 .footer-content {
-                    flex-direction: column;
+                    font-family: $font-primary;
+                    font-size: $font-size-small;
+                    max-width: 1400px;
+                    margin: 0 auto;
+                    display: flex;
+                    justify-content: space-between;
                     align-items: center;
+                    flex-wrap: wrap;
+                    padding-left: $padding-medium;
+                    padding-right: $padding-medium;
+                }
+
+                .footer-content p {
+                    margin: 0;
                 }
 
                 .social-links {
-                    justify-content: center;
+                    display: flex;
+                    gap: $padding-small;
                 }
 
                 .social-links a {
-                    font-size: $font-size-small; // Reduce font size for smaller screens
+                    color: #007aff;
+                    text-decoration: none;
+                    transition: color 0.2s;
+                    font-size: $font-size-small;
+                    border-radius: 8px;
+                    padding: 4px 8px;
+                    &:hover {
+                        background: #f0f4ff;
+                        color: #005ecb;
+                    }
                 }
-            }
 
-            @media (min-width: 768px) {
-                .footer-content {
-                    padding-left: $padding-large; // Add larger padding for bigger screens
-                    padding-right: $padding-large;
+                @media (max-width: 768px) {
+                    .footer {
+                        border-radius: 0;
+                        box-shadow: none;
+                        border-top: 1px solid #e0e0e0;
+                        padding: 16px 0 12px 0;
+                    }
+                    .footer-content {
+                        flex-direction: column;
+                        align-items: center;
+                        padding-left: $padding-small;
+                        padding-right: $padding-small;
+                    }
+                    .social-links {
+                        justify-content: center;
+                    }
                 }
-            }
 
-            @media (max-width: 480px) {
-                .social-links a {
-                    font-size: 0.9rem; // Further reduce font size for very small screens
+                @media (max-width: 480px) {
+                    .social-links a {
+                        font-size: 0.9rem;
+                    }
                 }
-            }

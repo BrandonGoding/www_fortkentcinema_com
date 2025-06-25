@@ -2,22 +2,22 @@
 
 .blog-reel-page {
     .intro-text {
-        max-width: 900px;
-        margin: 2rem auto 2.5rem auto;
-        padding: 1.5rem 2rem;
-        background: #fff8dc;
-        border-left: 6px solid $primary-color;
-        border-radius: 10px;
-        font-family: 'Cinzel', serif;
-        font-size: 1.15rem;
-        color: #333;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    max-width: 900px;
+    margin: 2rem auto 2.5rem auto;
+    padding: 1.5rem 2rem;
+    background: #fff;
+    border-left: 6px solid $accent-color;
+    border-radius: 20px;
+    font-family: $font-primary;
+    font-size: 1.15rem;
+    color: $primary-color;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
 
-        p {
-            margin: 0;
-            line-height: 1.7;
-        }
+    p {
+      margin: 0;
+      line-height: 1.7;
     }
+  }
 
     .blog-roll {
         max-width: 1400px;
@@ -40,10 +40,8 @@
             width: 100%;
             max-width: 300px;
             height: 100%;
-            object-fit: cover;
             display: block;
             margin: 0 auto;
-            border-radius: 0 0 10px 10px;
         }
 
         .blog-post-content {
@@ -53,7 +51,7 @@
 
         .blog-post-link {
             text-decoration: none;
-            color: inherit;
+            color: $accent-color;
             margin-top: auto;
             margin-left: auto;
         }
@@ -68,7 +66,6 @@
     background: rgba(0,0,0,0.55);
     color: #fff;
     padding: 1rem;
-    border-radius: 0 0 10px 10px;
     text-align: center;
 
 
@@ -80,7 +77,7 @@
     }
 
     .blog-post-link {
-        color: #ffd700;
+        color: $accent-color;
         font-weight: bold;
         text-decoration: underline;
         margin-top: 0.5rem;

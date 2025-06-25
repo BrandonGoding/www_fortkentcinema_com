@@ -1,54 +1,75 @@
 @import '../../styles/variables.scss';
 
-.now-playing {
-  padding: $padding-large;
-  color: $accent-color;
-  font-family: $font-secondary;
+      .now-playing {
+        padding: $padding-large;
+        color: $accent-color;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
-  .movies-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $padding-large;
-    justify-content: center;
-    .container-block {
-      align-items: center;
-      text-align: center;
-    }
-  }
-}
+        .movies-list {
+          display: flex;
+          flex-wrap: wrap;
+          gap: $padding-large;
+          justify-content: center;
 
-.movie-info {
-    margin-bottom: $padding-medium;
-    h3 {
-      margin-top:0;
-      font-family: $font-primary;
-      color: $secondary-color;
-      font-size: $font-size-medium;
-      margin-bottom: 25px;
-    }
-    p {
-      margin: 0 0 5px 0;
-      font-size: $font-size-small;
-      &:first-of-type{
-        margin-top:25px;
+          .container-block {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+            padding: 32px 24px;
+            max-width: 340px;
+            min-width: 240px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: box-shadow 0.2s;
+            font-family: inherit;
+
+            @media (max-width: 700px) {
+              border-radius: 0;
+              box-shadow: none;
+              padding: 24px 8px;
+              margin: 0 0 16px 0;
+              max-width: 100%;
+              min-width: 0;
+            }
+          }
+        }
       }
-    }
 
-  img{
-    max-height: 200px;
-  }
+      .movie-info {
+        margin-bottom: $padding-medium;
 
-    .movie-links {
-      display: flex;
-      gap: 15px;
-      margin-top: 10px;
-      justify-content: center;
-    }
-  }
+        h3 {
+          margin-top: 0;
+          font-family: inherit;
+          color: $secondary-color;
+          font-size: $font-size-medium;
+          margin-bottom: 25px;
+        }
+        p {
+          margin: 0 0 5px 0;
+          font-size: $font-size-small;
+          &:first-of-type {
+            margin-top: 25px;
+          }
+        }
+        img {
+          max-height: 200px;
+          border-radius: 12px;
+          box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+        }
+        .movie-links {
+          display: flex;
+          gap: 15px;
+          margin-top: 10px;
+          justify-content: center;
+        }
+      }
 
-@media (max-width: 700px) {
-  .now-playing .movies-list {
-    flex-direction: column;
-    gap: $padding-medium;
-  }
-}
+      @media (max-width: 700px) {
+        .now-playing .movies-list {
+          flex-direction: column;
+          gap: $padding-medium;
+        }
+      }

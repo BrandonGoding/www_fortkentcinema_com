@@ -1,37 +1,48 @@
 @import '../../styles/variables.scss';
 
-.calendar-container {
-  max-width: 1400px;
-  margin: 40px auto;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  padding: 24px;
+      .calendar-container {
+        max-width: 1400px;
+        margin: 40px auto 75px auto;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+        padding: 32px 24px;
+        font-family: $font-primary;
 
-  .fc-toolbar-title {
-    color: black;
-  }
+        .fc-toolbar-title {
+          color: $accent-color;
+          font-size: $font-size-large;
+          font-family: inherit;
+        }
 
-  @media (max-width: 768px){
-    margin: 15px;
-      .fc-today-button {
-      display: none !important;
-    }
-  }
+        .fc {
+          color: $primary-color;
+          font-family: inherit;
+          background: transparent;
+        }
 
-  .fc {
-    color: #000; // Sets the text color to black
-  }
+        .fc-event {
+          background-color: $accent-color !important;
+          border-color: #fff;
+          border-radius: 12px;
+          box-shadow: 0 1px 6px rgba(0,122,255,0.08);
 
-  .fc-event{
-    background-color: $primary-color !important; /* Red for now-playing events */
-    border-color: white;
+          .fc-event-main {
+            color: #fff !important;
+            font-size: $font-size-small;
+            padding: 0 8px;
+            font-family: inherit;
+          }
+        }
 
-    .fc-event-main {
-      color: $secondary-color !important; /* Ensures text is white */
-      padding: 0 5px;
-    }
+        @media (max-width: 768px) {
+          border-radius: 0;
+          box-shadow: none;
+          padding: 24px 8px;
+          margin: 0 0 16px 0;
 
-  }
-
-}
+          .fc-today-button {
+            display: none !important;
+          }
+        }
+      }
