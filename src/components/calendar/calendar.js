@@ -30,7 +30,7 @@ import React from 'react';
 const getCalendarEvents = (films) => {
     return films.flatMap(film =>
         film.bookings
-            .filter(booking => booking.confirmed)
+            .filter(booking => booking.is_confirmed)
             .map(booking => ({
                 title: film.title,
                 start: booking.booking_start_date,

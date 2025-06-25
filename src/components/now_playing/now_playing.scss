@@ -20,15 +20,24 @@
 .movie-info {
     margin-bottom: $padding-medium;
     h3 {
+      margin-top:0;
       font-family: $font-primary;
       color: $secondary-color;
       font-size: $font-size-medium;
-      margin-bottom: 5px;
+      margin-bottom: 25px;
     }
     p {
       margin: 0 0 5px 0;
       font-size: $font-size-small;
+      &:first-of-type{
+        margin-top:25px;
+      }
     }
+
+  img{
+    max-height: 200px;
+  }
+
     .movie-links {
       display: flex;
       gap: 15px;
