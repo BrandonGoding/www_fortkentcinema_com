@@ -6,7 +6,7 @@ import HeroSection from "./components/hero_section/hero_section";
 import NowPlaying from "./components/now_playing/now_playing";
 import Showtimes from "./components/showtimes/showtimes";
 import Rates from "./components/rates/rates";
-import './utils/spotlight/spotlight.js';
+import './utils/spotlight/spotlight.jsx';
 import './utils/spotlight/spotlight.scss';
 import ComingSoonPage from "./pages/coming_soon_page/coming_soon_page";
 import BlogRollPage from "./pages/blog_reel_page/blog_reel_page";
