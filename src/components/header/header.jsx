@@ -2,6 +2,7 @@ import './header.scss';
 import { useState } from 'react';
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import logo from './FKC_logo_black_FIN.png'
 
 const navigation = [
   { name: 'Blog', href: '/fort-kent-cinema-blog' },
@@ -16,11 +17,11 @@ const Header = () => {
     <header className="bg-white">
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Fort Kent Cinema</span>
             <img
-              alt=""
-              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+              alt="Fort Kent Cinema Logo"
+              src={logo}
               className="h-8 w-auto"
             />
           </a>
@@ -58,11 +59,11 @@ const Header = () => {
         <div className="fixed inset-0 z-50" />
         <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center gap-x-6">
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Fort Kent Cinema</span>
               <img
-                alt=""
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+                alt="Fort Kent Cinema Logo"
+                src={logo}
                 className="h-8 w-auto"
               />
             </a>
