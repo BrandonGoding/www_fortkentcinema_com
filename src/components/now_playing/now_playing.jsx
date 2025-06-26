@@ -1,7 +1,4 @@
-import './now_playing.scss';
 import {FaImdb, FaYoutube} from "react-icons/fa";
-import SectionHeading from "../section_heading/section_heading";
-import RedCard from "../red_card/red_card";
 
 const NowPlaying = ({films}) => {
 
@@ -73,8 +70,10 @@ const NowPlaying = ({films}) => {
                 <dd className="order-first text-3xl font-semibold tracking-tight text-white mb-5">
                     {movie.title}
                     <br/>
-                    <small>{movie.currentBooking.booking_start_date} - {movie.currentBooking.booking_end_date}</small>
-                </dd>
+<small>
+  {new Date(movie.currentBooking.booking_start_date).toLocaleDateString('en-US', { month: 'numeric', day: 'numeric'  })} -
+   {new Date(movie.currentBooking.booking_end_date).toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', })}
+</small>                </dd>
               </div>
             ))}
           </dl>
