@@ -1,7 +1,4 @@
-import './now_playing.scss';
 import {FaImdb, FaYoutube} from "react-icons/fa";
-import SectionHeading from "../section_heading/section_heading";
-import RedCard from "../red_card/red_card";
 
 const NowPlaying = ({films}) => {
 
@@ -24,25 +21,28 @@ const NowPlaying = ({films}) => {
         })
         .filter(Boolean);
 
-    const filmWithDetails = (movie) => {
 
-        const has_movie_details = movie?.omdb_json && Object.keys(movie.omdb_json).length > 0;
-
-        return (
-            <div className="movie-info">
-                <h3>{movie.title}</h3>
-                {has_movie_details && (
-                    <img src={movie?.omdb_json.Poster} alt="Movie Poster" />
-                )}
-                {has_movie_details && (
+    return (
+    <div className="bg-gray-900 py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl lg:max-w-none">
+          <div className="text-center">
+            <h2 className="text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl">
+              Now Playing at Fort Kent Cinema
+            </h2>
+            <p className="mt-4 text-lg/8 text-gray-300">Lorem ipsum dolor sit amet consect adipisicing possimus.</p>
+          </div>
+          <dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-2">
+            {nowPlaying.map((movie, idx)  => (
+              <div key={idx} className="flex flex-col bg-white/5 p-8">
+                <dt className="text-sm/6 font-semibold text-gray-300">
+                    <img src={movie?.omdb_json?.Poster} alt={`${movie.title} Poster`} className="mx-auto mb-4 rounded-lg max-h-75" />
                     <>
                         <p>Rating: {movie?.omdb_json?.Rated}</p>
                         <p>Running Time: {movie?.omdb_json?.Runtime}</p>
                         <p>Genre: {movie?.omdb_json?.Genre}</p>
                     </>
-                )}
-
-                <div className="movie-links">
+                <div className="flex justify-center items-center space-x-4 mt-4">
                     {movie.youtube_id && (
                         <a
                             href={`https://www.youtube.com/watch?v=${movie.youtube_id}`}
@@ -64,23 +64,22 @@ const NowPlaying = ({films}) => {
                         </a>
                     )}
                 </div>
-            </div>
-        );
-    };
 
-    return (
-        <section className="now-playing">
-            <SectionHeading heading_text="Now Playing"/>
-            <div className="movies-list">
-                {nowPlaying.length === 0 ? (
-                    <p>No films currently playing.</p>
-                ) : (
-                    nowPlaying.map((movie, idx) => (
-                        <RedCard block_content={filmWithDetails(movie)} key={idx}/>
-                    ))
-                )}
-            </div>
-        </section>
+
+                </dt>
+                <dd className="order-first text-3xl font-semibold tracking-tight text-white mb-5">
+                    {movie.title}
+                    <br/>
+<small>
+  {new Date(movie.currentBooking.booking_start_date).toLocaleDateString('en-US', { month: 'numeric', day: 'numeric'  })} -
+   {new Date(movie.currentBooking.booking_end_date).toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', })}
+</small>                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </div>
     );
 };
 
