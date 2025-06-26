@@ -34,11 +34,11 @@ const Header = () => {
           ))}
         </div>
         <div className="flex flex-1 items-center justify-end gap-x-6">
-          <a href="#" className="hidden text-sm/6 font-semibold text-gray-900 lg:block">
+          <a href="/login" className="hidden text-sm/6 font-semibold text-gray-900 lg:block">
             Log in
           </a>
           <a
-            href="#"
+            href="/signup"
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Sign up
@@ -97,7 +97,7 @@ const Header = () => {
               </div>
               <div className="py-6">
                 <a
-                  href="#"
+                  href="/login"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >
                   Log in

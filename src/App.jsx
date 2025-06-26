@@ -14,42 +14,81 @@ import BlogDetailPage from "./pages/blog_detail_page/blog_detail_page";
 import {useEffect} from "react";
 import {initGA, trackPageview} from "./analytics";
 import films from "./films.json"
+import LoginPage from "./pages/login/login";
+import SignupPage from "./pages/signup/signup";
 
 
 function App() {
     return (
         <Router>
-            <LocationTracker />
+            <LocationTracker/>
             <div className="App">
-                <Header />
-                <div className="Body">
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={
-                                <>
-                                    <HeroSection />
-                                    <NowPlaying films={films} />
-                                    <Showtimes />
-                                    <Rates />
-                                </>
-                            }
-                        />
-                        <Route
-                            path="fort-kent-cinema-blog"
-                            element={<BlogRollPage />}
-                        />
-                        <Route
-                            path="fort-kent-cinema-blog/:slug"
-                            element={<BlogDetailPage />}
-                        />
-                        <Route
-                            path="coming-soon"
-                            element={<ComingSoonPage films={films} />}
-                        />
-                    </Routes>
-                </div>
-                <Footer />
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            <>
+                                <Header/>
+                                <div className="Body">
+                                    <HeroSection/>
+                                    <NowPlaying films={films}/>
+                                    <Showtimes/>
+                                    <Rates/>
+                                </div>
+                                <Footer/>
+                            </>
+                        }
+                    />
+                    <Route
+                        path="fort-kent-cinema-blog"
+                        element={
+                            <>
+                                <Header/>
+                                <div className="Body">
+                                    <BlogRollPage/>
+                                </div>
+                                <Footer/>
+                            </>
+                        }
+                    />
+                    <Route
+                        path="fort-kent-cinema-blog/:slug"
+                        element={
+                            <>
+                                <Header/>
+                                <div className="Body">
+                                    <BlogDetailPage/>
+                                </div>
+                                <Footer/>
+                            </>
+
+                        }
+                    />
+                    <Route
+                        path="coming-soon"
+                        element={
+                            <>
+                                <Header/>
+                                <div className="Body">
+                                    <ComingSoonPage films={films}/>
+                                </div>
+                                <Footer/>
+                            </>
+                        }
+                    />
+                    <Route
+                        path="login"
+                        element={
+                            <LoginPage />
+                        }
+                    />
+                    <Route
+                        path="signup"
+                        element={
+                            <SignupPage />
+                        }
+                    />
+                </Routes>
             </div>
         </Router>
     );
