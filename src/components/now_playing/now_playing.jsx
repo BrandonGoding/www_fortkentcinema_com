@@ -30,7 +30,7 @@ const NowPlaying = ({films}) => {
             <h2 className="text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl">
               Now Playing at Fort Kent Cinema
             </h2>
-            <p className="mt-4 text-lg/8 text-gray-300">Lorem ipsum dolor sit amet consect adipisicing possimus.</p>
+            <p className="mt-4 text-lg/8 text-gray-300">Fort Kent Cinema is a cozy, two-screen theater nestled in the heart of downtown Fort Kent. Each auditorium offers comfortable seating for up to 100 guests, creating an intimate and inviting moviegoing experience. Whether you're here for the latest blockbuster or a family-friendly adventure, our modern projection and sound systems ensure you enjoy every moment. Locally owned and operated, we take pride in providing a friendly, welcoming environment for our community to relax, snack, and escape into the world of film.</p>
           </div>
           <dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-2">
             {nowPlaying.map((movie, idx)  => (

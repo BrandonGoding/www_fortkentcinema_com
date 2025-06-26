@@ -50,7 +50,8 @@ import React, { useState } from 'react';
                       CLOSED MONDAY - WEDNESDAY
                     </div>
                   ) : (
-                    <ul className="space-y-2">
+                    <ul className="space-y-2 flex flex-col items-center">
+                        <li className="text-2xl font-extrabold">Showtimes for {selectedDay}s</li>
                       {SHOWTIMES[selectedDay].map((time, index) => (
                         <li
                           key={index}
