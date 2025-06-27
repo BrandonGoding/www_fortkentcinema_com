@@ -14,7 +14,7 @@
       title: "Popcorn Rates",
       items: [
         { variation: "Small", price: 4.0 },
-        { variation: "Medium", price: 6.0 },
+        { variation: "Medium", price: 5.0 },
         { variation: "Large", price: 7.0 },
         { variation: "Jumbo", price: 8.0 },
         { variation: "Big Ol Bag", price: 10.0 },
