@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
-import "./blog_detail_page.scss";
+
 import blogFile from "../blog_reel_page/blogs.json";
 
 const BlogDetailPage = () => {

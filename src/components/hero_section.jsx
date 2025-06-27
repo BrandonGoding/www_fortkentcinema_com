@@ -1,4 +1,3 @@
-import './hero_section.scss';
 
 const HeroSection = () => (
   <section className="hero-section">

@@ -1,8 +1,6 @@
 import React from 'react';
     import FullCalendar from '@fullcalendar/react';
     import dayGridPlugin from '@fullcalendar/daygrid';
-    import './calendar.scss';
-    import '../../styles/variables.scss';
 
     const isNowPlaying = (start, end) => {
         const today = new Date();
@@ -43,7 +41,7 @@ const getCalendarEvents = (films) => {
 };
 
     const Calendar = ({ films }) => (
-        <div className="calendar-container">
+        <div className="w-full max-w-full sm:max-w-[600px] md:max-w-[900px] lg:max-w-[1090px] flex flex-col items-center justify-center p-2 sm:p-4 m-2 rounded-lg shadow-md bg-white">
             <FullCalendar
                 plugins={[dayGridPlugin]}
                 initialView="dayGridMonth"
@@ -51,6 +49,11 @@ const getCalendarEvents = (films) => {
                 height="auto"
                 eventContent={renderEventContent}
                 eventClassNames="fc-event"
+                headerToolbar={{
+                    left: false,
+                    right: 'prev,next',
+                    center: 'title',
+                }}
             />
         </div>
     );

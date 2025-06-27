@@ -1,14 +1,12 @@
 import React from "react";
 import blogFile from "./blogs.json";
-import {Link} from "react-router-dom";
-import  placeHolder from "../../components/hero_section/projector-background.jpg"
+import  placeHolder from "../../media/projector-background.jpg"
 
 const blogPosts = blogFile || [];
 
 
 
 const BlogRollPage = () => {
-
     return (
         <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">

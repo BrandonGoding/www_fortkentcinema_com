@@ -1,4 +1,4 @@
-import logo from '../../components/header/FKC_logo_black_FIN.png'
+import logo from '../../media/FKC_logo_black_FIN.png'
 
                   export default function SignupPage() {
                     return (

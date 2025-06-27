@@ -1,4 +1,4 @@
-import SectionHeading from "../section_heading/section_heading";
+
 
   const RATE_LIST = [
     {
@@ -47,7 +47,7 @@ import SectionHeading from "../section_heading/section_heading";
 
     return (
       <section className="py-8">
-        <SectionHeading heading_text="Rates" />
+
            <div className="grid gap-6 md:grid-cols-4">
              <div></div>
           {RATE_LIST.map((rate, index) => (

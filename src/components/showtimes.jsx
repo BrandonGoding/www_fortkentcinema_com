@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-          import SectionHeading from "../section_heading/section_heading";
-          import RedCard from "../red_card/red_card";
 
           const DAYS = ['Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
           const DAY_ABBR = ['Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -25,17 +23,17 @@ import React, { useState } from 'react';
           const Showtimes = () => {
             const todayIndex = getTodayIndex();
             const [selectedDay, setSelectedDay] = useState(todayIndex !== null ? DAYS[todayIndex] : null);
-
+            console.log(selectedDay)
             const showTimesContent = () => (
-              <>
-                <div className="flex space-x-2 mb-4">
+              <div className="container">
+                <div className="flex space-x-2 mb-4 justify-center">
                   {DAYS.map((day, i) => (
                     <button
                       key={day}
-                      className={`px-4 py-2 rounded transition-colors duration-200
+                      className={`px-4 py-2 rounded transition-colors duration-200 text-white
                         ${selectedDay === day
-                          ? 'bg-red-600 text-white font-bold'
-                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}
+                          && '!shadow !shadow-black bg-blue-600'}
+                          }
                       `}
                       onClick={() => setSelectedDay(day)}
                     >
@@ -51,7 +49,7 @@ import React, { useState } from 'react';
                     </div>
                   ) : (
                     <ul className="space-y-2 flex flex-col items-center">
-                        <li className="text-2xl font-extrabold">Showtimes for {selectedDay}s</li>
+                      <li className="text-2xl font-extrabold">Showtimes for {selectedDay}s</li>
                       {SHOWTIMES[selectedDay].map((time, index) => (
                         <li
                           key={index}
@@ -66,13 +64,12 @@ import React, { useState } from 'react';
                 {selectedDay !== null && (
                   <div className="mt-4 text-center text-xs text-gray-400">Closed Monday - Wednesday</div>
                 )}
-              </>
+              </div>
             );
 
             return (
               <section className="py-8 flex justify-center flex-col items-center">
-                <SectionHeading heading_text="Showtimes" />
-                <RedCard block_content={showTimesContent()} />
+                {showTimesContent()}
               </section>
             );
           };
