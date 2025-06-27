@@ -4,6 +4,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import logo from '../media/FKC_logo_black_FIN.png'
 
 const navigation = [
+  { name: 'Archive', href: '/archive' },
   { name: 'Blog', href: '/fort-kent-cinema-blog' },
   { name: 'Coming Soon', href: '/coming-soon' },
 ]

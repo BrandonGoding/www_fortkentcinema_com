@@ -48,14 +48,12 @@ const BlogRollPage = () => {
                   </h3>
                   <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">{post.content}</p>
                 </div>
-                <div className="relative mt-8 flex items-center gap-x-4">
+                <div className="relative mt-3 flex items-center gap-x-4">
                   <img alt="" src={placeHolder} className="size-10 rounded-full bg-gray-100" />
                   <div className="text-sm/6">
                     <p className="font-semibold text-gray-900">
-                      <a href="#">
                         <span className="absolute inset-0" />
                         {post.author.first_name}&nbsp;{post.author.last_name}
-                      </a>
                     </p>
                     <p className="text-gray-600">{post.author.role}</p>
                   </div>

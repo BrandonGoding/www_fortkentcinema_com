@@ -16,7 +16,7 @@ import {initGA, trackPageview} from "./analytics";
 import films from "./films.json"
 import LoginPage from "./pages/login/login";
 import SignupPage from "./pages/signup/signup";
-
+import Archive from "./pages/archive_page/archive_page";
 
 function App() {
     return (
@@ -34,6 +34,18 @@ function App() {
                                     <NowPlaying films={films}/>
                                     <Showtimes/>
                                     <Rates/>
+                                </div>
+                                <Footer/>
+                            </>
+                        }
+                    />
+                    <Route
+                        path="archive"
+                        element={
+                            <>
+                                <Header/>
+                                <div className="Body">
+                                    <Archive films={films} />
                                 </div>
                                 <Footer/>
                             </>
