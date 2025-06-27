@@ -9,7 +9,7 @@ import Rates from "./components/rates";
 import './utils/spotlight/spotlight.jsx';
 import './utils/spotlight/spotlight.scss';
 import ComingSoonPage from "./pages/coming_soon_page/coming_soon_page";
-import BlogRollPage from "./pages/blog_reel_page/blog_reel_page";
+import BlogRollPage from "./pages/blog_roll_page/blog_roll_page";
 import BlogDetailPage from "./pages/blog_detail_page/blog_detail_page";
 import {useEffect} from "react";
 import {initGA, trackPageview} from "./analytics";

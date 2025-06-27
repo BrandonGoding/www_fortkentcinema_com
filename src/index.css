@@ -17,3 +17,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.lined-paper {
+  background: linear-gradient(white 95%, #f3f4f6 95%) 0 0 / 100% 2rem;
+  position: relative;
+}
+
+.lined-paper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  bottom: 0;
+  width: 2px;
+  background-color: #2563eb; /* Blue line */
+}
