@@ -26,7 +26,7 @@
     const rates = (rate) => (
       <>
         <h3 className="text-lg font-bold mb-2 text-red-700">{rate.title}</h3>
-        <ul className="space-y-2">
+        <ul className="space-y-2 b">
           {rate.items.map((item, index) => (
             <li
               key={index}
@@ -47,13 +47,11 @@
 
     return (
       <section className="py-8">
-
-           <div className="grid gap-6 md:grid-cols-4">
-             <div></div>
+           <div className="flex justify-center flex-wrap">
           {RATE_LIST.map((rate, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow p-6 flex flex-col"
+              className="bg-white rounded-lg shadow p-6 flex flex-col flex-grow-1 mx-4 min-w-[320px] max-w-[600px]"
             >
               {rates(rate)}
             </div>

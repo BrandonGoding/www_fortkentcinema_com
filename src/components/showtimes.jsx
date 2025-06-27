@@ -25,7 +25,7 @@ import React, { useState } from 'react';
             const [selectedDay, setSelectedDay] = useState(todayIndex !== null ? DAYS[todayIndex] : null);
             console.log(selectedDay)
             const showTimesContent = () => (
-              <div className="container">
+              <div className="">
                 <div className="flex space-x-2 mb-4 justify-center">
                   {DAYS.map((day, i) => (
                     <button
@@ -45,7 +45,7 @@ import React, { useState } from 'react';
                 <div>
                   {selectedDay === null ? (
                     <div className="text-center text-gray-500 font-semibold py-6">
-                      CLOSED MONDAY - WEDNESDAY
+                      CLOSED MONDAY & TUESDAY
                     </div>
                   ) : (
                     <ul className="space-y-2 flex flex-col items-center">
@@ -62,7 +62,7 @@ import React, { useState } from 'react';
                   )}
                 </div>
                 {selectedDay !== null && (
-                  <div className="mt-4 text-center text-xs text-gray-400">Closed Monday - Wednesday</div>
+                  <div className="mt-4 text-center text-xs text-gray-400">Closed Monday & Tuesday</div>
                 )}
               </div>
             );
