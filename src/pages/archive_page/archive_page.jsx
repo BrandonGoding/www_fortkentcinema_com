@@ -1,5 +1,7 @@
-const ArchivePage = ({films}) => {
+import {useTitle} from '../../hooks/useTitle';
 
+const ArchivePage = ({films}) => {
+    useTitle("Fort Kent Cinema Film Archive");
     const today = new Date();
 
     // Filter out films with a future release date
@@ -32,7 +34,10 @@ const ArchivePage = ({films}) => {
                             shared history in film.
                         </p>
                         <p className="mt-4 !text-md font-medium text-pretty text-gray-700 sm:text-xl/8">
-                            Note: Film information is sourced from the <a href="http://www.omdbapi.com/" title="OMDB API website" className="font-bold text-gray-950">OMDB API</a> and may not be complete for all titles.
+                            Note: Film information is sourced from the <a href="http://www.omdbapi.com/"
+                                                                          title="OMDB API website"
+                                                                          className="font-bold text-gray-950">OMDB
+                            API</a> and may not be complete for all titles.
                         </p>
                     </div>
                 </div>

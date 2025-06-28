@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter as Router, Routes, Route, useLocation} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes, useLocation} from 'react-router-dom';
 import Header from "./components/header";
 import Footer from "./components/footer";
 import HeroSection from "./components/hero_section";
@@ -46,7 +46,7 @@ function App() {
                             <>
                                 <Header/>
                                 <div className="Body">
-                                    <Archive films={films} />
+                                    <Archive films={films}/>
                                 </div>
                                 <Footer/>
                             </>
@@ -58,7 +58,7 @@ function App() {
                             <>
                                 <Header/>
                                 <div className="Body">
-                                    <ArchiveDetailPage films={films} />
+                                    <ArchiveDetailPage films={films}/>
                                 </div>
                                 <Footer/>
                             </>
@@ -105,13 +105,13 @@ function App() {
                     <Route
                         path="login"
                         element={
-                            <LoginPage />
+                            <LoginPage/>
                         }
                     />
                     <Route
                         path="signup"
                         element={
-                            <SignupPage />
+                            <SignupPage/>
                         }
                     />
                 </Routes>
