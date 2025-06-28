@@ -1,8 +1,8 @@
 // src/hooks/useTitle.js
-import {useEffect} from 'react';
+import { useEffect } from "react";
 
 export function useTitle(title) {
-    useEffect(() => {
-        document.title = title;
-    }, [title]);
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
 }
