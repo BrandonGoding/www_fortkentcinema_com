@@ -35,14 +35,17 @@ const BlogRollPage = () => {
                 key={post.id}
                 className="flex flex-col items-start justify-between"
               >
-                <div className="relative w-full">
+                <a
+                  href={`/fort-kent-cinema-blog/${post.slug}`}
+                  className="relative w-full"
+                >
                   <img
                     alt=""
                     src={post.header_image ? post.header_image : placeHolder}
                     className="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2"
                   />
                   <div className="absolute inset-0 rounded-2xl ring-1 ring-gray-900/10 ring-inset" />
-                </div>
+                </a>
                 <div className="max-w-xl">
                   <div className="mt-8 flex items-center gap-x-4 text-xs">
                     <time dateTime={post.post_date} className="text-gray-500">
