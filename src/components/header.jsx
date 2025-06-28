@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import logo from "../media/FKC_logo_black_FIN.png";
+import logo from "../assets/media/FKC_logo_black_FIN.png";
 
 const navigation = [
   { name: "Archive", href: "/archive" },

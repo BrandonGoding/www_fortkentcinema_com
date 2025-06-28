@@ -1,6 +1,8 @@
-import { useTitle } from "../../hooks/useTitle";
+import { useTitle } from "../hooks/useTitle";
+import Header from "../components/header";
+import Footer from "../components/footer";
 
-const ArchivePage = ({ films }) => {
+const FilmArchivePage = ({ films }) => {
   useTitle("Fort Kent Cinema Film Archive");
   const today = new Date();
 
@@ -19,6 +21,7 @@ const ArchivePage = ({ films }) => {
 
   return (
     <>
+      <Header />
       <div className="mt-24 ">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto text-center">
@@ -88,8 +91,9 @@ const ArchivePage = ({ films }) => {
           ))}
         </div>
       </div>
+      <Footer />
     </>
   );
 };
 
-export default ArchivePage;
+export default FilmArchivePage;

@@ -1,4 +1,4 @@
-import projector from "../media/projector-background.jpg";
+import projector from "../assets/media/projector-background.jpg";
 
 const HeroSection = () => (
   <div className="bg-white">

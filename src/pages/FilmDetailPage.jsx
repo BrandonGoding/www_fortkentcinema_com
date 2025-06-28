@@ -1,7 +1,9 @@
 import { useParams } from "react-router-dom";
-import { useTitle } from "../../hooks/useTitle";
+import { useTitle } from "../hooks/useTitle";
+import Header from "../components/header";
+import Footer from "../components/footer";
 
-const ArchiveDetailPage = ({ films }) => {
+const FilmDetailPage = ({ films }) => {
   const { slug } = useParams();
   const film = films.find((film) => film.slug === slug);
 
@@ -11,6 +13,7 @@ const ArchiveDetailPage = ({ films }) => {
   useTitle("Fort Kent Cinema Film Archive - " + film.title);
   return (
     <>
+      <Header />
       <div className="relative isolate -z-10">
         <svg
           aria-hidden="true"
@@ -129,8 +132,9 @@ const ArchiveDetailPage = ({ films }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
 
-export default ArchiveDetailPage;
+export default FilmDetailPage;
