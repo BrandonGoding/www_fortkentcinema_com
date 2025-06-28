@@ -1,6 +1,8 @@
-import logo from '../../media/FKC_logo_black_FIN.png'
+import logo from "../../media/FKC_logo_black_FIN.png";
+import { useTitle } from "../../hooks/useTitle";
 
 export default function LoginPage() {
+  useTitle("Login - Fort Kent Cinema");
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -18,7 +20,10 @@ export default function LoginPage() {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form action="#" method="POST" className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
+              <label
+                htmlFor="email"
+                className="block text-sm/6 font-medium text-gray-900"
+              >
                 Email address
               </label>
               <div className="mt-2">
@@ -35,11 +40,17 @@ export default function LoginPage() {
 
             <div>
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm/6 font-medium text-gray-900">
+                <label
+                  htmlFor="password"
+                  className="block text-sm/6 font-medium text-gray-900"
+                >
                   Password
                 </label>
                 <div className="text-sm">
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                  <a
+                    href="#"
+                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                  >
                     Forgot password?
                   </a>
                 </div>
@@ -67,13 +78,16 @@ export default function LoginPage() {
           </form>
 
           <p className="mt-10 text-center text-sm/6 text-gray-500">
-            Not a member?{' '}
-            <a href="/signup" className="font-semibold text-indigo-600 hover:text-indigo-500">
+            Not a member?{" "}
+            <a
+              href="/signup"
+              className="font-semibold text-indigo-600 hover:text-indigo-500"
+            >
               Sign up for free
             </a>
           </p>
         </div>
       </div>
     </>
-  )
+  );
 }

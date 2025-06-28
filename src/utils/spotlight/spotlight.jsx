@@ -1,5 +1,5 @@
-document.addEventListener('mousemove', (event) => {
-  const spotlightElements = document.querySelectorAll('.spotlight');
+document.addEventListener("mousemove", (event) => {
+  const spotlightElements = document.querySelectorAll(".spotlight");
   const { clientX: mouseX, clientY: mouseY } = event;
 
   spotlightElements.forEach((element) => {
@@ -14,5 +14,6 @@ document.addEventListener('mousemove', (event) => {
 
     const intensity = Math.max(0, 1 - distance / 500); // Adjust 500 for spotlight range
 
-    element.style.boxShadow = `0 0 ${50 * intensity}px ${20 * intensity}px rgba(0,122,255,${0.15 * intensity})`;  });
+    element.style.boxShadow = `0 0 ${50 * intensity}px ${20 * intensity}px rgba(0,122,255,${0.15 * intensity})`;
+  });
 });

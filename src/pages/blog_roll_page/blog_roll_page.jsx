@@ -1,24 +1,35 @@
 import React from "react";
 import blogFile from "./blogs.json";
-import  placeHolder from "../../media/projector-background.jpg"
+import placeHolder from "../../media/projector-background.jpg";
+import { useTitle } from "../../hooks/useTitle";
 
 const blogPosts = blogFile || [];
 
-
-
 const BlogRollPage = () => {
-    return (
-        <div className="bg-white py-24 sm:py-32">
+  useTitle("Fort Kent Cinema Blog");
+  return (
+    <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">
-           Fort Kent Cinema Blog
+            Fort Kent Cinema Blog
           </h2>
-          <p className="mt-2 text-lg/8 text-gray-600">Welcome to the Fort Kent Cinema Blog — your behind-the-scenes pass to everything happening at our hometown theater. Here, we share the latest movie news, upcoming releases, special events, and community spotlights. You’ll also find staff picks, throwbacks to classic films, and stories from around the St. John Valley. Whether you're a film fanatic or just love a good night out, we hope this blog brings you a little extra movie magic between visits.</p>
+          <p className="mt-2 text-lg/8 text-gray-600">
+            Welcome to the Fort Kent Cinema Blog — your behind-the-scenes pass
+            to everything happening at our hometown theater. Here, we share the
+            latest movie news, upcoming releases, special events, and community
+            spotlights. You’ll also find staff picks, throwbacks to classic
+            films, and stories from around the St. John Valley. Whether you're a
+            film fanatic or just love a good night out, we hope this blog brings
+            you a little extra movie magic between visits.
+          </p>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {blogPosts.map((post) => (
-            <article key={post.id} className="flex flex-col items-start justify-between">
+            <article
+              key={post.id}
+              className="flex flex-col items-start justify-between"
+            >
               <div className="relative w-full">
                 <img
                   alt=""
@@ -46,14 +57,20 @@ const BlogRollPage = () => {
                       {post.title}
                     </a>
                   </h3>
-                  <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">{post.content}</p>
+                  <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">
+                    {post.content}
+                  </p>
                 </div>
                 <div className="relative mt-3 flex items-center gap-x-4">
-                  <img alt="" src={placeHolder} className="size-10 rounded-full bg-gray-100" />
+                  <img
+                    alt=""
+                    src={placeHolder}
+                    className="size-10 rounded-full bg-gray-100"
+                  />
                   <div className="text-sm/6">
                     <p className="font-semibold text-gray-900">
-                        <span className="absolute inset-0" />
-                        {post.author.first_name}&nbsp;{post.author.last_name}
+                      <span className="absolute inset-0" />
+                      {post.author.first_name}&nbsp;{post.author.last_name}
                     </p>
                     <p className="text-gray-600">{post.author.role}</p>
                   </div>
@@ -64,7 +81,7 @@ const BlogRollPage = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default BlogRollPage;
