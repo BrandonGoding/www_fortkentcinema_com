@@ -20,7 +20,7 @@ const HeroSection = () => (
                 <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-500 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                   For Film Reviews, and News from Fort Kent Cinema!{" "}
                   <a
-                    href="#"
+                    href="/fort-kent-cinema-blog"
                     className="font-semibold whitespace-nowrap text-indigo-600"
                   >
                     <span aria-hidden="true" className="absolute inset-0" />
