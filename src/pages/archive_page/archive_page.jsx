@@ -31,6 +31,9 @@ const ArchivePage = ({films}) => {
                             that made you laugh, cry, cheer, and come back for more. This is more than a list — it’s our
                             shared history in film.
                         </p>
+                        <p className="mt-4 !text-md font-medium text-pretty text-gray-700 sm:text-xl/8">
+                            Note: Film information is sourced from the <a href="http://www.omdbapi.com/" title="OMDB API website" className="font-bold text-gray-950">OMDB API</a> and may not be complete for all titles.
+                        </p>
                     </div>
                 </div>
             </div>
