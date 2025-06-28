@@ -62,7 +62,7 @@ const ArchivePage = ({films}) => {
                                 </div>
                             </div>
                             <h3 className="mt-3 text-lg/6 font-semibold text-white">
-                                <a href="#">
+                                <a href={`/archive/${film.slug}`}>
                                     <span className="absolute inset-0"/>
                                     {film.title}
                                 </a>

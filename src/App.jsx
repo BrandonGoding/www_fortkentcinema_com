@@ -17,6 +17,7 @@ import films from "./films.json"
 import LoginPage from "./pages/login/login";
 import SignupPage from "./pages/signup/signup";
 import Archive from "./pages/archive_page/archive_page";
+import ArchiveDetailPage from "./pages/archive_page/archive_detail";
 
 function App() {
     return (
@@ -49,6 +50,19 @@ function App() {
                                 </div>
                                 <Footer/>
                             </>
+                        }
+                    />
+                    <Route
+                        path="archive/:slug"
+                        element={
+                            <>
+                                <Header/>
+                                <div className="Body">
+                                    <ArchiveDetailPage films={films} />
+                                </div>
+                                <Footer/>
+                            </>
+
                         }
                     />
                     <Route
