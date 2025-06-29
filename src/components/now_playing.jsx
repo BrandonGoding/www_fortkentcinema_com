@@ -8,13 +8,13 @@ const NowPlaying = () => {
 
   const errorMessage = () => {
     return (
-        <>
-        <span className="font-medium">Unable to retrieve Films</span> We
-              are experiencing issues retrieving the films currently playing.
-              Please check back later.
-        </>
+      <>
+        <span className="font-medium">Unable to retrieve Films</span> We are
+        experiencing issues retrieving the films currently playing. Please check
+        back later.
+      </>
     );
-  }
+  };
 
   return (
     <div className="bg-gray-900 py-24 sm:py-32" id="now-playing">
@@ -37,9 +37,7 @@ const NowPlaying = () => {
             </p>
           </div>
 
-          {isLoading && (
-            <LoadingSpinner />
-          )}
+          {isLoading && <LoadingSpinner />}
 
           {Array.isArray(data) && data.length === 0 && !isLoading && (
             <ApiErrorMsg error={errorMessage()} />
