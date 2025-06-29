@@ -1,24 +1,9 @@
 import { FaImdb, FaYoutube } from "react-icons/fa";
+import {useNowPlayingFilms} from "../hooks/useNowPlayingFilms";
 
-const NowPlaying = ({ films }) => {
-  const today = new Date();
-  // Find films with a current booking
-  const nowPlaying = films
-    .map((film) => {
-      const currentBooking = film.bookings.find((booking) => {
-        const start = new Date(booking.booking_start_date);
-        const end = new Date(booking.booking_end_date);
-        return start <= today && end >= today && booking.is_confirmed;
-      });
-      if (currentBooking) {
-        return {
-          ...film,
-          currentBooking,
-        };
-      }
-      return null;
-    })
-    .filter(Boolean);
+const NowPlaying = () => {
+
+  const { data = [], isLoading, error } = useNowPlayingFilms();
 
   return (
     <div className="bg-gray-900 py-24 sm:py-32" id="now-playing">
@@ -41,12 +26,12 @@ const NowPlaying = ({ films }) => {
             </p>
           </div>
           <dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-2">
-            {nowPlaying.map((movie, idx) => (
+            {(data).map((movie, idx) => (
               <div key={idx} className="flex flex-col bg-white/5 p-8">
                 <dt className="text-sm/6 font-semibold text-gray-300">
                   <img
                     src={movie?.omdb_json?.Poster}
-                    alt={`${movie.title} Poster`}
+                    alt={`${movie?.title} Poster`}
                     className="mx-auto mb-4 rounded-lg max-h-75"
                   />
                   <>
@@ -55,9 +40,9 @@ const NowPlaying = ({ films }) => {
                     <p>Genre: {movie?.omdb_json?.Genre}</p>
                   </>
                   <div className="flex justify-center items-center space-x-4 mt-4">
-                    {movie.youtube_id && (
+                    {movie?.youtube_id && (
                       <a
-                        href={`https://www.youtube.com/watch?v=${movie.youtube_id}`}
+                        href={`https://www.youtube.com/watch?v=${movie?.youtube_id}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Watch trailer on YouTube"
@@ -65,9 +50,9 @@ const NowPlaying = ({ films }) => {
                         <FaYoutube size={28} color="#FF0000" />
                       </a>
                     )}
-                    {movie.imdb_id && (
+                    {movie?.imdb_id && (
                       <a
-                        href={`https://www.imdb.com/title/${movie.imdb_id}/`}
+                        href={`https://www.imdb.com/title/${movie?.imdb_id}/`}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="View on IMDb"
@@ -78,18 +63,18 @@ const NowPlaying = ({ films }) => {
                   </div>
                 </dt>
                 <dd className="order-first text-3xl font-semibold tracking-tight text-white mb-5">
-                  {movie.title}
+                  {movie?.title}
                   <br />
                   <small>
                     {new Date(
-                      movie.currentBooking.booking_start_date,
+                      movie?.booking_start_date,
                     ).toLocaleDateString("en-US", {
                       month: "numeric",
                       day: "numeric",
                     })}{" "}
                     -
                     {new Date(
-                      movie.currentBooking.booking_end_date,
+                      movie?.booking_end_date,
                     ).toLocaleDateString("en-US", {
                       month: "numeric",
                       day: "numeric",
