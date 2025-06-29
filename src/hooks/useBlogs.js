@@ -1,8 +1,7 @@
 // src/hooks/useBlogs.js
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-
-const BLOGROLL_URL = "http://localhost:8000/api/v1/blog/";
+import { BLOGROLL_URL, BLOG_BY_SLUG_URL } from "../constants";
 
 export function useBlogs() {
   return useQuery({
@@ -14,7 +13,6 @@ export function useBlogs() {
   });
 }
 
-const BLOG_BY_SLUG_URL = "http://localhost:8000/api/v1/blog/";
 
 export function useBlogBySlug(slug) {
   return useQuery({
