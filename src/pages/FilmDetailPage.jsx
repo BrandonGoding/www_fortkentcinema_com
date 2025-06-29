@@ -3,22 +3,27 @@ import { useTitle } from "../hooks/useTitle";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-import { useFilmBySlug } from "../hooks/useFilms";
+import {useFilmBySlug} from "../hooks/useFilms";
+import LoadingSpinner from "../components/LoadingSpinner";
+import ApiErrorMsg from "../components/ApiErrorMsg";
 
 const FilmDetailPage = () => {
   const { slug } = useParams();
   useTitle("Fort Kent Cinema Film Archive - " + slug.replace(/-/g, " "));
 
   const { data: film, isLoading, error } = useFilmBySlug(slug);
-
-  if (!film) {
-    return <div>Film not found.</div>;
-  }
-
+  
   return (
     <>
       <Header />
-      <div className="relative isolate -z-10">
+      {isLoading && (
+          <LoadingSpinner />
+      )}
+      {!isLoading && error && (
+          <ApiErrorMsg error={"There was an error fetching the film details. Please check back later."} />
+      )}
+      { film && (
+          <div className="relative isolate -z-10">
         <svg
           aria-hidden="true"
           className="absolute inset-x-0 top-0 -z-10 h-256 w-full mask-[radial-gradient(32rem_32rem_at_center,white,transparent)] stroke-gray-200"
@@ -136,6 +141,7 @@ const FilmDetailPage = () => {
           </div>
         </div>
       </div>
+      )}
       <Footer />
     </>
   );
