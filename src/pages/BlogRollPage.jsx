@@ -55,12 +55,10 @@ const BlogRollPage = () => {
                     src={
                       post.header_image
                         ? (() => {
-                            const decoded = decodeURIComponent(
-                              post.header_image,
-                            );
-                            return decoded.startsWith("/http")
-                              ? decoded.slice(1)
-                              : decoded;
+                            const decoded = decodeURIComponent(post.header_image);
+                            return decoded.startsWith("http")
+                              ? decoded
+                              : `https://${decoded}`;
                           })()
                         : placeHolder
                     }
