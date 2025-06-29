@@ -5,6 +5,7 @@ import { useTitle } from "../hooks/useTitle";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import { useBlogBySlug } from "../hooks/useBlogs";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const BlogDetailPage = () => {
   const { slug } = useParams();
@@ -13,18 +14,18 @@ const BlogDetailPage = () => {
   useTitle((blog?.title ? blog.title + " | " : "") + "Fort Kent Cinema Blog");
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <p className="text-lg font-semibold text-gray-500">Loading...</p>
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (error || !blog) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <p className="text-lg font-semibold text-gray-500">Blog not found.</p>
-      </div>
+      <>
+        <Header />
+        <div className="flex items-center justify-center h-screen">
+          <p className="text-lg font-semibold text-gray-500">Blog not found.</p>
+        </div>
+        <Footer />
+      </>
     );
   }
 

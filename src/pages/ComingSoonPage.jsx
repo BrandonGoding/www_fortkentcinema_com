@@ -4,6 +4,8 @@ import { useTitle } from "../hooks/useTitle";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import { useComingSoonFilms } from "../hooks/useComingSoonFilms";
+import LoadingSpinner from "../components/LoadingSpinner";
+import ApiErrorMsg from "../components/ApiErrorMsg";
 
 function formatDateWithOrdinal(dateString) {
   const date = new Date(dateString);
@@ -14,14 +16,10 @@ function formatDateWithOrdinal(dateString) {
   function ordinal(n) {
     if (n > 3 && n < 21) return "th";
     switch (n % 10) {
-      case 1:
-        return "st";
-      case 2:
-        return "nd";
-      case 3:
-        return "rd";
-      default:
-        return "th";
+      case 1: return "st";
+      case 2: return "nd";
+      case 3: return "rd";
+      default: return "th";
     }
   }
 
@@ -35,12 +33,15 @@ const ComingSoonPage = ({ films }) => {
     <>
       <Header />
       <div className="flex flex-col items-center justify-center m-2 ">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {isLoading && <div>Loading...</div>}
-          {error && <div>Error loading films.</div>}
 
-          {data.map((film) => (
-            <diva
+          {isLoading && <LoadingSpinner /> }
+            {error && <ApiErrorMsg error={"Error loading films, please check back later"} />}
+
+          {data.length === 0 && !isLoading && !error && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {data.map((film) => (
+
+            <div
               key={film?.id}
               className="max-w-full sm:max-w-[400px] flex flex-col items-center justify-center p-5 m-2 rounded-lg shadow-md bg-white"
             >
@@ -60,20 +61,21 @@ const ComingSoonPage = ({ films }) => {
                 />
               </div>
               <p className="text-center mt-4">
-                {(() => {
-                  const now = new Date();
-                  const futureBookings = (film.bookings ?? []).filter(
-                    (b) => new Date(b.booking_end_date) > now,
-                  );
-                  const firstBooking = futureBookings[0];
-                  return firstBooking
-                    ? `Booking: ${formatDateWithOrdinal(firstBooking.booking_start_date)} to ${formatDateWithOrdinal(firstBooking.booking_end_date)}`
-                    : "No upcoming bookings";
-                })()}
-              </p>
-            </diva>
+              {(() => {
+                const now = new Date();
+                const futureBookings = (film.bookings ?? []).filter(
+                  (b) => new Date(b.booking_end_date) > now
+                );
+                const firstBooking = futureBookings[0];
+                return firstBooking
+                  ? `Booking: ${formatDateWithOrdinal(firstBooking.booking_start_date)} to ${formatDateWithOrdinal(firstBooking.booking_end_date)}`
+                  : "No upcoming bookings";
+              })()}
+            </p>
+            </div>
           ))}
-        </div>
+              </div>
+          )}
         <Calendar />
       </div>
       <Footer />
