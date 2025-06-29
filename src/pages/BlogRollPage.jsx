@@ -1,14 +1,17 @@
 import React from "react";
-import blogFile from "../assets/blogs.json";
 import placeHolder from "../assets/media/projector-background.jpg";
 import { useTitle } from "../hooks/useTitle";
 import Header from "../components/header";
 import Footer from "../components/footer";
-
-const blogPosts = blogFile || [];
+import { useBlogs } from "../hooks/useBlogs";
+import LoadingSpinner from "../components/LoadingSpinner";
+import ApiErrorMsg from "../components/ApiErrorMsg";
 
 const BlogRollPage = () => {
   useTitle("Fort Kent Cinema Blog");
+
+  const { data: blogPosts = [], isLoading, error } = useBlogs();
+
   return (
     <>
       <Header />
@@ -29,6 +32,14 @@ const BlogRollPage = () => {
               visits.
             </p>
           </div>
+          {isLoading && <LoadingSpinner />}
+          {!isLoading && error && (
+            <ApiErrorMsg
+              error={
+                "Unable to load the blog roll at this time. Please check back later."
+              }
+            />
+          )}
           <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             {blogPosts.map((post) => (
               <article
@@ -41,7 +52,18 @@ const BlogRollPage = () => {
                 >
                   <img
                     alt=""
-                    src={post.header_image ? post.header_image : placeHolder}
+                    src={
+                      post.header_image
+                        ? (() => {
+                            const decoded = decodeURIComponent(
+                              post.header_image,
+                            );
+                            return decoded.startsWith("/http")
+                              ? decoded.slice(1)
+                              : decoded;
+                          })()
+                        : placeHolder
+                    }
                     className="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2"
                   />
                   <div className="absolute inset-0 rounded-2xl ring-1 ring-gray-900/10 ring-inset" />

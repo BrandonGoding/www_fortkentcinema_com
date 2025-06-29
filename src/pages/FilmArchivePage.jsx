@@ -1,10 +1,16 @@
 import { useTitle } from "../hooks/useTitle";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import { useFilms } from "../hooks/useFilms";
+import LoadingSpinner from "../components/LoadingSpinner";
+import ApiErrorMsg from "../components/ApiErrorMsg";
 
-const FilmArchivePage = ({ films }) => {
+const FilmArchivePage = () => {
   useTitle("Fort Kent Cinema Film Archive");
+
   const today = new Date();
+
+  const { data: films = [], isLoading, error } = useFilms();
 
   // Filter out films with a future release date
   const filteredFilms = films.filter((film) => {
@@ -53,6 +59,11 @@ const FilmArchivePage = ({ films }) => {
         </div>
       </div>
       <div className="max-w-2/3 m-auto">
+        {isLoading && <LoadingSpinner />}
+        {!isLoading && error && (
+          <ApiErrorMsg error="Unable to load the film archive. Please try later." />
+        )}
+
         <div className="mx-auto mt-16 mb-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {sortedFilms.map((film) => (
             <article

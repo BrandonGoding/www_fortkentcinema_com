@@ -1,26 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
-
-import blogFile from "../assets/blogs.json";
 import { useTitle } from "../hooks/useTitle";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import { useBlogBySlug } from "../hooks/useBlogs";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const BlogDetailPage = () => {
   const { slug } = useParams();
-  const [blog, setBlog] = useState(null);
-  useTitle(blog?.title + "| Fort Kent Cinema Blog");
-  useEffect(() => {
-    const fetchedBlog = blogFile.find((post) => post.slug === slug);
-    setBlog(fetchedBlog);
-  }, [slug]);
+  const { data: blog, isLoading, error } = useBlogBySlug(slug);
 
-  if (!blog) {
+  useTitle((blog?.title ? blog.title + " | " : "") + "Fort Kent Cinema Blog");
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  if (error || !blog) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <p className="text-lg font-semibold text-gray-500">Blog not found.</p>
-      </div>
+      <>
+        <Header />
+        <div className="flex items-center justify-center h-screen">
+          <p className="text-lg font-semibold text-gray-500">Blog not found.</p>
+        </div>
+        <Footer />
+      </>
     );
   }
 
