@@ -56,7 +56,7 @@ const BlogRollPage = () => {
                       post.header_image
                         ? (() => {
                             const decoded = decodeURIComponent(post.header_image);
-                            return decoded.startsWith("http")
+                            return decoded.startsWith("https://")
                               ? decoded
                               : `https://${decoded}`;
                           })()
