@@ -54,11 +54,7 @@ const BlogRollPage = () => {
                     alt=""
                     src={
                       post.header_image
-                        ? (() => {
-                            const decoded = decodeURIComponent(post.header_image);
-                            const cleaned = decoded.replace("https://cdn.fortkentcinema.com/https%3A/cdn.fortkentcinema.com/", "");
-                            return cleaned;
-                          })()
+                        ? post.header_image
                         : placeHolder
                     }
                     className="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2"
