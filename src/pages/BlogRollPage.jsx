@@ -56,7 +56,7 @@ const BlogRollPage = () => {
                       post.header_image
                         ? (() => {
                             const decoded = decodeURIComponent(post.header_image);
-                            const cleaned = decoded.replace("https%3A/cdn.fortkentcinema.com/", "");
+                            const cleaned = decoded.replace("https://cdn.fortkentcinema.com/https%3A/cdn.fortkentcinema.com/", "");
                             return cleaned;
                           })()
                         : placeHolder
