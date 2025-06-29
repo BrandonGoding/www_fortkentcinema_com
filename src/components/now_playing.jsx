@@ -84,7 +84,7 @@ const NowPlaying = () => {
                   {movie?.title}
                   <br />
                   <small>
-                    {new Date(movie?.booking_start_date).toLocaleDateString(
+                    {new Date(movie?.bookings[0].booking_start_date).toLocaleDateString(
                       "en-US",
                       {
                         month: "numeric",
@@ -92,7 +92,7 @@ const NowPlaying = () => {
                       },
                     )}{" "}
                     -
-                    {new Date(movie?.booking_end_date).toLocaleDateString(
+                    {new Date(movie?.bookings[0].booking_end_date).toLocaleDateString(
                       "en-US",
                       {
                         month: "numeric",
