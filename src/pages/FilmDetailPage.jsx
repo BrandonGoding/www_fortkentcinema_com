@@ -2,7 +2,8 @@ import { useParams } from "react-router-dom";
 import { useTitle } from "../hooks/useTitle";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import { useFilmBySlug } from "../hooks/useFilm";
+
+import {useFilmBySlug} from "../hooks/useFilms";
 
 const FilmDetailPage = () => {
   const { slug } = useParams();
