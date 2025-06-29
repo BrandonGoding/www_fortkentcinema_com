@@ -57,7 +57,7 @@ const BlogRollPage = () => {
     ? (() => {
         const decoded = decodeURIComponent(post.header_image);
         const trimmed = decoded.startsWith("/") ? decoded.slice(1) : decoded;
-        return trimmed.replace("%3A", "/").replace("%2F", "/");
+        return trimmed.replace("https:%3A/", "https://").replace("%2F", "/");
       })()
     : placeHolder
 }
