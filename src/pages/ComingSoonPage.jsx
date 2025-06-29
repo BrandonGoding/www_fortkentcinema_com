@@ -14,10 +14,14 @@ function formatDateWithOrdinal(dateString) {
   function ordinal(n) {
     if (n > 3 && n < 21) return "th";
     switch (n % 10) {
-      case 1: return "st";
-      case 2: return "nd";
-      case 3: return "rd";
-      default: return "th";
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+      default:
+        return "th";
     }
   }
 
@@ -33,9 +37,9 @@ const ComingSoonPage = ({ films }) => {
       <div className="flex flex-col items-center justify-center m-2 ">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {isLoading && <div>Loading...</div>}
-            {error && <div>Error loading films.</div>}
+          {error && <div>Error loading films.</div>}
 
-            {data.map((film) => (
+          {data.map((film) => (
             <diva
               key={film?.id}
               className="max-w-full sm:max-w-[400px] flex flex-col items-center justify-center p-5 m-2 rounded-lg shadow-md bg-white"
@@ -56,17 +60,17 @@ const ComingSoonPage = ({ films }) => {
                 />
               </div>
               <p className="text-center mt-4">
-              {(() => {
-                const now = new Date();
-                const futureBookings = (film.bookings ?? []).filter(
-                  (b) => new Date(b.booking_end_date) > now
-                );
-                const firstBooking = futureBookings[0];
-                return firstBooking
-                  ? `Booking: ${formatDateWithOrdinal(firstBooking.booking_start_date)} to ${formatDateWithOrdinal(firstBooking.booking_end_date)}`
-                  : "No upcoming bookings";
-              })()}
-            </p>
+                {(() => {
+                  const now = new Date();
+                  const futureBookings = (film.bookings ?? []).filter(
+                    (b) => new Date(b.booking_end_date) > now,
+                  );
+                  const firstBooking = futureBookings[0];
+                  return firstBooking
+                    ? `Booking: ${formatDateWithOrdinal(firstBooking.booking_start_date)} to ${formatDateWithOrdinal(firstBooking.booking_end_date)}`
+                    : "No upcoming bookings";
+                })()}
+              </p>
             </diva>
           ))}
         </div>

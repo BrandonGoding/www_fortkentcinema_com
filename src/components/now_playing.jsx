@@ -1,8 +1,7 @@
 import { FaImdb, FaYoutube } from "react-icons/fa";
-import {useNowPlayingFilms} from "../hooks/useNowPlayingFilms";
+import { useNowPlayingFilms } from "../hooks/useNowPlayingFilms";
 
 const NowPlaying = () => {
-
   const { data = [], isLoading, error } = useNowPlayingFilms();
 
   return (
@@ -33,13 +32,18 @@ const NowPlaying = () => {
           )}
 
           {Array.isArray(data) && data.length === 0 && !isLoading && (
-          <div className="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 text-center" role="alert">
-            <span className="font-medium">Unable to retrieve Films</span> We are experiencing issues retrieving the films currently playing. Please check back later.
-          </div>
+            <div
+              className="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 text-center"
+              role="alert"
+            >
+              <span className="font-medium">Unable to retrieve Films</span> We
+              are experiencing issues retrieving the films currently playing.
+              Please check back later.
+            </div>
           )}
 
           <dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-2">
-            {(data).map((movie, idx) => (
+            {data.map((movie, idx) => (
               <div key={idx} className="flex flex-col bg-white/5 p-8">
                 <dt className="text-sm/6 font-semibold text-gray-300">
                   <img
@@ -79,19 +83,21 @@ const NowPlaying = () => {
                   {movie?.title}
                   <br />
                   <small>
-                    {new Date(
-                      movie?.booking_start_date,
-                    ).toLocaleDateString("en-US", {
-                      month: "numeric",
-                      day: "numeric",
-                    })}{" "}
+                    {new Date(movie?.booking_start_date).toLocaleDateString(
+                      "en-US",
+                      {
+                        month: "numeric",
+                        day: "numeric",
+                      },
+                    )}{" "}
                     -
-                    {new Date(
-                      movie?.booking_end_date,
-                    ).toLocaleDateString("en-US", {
-                      month: "numeric",
-                      day: "numeric",
-                    })}
+                    {new Date(movie?.booking_end_date).toLocaleDateString(
+                      "en-US",
+                      {
+                        month: "numeric",
+                        day: "numeric",
+                      },
+                    )}
                   </small>
                 </dd>
               </div>

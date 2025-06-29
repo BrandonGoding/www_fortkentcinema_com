@@ -1,7 +1,7 @@
 import { useTitle } from "../hooks/useTitle";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import { useFilms} from "../hooks/useFilms";
+import { useFilms } from "../hooks/useFilms";
 
 const FilmArchivePage = () => {
   useTitle("Fort Kent Cinema Film Archive");

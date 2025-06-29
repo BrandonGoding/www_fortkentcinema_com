@@ -26,19 +26,13 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="archive" element={<Archive />} />
-          <Route
-            path="archive/:slug"
-            element={<FilmDetailPage />}
-          />
+          <Route path="archive/:slug" element={<FilmDetailPage />} />
           <Route path="fort-kent-cinema-blog" element={<BlogRollPage />} />
           <Route
             path="fort-kent-cinema-blog/:slug"
             element={<BlogDetailPage />}
           />
-          <Route
-            path="coming-soon"
-            element={<ComingSoonPage />}
-          />
+          <Route path="coming-soon" element={<ComingSoonPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignupPage />} />
         </Routes>

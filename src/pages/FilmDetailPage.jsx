@@ -3,7 +3,7 @@ import { useTitle } from "../hooks/useTitle";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-import {useFilmBySlug} from "../hooks/useFilms";
+import { useFilmBySlug } from "../hooks/useFilms";
 
 const FilmDetailPage = () => {
   const { slug } = useParams();
