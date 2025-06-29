@@ -25,6 +25,19 @@ const NowPlaying = () => {
               world of film.
             </p>
           </div>
+
+          {isLoading && (
+            <div className="flex justify-center items-center my-8">
+              <div className="loader" aria-label="Loading"></div>
+            </div>
+          )}
+
+          {Array.isArray(data) && data.length === 0 && !isLoading && (
+          <div className="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 text-center" role="alert">
+            <span className="font-medium">Unable to retrieve Films</span> We are experiencing issues retrieving the films currently playing. Please check back later.
+          </div>
+          )}
+
           <dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-2">
             {(data).map((movie, idx) => (
               <div key={idx} className="flex flex-col bg-white/5 p-8">
