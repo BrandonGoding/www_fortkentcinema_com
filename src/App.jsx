@@ -12,7 +12,6 @@ import BlogRollPage from "./pages/BlogRollPage";
 import BlogDetailPage from "./pages/BlogDetailPage";
 import { useEffect } from "react";
 import { initGA, trackPageview } from "./analytics";
-import films from "./films.json";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import Archive from "./pages/FilmArchivePage";
@@ -25,11 +24,11 @@ function App() {
       <LocationTracker />
       <div className="App">
         <Routes>
-          <Route path="/" element={<HomePage films={films} />} />
-          <Route path="archive" element={<Archive films={films} />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="archive" element={<Archive />} />
           <Route
             path="archive/:slug"
-            element={<FilmDetailPage films={films} />}
+            element={<FilmDetailPage />}
           />
           <Route path="fort-kent-cinema-blog" element={<BlogRollPage />} />
           <Route
@@ -38,7 +37,7 @@ function App() {
           />
           <Route
             path="coming-soon"
-            element={<ComingSoonPage films={films} />}
+            element={<ComingSoonPage />}
           />
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignupPage />} />

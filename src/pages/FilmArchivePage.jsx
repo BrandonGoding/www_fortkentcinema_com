@@ -1,10 +1,14 @@
 import { useTitle } from "../hooks/useTitle";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import { useFilms} from "../hooks/useFilms";
 
-const FilmArchivePage = ({ films }) => {
+const FilmArchivePage = () => {
   useTitle("Fort Kent Cinema Film Archive");
+
   const today = new Date();
+
+  const { data: films = [], isLoading, error } = useFilms();
 
   // Filter out films with a future release date
   const filteredFilms = films.filter((film) => {

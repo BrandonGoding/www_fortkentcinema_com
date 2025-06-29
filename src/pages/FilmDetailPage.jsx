@@ -2,15 +2,18 @@ import { useParams } from "react-router-dom";
 import { useTitle } from "../hooks/useTitle";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import { useFilmBySlug } from "../hooks/useFilm";
 
-const FilmDetailPage = ({ films }) => {
+const FilmDetailPage = () => {
   const { slug } = useParams();
-  const film = films.find((film) => film.slug === slug);
+  useTitle("Fort Kent Cinema Film Archive - " + slug.replace(/-/g, " "));
+
+  const { data: film, isLoading, error } = useFilmBySlug(slug);
 
   if (!film) {
     return <div>Film not found.</div>;
   }
-  useTitle("Fort Kent Cinema Film Archive - " + film.title);
+
   return (
     <>
       <Header />
