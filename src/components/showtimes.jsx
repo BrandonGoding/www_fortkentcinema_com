@@ -5,7 +5,7 @@ const DAY_ABBR = ["Wed", "Thu", "Fri", "Sat", "Sun"];
 const SHOWTIMES = {
   Wednesday: ["7:30 PM"],
   Thursday: ["7:30 PM"],
-  Friday: ["7:30 PM"],
+  Friday: [],
   Saturday: ["3:00 PM", "7:30 PM"],
   Sunday: ["2:00 PM", "5:00 PM"],
 };
@@ -49,6 +49,7 @@ const Showtimes = () => {
           </button>
         ))}
       </div>
+        <div className="alert bg-blue-100 text-blue-800 p-4 rounded-lg mb-4 text-center">We will be closed July 4th</div>
       <div>
         {selectedDay === null ? (
           <div className="text-center text-gray-500 font-semibold py-6">
