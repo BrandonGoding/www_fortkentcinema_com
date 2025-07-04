@@ -25,7 +25,7 @@ const BlogDetailPage = () => {
 
   if (isLoading) {
     return <LoadingSpinner />;
-  }z
+  }
 
   if (error || !blog) {
     return (
