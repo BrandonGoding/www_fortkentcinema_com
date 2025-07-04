@@ -5,8 +5,6 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
-import "./utils/spotlight/spotlight.jsx";
-import "./utils/spotlight/spotlight.scss";
 import ComingSoonPage from "./pages/ComingSoonPage";
 import BlogRollPage from "./pages/BlogRollPage";
 import BlogDetailPage from "./pages/BlogDetailPage";

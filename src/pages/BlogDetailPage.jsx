@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
 import { useTitle } from "../hooks/useTitle";
 // import { useMetaDescription} from "../hooks/useMetaDescription";
-// import { useMetaImage } from "../hooks/useMetaImage";
+import { useMetaImage } from "../hooks/useMetaImage";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import { useBlogBySlug } from "../hooks/useBlogs";
@@ -14,6 +14,7 @@ const BlogDetailPage = () => {
   const { data: blog, isLoading, error } = useBlogBySlug(slug);
 
   useTitle((blog?.title ? blog.title + " | " : "") + "Fort Kent Cinema Blog");
+  useMetaImage(blog?.header_image && "https://fortkentcinema.com/static/images/fort-kent-cinema-logo.png");
 
   if (isLoading) {
     return <LoadingSpinner />;

@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 
-export default function useMetaImage(imageUrl) {
+export function useMetaImage(imageUrl) {
   useEffect(() => {
     if (imageUrl) {
       const metaImage = document.querySelector("meta[property='og:image']");
