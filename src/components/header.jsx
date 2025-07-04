@@ -41,7 +41,7 @@ const Header = () => {
         </div>
         <div className="flex flex-1 items-center justify-end gap-x-6">
           <a
-            href="/login"
+            href="/pages/login"
             className="hidden text-sm/6 font-semibold text-gray-900 lg:block"
           >
             Log in
@@ -110,7 +110,7 @@ const Header = () => {
               </div>
               <div className="py-6">
                 <a
-                  href="/login"
+                  href="/pages/login"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >
                   Log in

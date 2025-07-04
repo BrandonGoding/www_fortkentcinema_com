@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
-import Header from "../components/header";
-import Footer from "../components/footer";
+import Header from "../../src/components/header";
+import Footer from "../../src/components/footer";
 
-import { useFilmBySlug } from "../hooks/useFilms";
-import LoadingSpinner from "../components/LoadingSpinner";
-import ApiErrorMsg from "../components/ApiErrorMsg";
+import { useFilmBySlug } from "../../src/hooks/useFilms";
+import LoadingSpinner from "../../src/components/LoadingSpinner";
+import ApiErrorMsg from "../../src/components/ApiErrorMsg";
 
-const FilmDetailPage = () => {
+const Slug = () => {
   const { slug } = useParams();
 
   const { data: film, isLoading, error } = useFilmBySlug(slug);
@@ -147,4 +147,4 @@ const FilmDetailPage = () => {
   );
 };
 
-export default FilmDetailPage;
+export default Slug;

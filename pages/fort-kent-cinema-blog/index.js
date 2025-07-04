@@ -1,12 +1,12 @@
 import React from "react";
-import placeHolder from "../assets/media/projector-background.jpg";
-import Header from "../components/header";
-import Footer from "../components/footer";
-import { useBlogs } from "../hooks/useBlogs";
-import LoadingSpinner from "../components/LoadingSpinner";
-import ApiErrorMsg from "../components/ApiErrorMsg";
+import placeHolder from "../../src/assets/media/projector-background.jpg";
+import Header from "../../src/components/header";
+import Footer from "../../src/components/footer";
+import { useBlogs } from "../../src/hooks/useBlogs";
+import LoadingSpinner from "../../src/components/LoadingSpinner";
+import ApiErrorMsg from "../../src/components/ApiErrorMsg";
 
-const BlogRollPage = () => {
+const Index = () => {
 
   const { data: blogPosts = [], isLoading, error } = useBlogs();
 
@@ -107,4 +107,4 @@ const BlogRollPage = () => {
   );
 };
 
-export default BlogRollPage;
+export default Index;

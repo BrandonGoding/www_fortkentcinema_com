@@ -2,12 +2,12 @@ import React from "react";
 
 import { useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
-import Header from "../components/header";
-import Footer from "../components/footer";
-import { useBlogBySlug } from "../hooks/useBlogs";
-import LoadingSpinner from "../components/LoadingSpinner";
+import Header from "../../src/components/header";
+import Footer from "../../src/components/footer";
+import { useBlogBySlug } from "../../src/hooks/useBlogs";
+import LoadingSpinner from "../../src/components/LoadingSpinner";
 
-const BlogDetailPage = () => {
+const Slug = () => {
   const { slug } = useParams();
   const { data: blog, isLoading, error } = useBlogBySlug(slug);
 
@@ -64,4 +64,4 @@ const BlogDetailPage = () => {
   );
 };
 
-export default BlogDetailPage;
+export default Slug;

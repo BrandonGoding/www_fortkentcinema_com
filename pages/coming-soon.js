@@ -1,10 +1,10 @@
 import React from "react";
-import Calendar from "../components/calendar";
-import Footer from "../components/footer";
-import Header from "../components/header";
-import { useComingSoonFilms } from "../hooks/useComingSoonFilms";
-import LoadingSpinner from "../components/LoadingSpinner";
-import ApiErrorMsg from "../components/ApiErrorMsg";
+import Calendar from "../src/components/calendar";
+import Footer from "../src/components/footer";
+import Header from "../src/components/header";
+import { useComingSoonFilms } from "../src/hooks/useComingSoonFilms";
+import LoadingSpinner from "../src/components/LoadingSpinner";
+import ApiErrorMsg from "../src/components/ApiErrorMsg";
 
 function formatDateWithOrdinal(dateString) {
   const date = new Date(dateString);
@@ -29,7 +29,7 @@ function formatDateWithOrdinal(dateString) {
   return `${month} ${day}${ordinal(day)}`;
 }
 
-const ComingSoonPage = ({ films }) => {
+const ComingSoon = ({ films }) => {
   const { data = [], isLoading, error } = useComingSoonFilms();
   return (
     <>
@@ -85,4 +85,4 @@ const ComingSoonPage = ({ films }) => {
   );
 };
 
-export default ComingSoonPage;
+export default ComingSoon;

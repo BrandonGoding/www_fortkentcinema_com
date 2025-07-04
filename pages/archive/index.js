@@ -1,11 +1,11 @@
 
-import Header from "../components/header";
-import Footer from "../components/footer";
-import { useFilms } from "../hooks/useFilms";
-import LoadingSpinner from "../components/LoadingSpinner";
-import ApiErrorMsg from "../components/ApiErrorMsg";
+import Header from "../../src/components/header";
+import Footer from "../../src/components/footer";
+import { useFilms } from "../../src/hooks/useFilms";
+import LoadingSpinner from "../../src/components/LoadingSpinner";
+import ApiErrorMsg from "../../src/components/ApiErrorMsg";
 
-const FilmArchivePage = () => {
+const Index = () => {
 
   const today = new Date();
 
@@ -106,4 +106,4 @@ const FilmArchivePage = () => {
   );
 };
 
-export default FilmArchivePage;
+export default Index;
