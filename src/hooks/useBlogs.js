@@ -3,11 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { BLOGROLL_URL, BLOG_BY_SLUG_URL } from "../constants";
 
-export function useBlogs() {
+export function useBlogs(page = 1) {
   return useQuery({
-    queryKey: ["blogs"],
+    queryKey: ["blogs", page],
     queryFn: async () => {
-      const response = await axios.get(BLOGROLL_URL);
+      const response = await axios.get(BLOGROLL_URL, { params: { page } });
       return response.data;
     },
   });
