@@ -2,6 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
 import { useTitle } from "../hooks/useTitle";
+// import { useMetaDescription} from "../hooks/useMetaDescription";
+// import { useMetaImage } from "../hooks/useMetaImage";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import { useBlogBySlug } from "../hooks/useBlogs";
