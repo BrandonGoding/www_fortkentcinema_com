@@ -13,12 +13,19 @@ const BlogDetailPage = () => {
   const { slug } = useParams();
   const { data: blog, isLoading, error } = useBlogBySlug(slug);
 
-  useTitle((blog?.title ? blog.title + " | " : "") + "Fort Kent Cinema Blog");
-  useMetaImage(blog?.header_image && "https://fortkentcinema.com/static/images/fort-kent-cinema-logo.png");
+  useEffect(() => {
+  if (blog) {
+      useTitle((blog.title ? blog.title + " | " : "") + "Fort Kent Cinema Blog");
+      useMetaImage(
+        blog.header_image && "https://fortkentcinema.com/static/images/fort-kent-cinema-logo.png"
+      );
+    }
+  }, [blog]);
+
 
   if (isLoading) {
     return <LoadingSpinner />;
-  }
+  }z
 
   if (error || !blog) {
     return (
