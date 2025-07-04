@@ -1,4 +1,4 @@
-import { useTitle } from "../hooks/useTitle";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 import { useFilms } from "../hooks/useFilms";
@@ -6,7 +6,6 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import ApiErrorMsg from "../components/ApiErrorMsg";
 
 const FilmArchivePage = () => {
-  useTitle("Fort Kent Cinema Film Archive");
 
   const today = new Date();
 

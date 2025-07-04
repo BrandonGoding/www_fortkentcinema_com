@@ -1,6 +1,5 @@
 import React from "react";
 import placeHolder from "../assets/media/projector-background.jpg";
-import { useTitle } from "../hooks/useTitle";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import { useBlogs } from "../hooks/useBlogs";
@@ -8,7 +7,6 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import ApiErrorMsg from "../components/ApiErrorMsg";
 
 const BlogRollPage = () => {
-  useTitle("Fort Kent Cinema Blog");
 
   const { data: blogPosts = [], isLoading, error } = useBlogs();
 

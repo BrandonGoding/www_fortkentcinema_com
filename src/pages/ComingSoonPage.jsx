@@ -1,6 +1,5 @@
 import React from "react";
 import Calendar from "../components/calendar";
-import { useTitle } from "../hooks/useTitle";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import { useComingSoonFilms } from "../hooks/useComingSoonFilms";
@@ -31,9 +30,7 @@ function formatDateWithOrdinal(dateString) {
 }
 
 const ComingSoonPage = ({ films }) => {
-  useTitle("Films Coming to Fort Kent Cinema");
   const { data = [], isLoading, error } = useComingSoonFilms();
-  console.log("ComingSoonPage data:", data);
   return (
     <>
       <Header />

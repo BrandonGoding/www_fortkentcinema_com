@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { useTitle } from "../hooks/useTitle";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -9,7 +8,6 @@ import ApiErrorMsg from "../components/ApiErrorMsg";
 
 const FilmDetailPage = () => {
   const { slug } = useParams();
-  useTitle("Fort Kent Cinema Film Archive - " + slug.replace(/-/g, " "));
 
   const { data: film, isLoading, error } = useFilmBySlug(slug);
 

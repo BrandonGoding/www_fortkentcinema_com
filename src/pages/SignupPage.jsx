@@ -1,5 +1,4 @@
 import logo from "../assets/media/FKC_logo_black_FIN.png";
-import { useTitle } from "../hooks/useTitle";
 
 export default function SignupPage() {
   useTitle("Sign Up - Fort Kent Cinema");
