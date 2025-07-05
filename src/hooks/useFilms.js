@@ -2,13 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { ALL_FILMS_URL } from "../constants";
 
-export function useFilms() {
+export function useFilms(page) {
   return useQuery({
-    queryKey: ["allFilms"],
+    queryKey: ["allFilms", page],
     queryFn: async () => {
-      const response = await axios.get(ALL_FILMS_URL);
+      const response = await axios.get(`${ALL_FILMS_URL}?page=${page}`);
       return response.data;
     },
+    keepPreviousData: true,
   });
 }
 
