@@ -4,25 +4,46 @@ import Footer from "../components/footer";
 import { useFilms } from "../hooks/useFilms";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ApiErrorMsg from "../components/ApiErrorMsg";
+import {useBlogs} from "../hooks/useBlogs";
+import {useEffect, useRef, useState} from "react";
 
 const FilmArchivePage = () => {
 
-  const today = new Date();
+    const [page, setPage] = useState(1);
+    const [allFilms, setAllFilms] = useState([]);
+    const observerRef = useRef(null);
+    const { data = [], isLoading, error } = useFilms();
+    const films = data?.results || [];
+    const next = data?.next;
 
-  const { data: films = [], isLoading, error } = useFilms();
+    useEffect(() => {
+      if (films.length > 0) {
+        setAllFilms((prevPosts) => [...prevPosts, ...films]);
+      }
+    }, [films]);
 
-  // Filter out films with a future release date
-  const filteredFilms = films.filter((film) => {
-    const released = new Date(film.omdb_json.Released);
-    return released <= today;
-  });
+    useEffect(() => {
+         const observer = new IntersectionObserver(
+           (entries) => {
+             if (entries[0].isIntersecting && next && !isLoading && films.length > 0) {
+               setPage((prevPage) => prevPage + 1);
+             }
+           },
+           { threshold: 1.0 }
+         );
 
-  // Sort the filtered films by release date (newest first)
-  const sortedFilms = [...filteredFilms].sort((a, b) => {
-    const dateA = new Date(a.omdb_json.Released);
-    const dateB = new Date(b.omdb_json.Released);
-    return dateB - dateA;
-  });
+         if (observerRef.current) {
+           observer.observe(observerRef.current);
+         }
+
+         return () => {
+           if (observerRef.current) {
+             observer.unobserve(observerRef.current);
+           }
+         };
+       }, [next, isLoading, films]);
+
+
 
   return (
     <>
@@ -64,14 +85,14 @@ const FilmArchivePage = () => {
         )}
 
         <div className="mx-auto mt-16 mb-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {sortedFilms.map((film) => (
+          {films.map((film) => (
             <article
               key={film.id}
               className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pt-80 pb-8 sm:pt-48 lg:pt-80"
             >
               <img
                 alt=""
-                src={film.omdb_json.Poster}
+                src={film?.omdb_json.Poster}
                 className="absolute inset-0 -z-10 size-full object-cover"
               />
               <div className="absolute inset-0 -z-10 bg-linear-to-t from-gray-900 via-gray-900/40" />
@@ -99,6 +120,9 @@ const FilmArchivePage = () => {
               </h3>
             </article>
           ))}
+
+            <div ref={observerRef} className="h-10" />
+            {isLoading && page > 1 && <LoadingSpinner />}
         </div>
       </div>
       <Footer />
