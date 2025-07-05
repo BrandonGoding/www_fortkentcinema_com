@@ -1,7 +1,7 @@
 import React from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import {useFilms} from "../hooks/useFilms";
+import {useComingSoonCalendarFilms} from "../hooks/useComingSoonFilms";
 
 const isNowPlaying = (start, end) => {
   const today = new Date();
@@ -45,7 +45,7 @@ const getCalendarEvents = (films) => {
 
 const Calendar = () => {
 
-    const { data: films = [], isLoading, error } = useFilms();
+    const { data: films = [], isLoading, error } = useComingSoonCalendarFilms();
 
     return (
         <div className="w-full max-w-full sm:max-w-[600px] md:max-w-[900px] lg:max-w-[1090px] flex flex-col items-center justify-center p-2 sm:p-4 m-2 rounded-lg shadow-md bg-white">
