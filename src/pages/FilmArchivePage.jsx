@@ -12,7 +12,7 @@ const FilmArchivePage = () => {
     const [page, setPage] = useState(1);
     const [allFilms, setAllFilms] = useState([]);
     const observerRef = useRef(null);
-    const { data = [], isLoading, error } = useFilms();
+    const { data = [], isLoading, error } = useFilms(page);
     const films = data?.results || [];
     const next = data?.next;
 
