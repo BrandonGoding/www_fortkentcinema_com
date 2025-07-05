@@ -8,47 +8,44 @@ import {useBlogs} from "../hooks/useBlogs";
 import {useEffect, useRef, useState} from "react";
 
 const FilmArchivePage = () => {
+  const [page, setPage] = useState(1);
+  const [allFilms, setAllFilms] = useState([]);
+  const observerRef = useRef(null);
+  const { data = [], isLoading, error } = useFilms(page);
+  const films = data?.results || [];
+  const next = data?.next;
 
-    const [page, setPage] = useState(1);
-    const [allFilms, setAllFilms] = useState([]);
-    const observerRef = useRef(null);
-    const { data = [], isLoading, error } = useFilms(page);
-    const films = data?.results || [];
-    const next = data?.next;
+  useEffect(() => {
+    if (films.length > 0) {
+      setAllFilms((prevFilms) => [...prevFilms, ...films]);
+    }
+  }, [films]);
 
-    useEffect(() => {
-      if (films.length > 0) {
-        setAllFilms((prevPosts) => [...prevPosts, ...films]);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && next && !isLoading) {
+          setPage((prevPage) => prevPage + 1);
+        }
+      },
+      { threshold: 1.0 }
+    );
+
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+
+    return () => {
+      if (observerRef.current) {
+        observer.unobserve(observerRef.current);
       }
-    }, [films]);
-
-    useEffect(() => {
-         const observer = new IntersectionObserver(
-           (entries) => {
-             if (entries[0].isIntersecting && next && !isLoading && films.length > 0) {
-               setPage((prevPage) => prevPage + 1);
-             }
-           },
-           { threshold: 1.0 }
-         );
-
-         if (observerRef.current) {
-           observer.observe(observerRef.current);
-         }
-
-         return () => {
-           if (observerRef.current) {
-             observer.unobserve(observerRef.current);
-           }
-         };
-       }, [next, isLoading, films]);
-
-
+    };
+  }, [next, isLoading]);
 
   return (
     <>
       <Header />
-      <div className="mt-24 ">
+      <div className="mt-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto text-center">
             <h1 className="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl">
@@ -56,36 +53,19 @@ const FilmArchivePage = () => {
             </h1>
             <p className="mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
               Welcome to the Fort Kent Cinema Film Archive — a curated journey
-              through every movie we've ever shown on the big screen. From
-              blockbuster premieres to indie gems, family favorites to cinematic
-              epics, this archive celebrates the diverse stories that have lit
-              up our screens and brought our community together. Take a stroll
-              down memory lane and rediscover the films that made you laugh,
-              cry, cheer, and come back for more. This is more than a list —
-              it’s our shared history in film.
-            </p>
-            <p className="mt-4 !text-md font-medium text-pretty text-gray-700 sm:text-xl/8">
-              Note: Film information is sourced from the{" "}
-              <a
-                href="http://www.omdbapi.com/"
-                title="OMDB API website"
-                className="font-bold text-gray-950"
-              >
-                OMDB API
-              </a>{" "}
-              and may not be complete for all titles.
+              through every movie we've ever shown on the big screen.
             </p>
           </div>
         </div>
       </div>
       <div className="max-w-2/3 m-auto">
-        {isLoading && <LoadingSpinner />}
+        {isLoading && page === 1 && <LoadingSpinner />}
         {!isLoading && error && (
           <ApiErrorMsg error="Unable to load the film archive. Please try later." />
         )}
 
         <div className="mx-auto mt-16 mb-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {films.map((film) => (
+          {allFilms.map((film) => (
             <article
               key={film.id}
               className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pt-80 pb-8 sm:pt-48 lg:pt-80"
@@ -121,8 +101,8 @@ const FilmArchivePage = () => {
             </article>
           ))}
 
-            <div ref={observerRef} className="h-10" />
-            {isLoading && page > 1 && <LoadingSpinner />}
+          <div ref={observerRef} className="h-10" />
+          {isLoading && page > 1 && <LoadingSpinner />}
         </div>
       </div>
       <Footer />
