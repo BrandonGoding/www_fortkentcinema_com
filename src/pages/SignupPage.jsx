@@ -1,7 +1,7 @@
 import logo from "../assets/media/FKC_logo_black_FIN.png";
 
 export default function SignupPage() {
-  useTitle("Sign Up - Fort Kent Cinema");
+
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
