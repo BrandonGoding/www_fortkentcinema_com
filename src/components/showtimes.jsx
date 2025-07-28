@@ -50,7 +50,7 @@ const Showtimes = () => {
       <div>
         {selectedDay === null ? (
           <div className="text-center text-gray-500 font-semibold py-6">
-            CLOSED MONDAY & TUESDAY
+            CLOSED Sunday - Wednesday
           </div>
         ) : (
           <ul className="space-y-2 flex flex-col items-center">
