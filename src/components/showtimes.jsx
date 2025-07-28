@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 
-const DAYS = ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-const DAY_ABBR = ["Wed", "Thu", "Fri", "Sat", "Sun"];
+const DAYS = ["Thursday", "Friday", "Saturday"];
+const DAY_ABBR = ["Thu", "Fri", "Sat"];
 const SHOWTIMES = {
-  Wednesday: ["7:30 PM"],
   Thursday: ["7:30 PM"],
   Friday: ["7:30 PM"],
-  Saturday: ["3:00 PM", "7:30 PM"],
-  Sunday: ["2:00 PM", "5:00 PM"],
+  Saturday: ["3:00 PM", "6:00 PM"],
 };
 
 const getTodayIndex = () => {
@@ -75,7 +73,7 @@ const Showtimes = () => {
       </div>
       {selectedDay !== null && (
         <div className="mt-4 text-center text-xs text-gray-400">
-          Closed Monday & Tuesday
+          Closed Sunday - Wednesday
         </div>
       )}
     </div>
