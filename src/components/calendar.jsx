@@ -12,9 +12,14 @@ const isNowPlaying = (start, end) => {
 
 const renderEventContent = (eventInfo) => {
   const isPlaying = isNowPlaying(eventInfo.event.start, eventInfo.event.end);
-  const title = isPlaying
+  let title = isPlaying
     ? `${eventInfo.event.title} (Now Playing)`
     : eventInfo.event.title;
+
+  if (eventInfo.event.extendedProps.is_confirmed === false) {
+    title += " (Pending)";
+  }
+
   return (
     <div>
       <b>{title}</b>
@@ -31,7 +36,6 @@ const addOneDay = (dateStr) => {
 const getCalendarEvents = (films) => {
   return films.flatMap((film) =>
     film.bookings
-      .filter((booking) => booking.is_confirmed)
       .map((booking) => ({
         title: film.title,
         start: booking.booking_start_date,
@@ -39,6 +43,7 @@ const getCalendarEvents = (films) => {
         allDay: true,
         filmId: film.id,
         bookingId: booking.id,
+        is_confirmed: booking.is_confirmed,
       })),
   );
 };
@@ -46,6 +51,12 @@ const getCalendarEvents = (films) => {
 const Calendar = () => {
 
     const { data: films = [], isLoading, error } = useComingSoonCalendarFilms();
+
+    const getEventClassNames = (eventInfo) => {
+        return eventInfo.event.extendedProps.is_confirmed === false
+          ? "fc-event event-pending"
+          : "fc-event";
+      };
 
     return (
         <div className="w-full max-w-full sm:max-w-[600px] md:max-w-[900px] lg:max-w-[1090px] flex flex-col items-center justify-center p-2 sm:p-4 m-2 rounded-lg shadow-md bg-white">
@@ -55,7 +66,7 @@ const Calendar = () => {
                 events={getCalendarEvents(films)}
                 height="auto"
                 eventContent={renderEventContent}
-                eventClassNames="fc-event"
+                eventClassNames={getEventClassNames}
                 headerToolbar={{
                     left: false,
                     right: "prev,next",

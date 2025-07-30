@@ -91,3 +91,7 @@ button:active {
     transform: rotate(360deg);
   }
 }
+
+.event-pending {
+  background-color: #008080 !important; /* Light red background */
+}
