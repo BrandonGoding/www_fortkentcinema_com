@@ -58,6 +58,10 @@ const Showtimes = () => {
           <ul className="space-y-2 flex flex-col items-center">
             <li className="text-2xl font-extrabold">
               Showtimes for {selectedDay}s
+              <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
+                <p class="font-bold">Closed 7/31/2025</p>
+                <p>Sorry for any inconvenience</p>
+              </div>
             </li>
             {SHOWTIMES[selectedDay].map((time, index) => (
               <li
