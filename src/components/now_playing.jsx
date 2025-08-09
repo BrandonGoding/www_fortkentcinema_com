@@ -1,4 +1,4 @@
-import { FaImdb, FaYoutube } from "react-icons/fa";
+import {FaAmazon, FaImdb, FaYoutube} from "react-icons/fa";
 import { useNowPlayingFilms } from "../hooks/useNowPlayingFilms";
 import LoadingSpinner from "./LoadingSpinner";
 import ApiErrorMsg from "./ApiErrorMsg";
@@ -76,6 +76,16 @@ const NowPlaying = () => {
                         aria-label="View on IMDb"
                       >
                         <FaImdb size={28} color="#FFD700" />
+                      </a>
+                    )}
+                    {movie?.prime_link && (
+                      <a
+                        href={`${movie?.prime_link}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Preorder on Prime"
+                      >
+                        <FaAmazon size={28} color="#FFD700" />
                       </a>
                     )}
                   </div>

@@ -68,29 +68,41 @@ const FilmDetailPage = () => {
           <div className="overflow-hidden">
             <div className="mx-auto max-w-7xl px-6 pt-36 pb-32 sm:pt-60 lg:px-8 lg:pt-32">
               <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
-                <div className="relative w-full lg:max-w-xl lg:shrink-0 xl:max-w-2xl">
-                  <h1 className="text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-7xl">
-                    {film.title}
-                  </h1>
-                  <h2 className="">
+                  <div className="relative w-full lg:max-w-xl lg:shrink-0 xl:max-w-2xl">
+                      <h1 className="text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-7xl">
+                          {film.title}
+                      </h1>
+                      <h2 className="">
                     <span className="text-4xl">
                       Rated: {film.omdb_json.Rated}
                     </span>
-                    <br />
-                    {film.omdb_json.Year} - {film.omdb_json.Genre}
-                    <br />
-                    Actors: {film.omdb_json.Actors}
-                    <br />
-                    Director(s): {film.omdb_json.Director}
-                    <br />
-                    Writer(s): {film.omdb_json.Writer}
-                  </h2>
-                  <p className="mt-8 text-lg font-medium text-pretty text-gray-500 sm:max-w-md sm:text-xl/8 lg:max-w-none">
-                    {film.omdb_json.Plot || "No plot available for this film."}
-                  </p>
-                </div>
-                <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
-                  <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-0 xl:pt-80">
+                          <br/>
+                          {film.omdb_json.Year} - {film.omdb_json.Genre}
+                          <br/>
+                          Actors: {film.omdb_json.Actors}
+                          <br/>
+                          Director(s): {film.omdb_json.Director}
+                          <br/>
+                          Writer(s): {film.omdb_json.Writer}
+                      </h2>
+                      <p className="mt-8 text-lg font-medium text-pretty text-gray-500 sm:max-w-md sm:text-xl/8 lg:max-w-none">
+                          {film.omdb_json.Plot || "No plot available for this film."}
+                      </p>
+
+                      {film?.prime_link && (
+                      <p className="mt-8 text-lg font-medium text-pretty text-gray-500 sm:max-w-md sm:text-xl/8 lg:max-w-none">
+                          <span className="font-bold">Watch at Home & Support Fort Kent Cinema</span>
+                            <br/>
+                          If you’d like to watch or rewatch this film, use this Amazon link to rent or purchase it. As an
+                      Amazon Associate, we earn from qualifying purchases. It doesn’t cost you anything extra, but it
+                      helps us keep the lights on, the popcorn popping, and the theater warm in the winter.
+                          <a href={film.prime_link} className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer"><br/> Watch on Amazon Prime Video</a>
+                      </p>
+                      )}
+                  </div>
+                  <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
+                      <div
+                          className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-0 xl:pt-80">
                     <div className="relative">
                       <img
                         alt=""

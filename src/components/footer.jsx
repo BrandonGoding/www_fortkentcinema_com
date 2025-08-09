@@ -56,7 +56,10 @@ const Footer = () => {
 
   return (
     <footer className="bg-white">
-      <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
+        <div className={"mx-auto pt-6 max-w-7xl px-6 text-center text-sm text-gray-600"}>
+            As an Amazon Associate, we earn from qualifying purchases. Using our links helps support Fort Kent Cinema — thank you!
+        </div>
+        <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
         <div className="flex justify-center gap-x-6 md:order-2">
           {navigation.map((item) => (
             <a
