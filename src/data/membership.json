@@ -1,0 +1,31 @@
+{
+  "title": "Cinema Club Membership",
+  "description": "Join the Fort Kent Cinema family and enjoy exclusive benefits all year long. Our Cinema Club members are the heart of our community, and we love to show our appreciation with special perks and savings.",
+  "perks": [
+    "Discounted tickets for all regular showings",
+    "Free popcorn on your birthday month",
+    "Early access to special screenings and events",
+    "Exclusive member-only movie nights",
+    "10% off all concession stand purchases"
+  ],
+  "plans": [
+    {
+      "id": "annual",
+      "name": "Annual Pass",
+      "price": 49,
+      "period": "year",
+      "badge": "Best Value",
+      "description": "Unlimited savings for the whole family",
+      "featured": true
+    },
+    {
+      "id": "monthly",
+      "name": "Monthly Pass",
+      "price": 5,
+      "period": "month",
+      "badge": null,
+      "description": "Flexible month-to-month membership",
+      "featured": false
+    }
+  ]
+}

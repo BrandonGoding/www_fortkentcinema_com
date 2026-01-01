@@ -1,0 +1,93 @@
+.coming-soon {
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  background: var(--color-bg-charcoal);
+}
+
+.coming-movies-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.coming-movie-card {
+  display: flex;
+  background: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: all var(--transition-base);
+}
+
+.coming-movie-card:hover {
+  border-color: var(--color-brass);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.coming-movie-poster {
+  width: 120px;
+  flex-shrink: 0;
+  aspect-ratio: 2/3;
+  background: var(--color-bg-dark);
+  border-right: 2px solid var(--color-brass);
+  overflow: hidden;
+}
+
+.coming-poster-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.coming-poster-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, var(--color-bg-dark) 0%, var(--color-bg-charcoal) 100%);
+}
+
+.coming-poster-icon {
+  font-size: 2rem;
+  opacity: 0.5;
+}
+
+.coming-movie-info {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.coming-movie-date {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: var(--color-neon-red);
+  margin-bottom: var(--spacing-xs);
+}
+
+.coming-movie-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-cream);
+  margin-bottom: var(--spacing-xs);
+}
+
+.coming-movie-genre {
+  font-size: 0.85rem;
+  color: var(--color-cream-muted);
+}
+
+@media (max-width: 1200px) {
+  .coming-movies-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .coming-movies-grid {
+    grid-template-columns: 1fr;
+  }
+}

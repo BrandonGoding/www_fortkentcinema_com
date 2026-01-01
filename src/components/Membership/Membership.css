@@ -1,0 +1,133 @@
+.membership {
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  background: linear-gradient(180deg, var(--color-bg-charcoal) 0%, var(--color-bg-dark) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.membership::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(255, 59, 78, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.membership-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2xl);
+  position: relative;
+  z-index: 1;
+}
+
+.membership-info {
+  flex: 1;
+}
+
+.membership-title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  letter-spacing: 4px;
+  color: var(--color-gold);
+  text-shadow: 0 0 15px var(--color-gold-glow);
+  margin-bottom: var(--spacing-md);
+}
+
+.membership-description {
+  font-size: 1.1rem;
+  color: var(--color-cream-muted);
+  line-height: 1.8;
+  margin-bottom: var(--spacing-lg);
+}
+
+.membership-perks {
+  list-style: none;
+  margin-bottom: var(--spacing-lg);
+}
+
+.membership-perks li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) 0;
+  color: var(--color-cream);
+}
+
+.membership-perks li::before {
+  content: '★';
+  color: var(--color-gold);
+  font-size: 1rem;
+}
+
+.membership-card {
+  flex: 0 0 400px;
+  background: linear-gradient(135deg, var(--color-bg-card) 0%, var(--color-bg-charcoal) 100%);
+  border: 3px solid var(--color-brass);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  text-align: center;
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.4),
+    0 0 30px var(--color-gold-glow);
+}
+
+.card-badge {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: var(--color-neon-red);
+  background: rgba(255, 59, 78, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: var(--spacing-md);
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 4px;
+  color: var(--color-gold);
+  margin-bottom: var(--spacing-sm);
+}
+
+.card-price {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--color-cream);
+  margin-bottom: var(--spacing-xs);
+}
+
+.card-price span {
+  font-size: 1rem;
+  color: var(--color-cream-muted);
+}
+
+.card-description {
+  font-size: 0.9rem;
+  color: var(--color-cream-muted);
+  margin-bottom: var(--spacing-lg);
+}
+
+.card-btn {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .membership-content {
+    flex-direction: column;
+  }
+
+  .membership-card {
+    flex: none;
+    width: 100%;
+    max-width: 400px;
+  }
+}

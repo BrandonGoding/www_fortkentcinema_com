@@ -1,0 +1,28 @@
+{
+  "movies": [
+    {
+      "id": "5",
+      "title": "Midnight in Aroostook",
+      "releaseDate": "January 15",
+      "genre": "Drama, Romance",
+      "description": "A love story set against the backdrop of rural Maine.",
+      "poster": "/posters/midnight-aroostook.jpg"
+    },
+    {
+      "id": "6",
+      "title": "The Ice Storm",
+      "releaseDate": "January 22",
+      "genre": "Action, Thriller",
+      "description": "When nature strikes back, survival is the only option.",
+      "poster": "/posters/ice-storm.jpg"
+    },
+    {
+      "id": "7",
+      "title": "Hearts of the Forest",
+      "releaseDate": "February 1",
+      "genre": "Animation, Adventure",
+      "description": "A magical journey through an enchanted woodland.",
+      "poster": "/posters/hearts-forest.jpg"
+    }
+  ]
+}

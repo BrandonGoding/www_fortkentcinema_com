@@ -1,0 +1,44 @@
+{
+  "movies": [
+    {
+      "id": "1",
+      "title": "The Northern Lights",
+      "rating": "PG-13",
+      "runtime": "2h 14m",
+      "genre": "Drama, Adventure",
+      "description": "A breathtaking journey through the wilds of northern Maine.",
+      "poster": "/posters/northern-lights.jpg",
+      "showtimes": ["4:30 PM", "7:15 PM", "9:45 PM"]
+    },
+    {
+      "id": "2",
+      "title": "Winter's Edge",
+      "rating": "R",
+      "runtime": "1h 58m",
+      "genre": "Thriller, Mystery",
+      "description": "A gripping tale of survival in the frozen wilderness.",
+      "poster": "/posters/winters-edge.jpg",
+      "showtimes": ["5:00 PM", "8:00 PM"]
+    },
+    {
+      "id": "3",
+      "title": "Starfall Dreams",
+      "rating": "PG",
+      "runtime": "1h 45m",
+      "genre": "Animation, Family",
+      "description": "An enchanting animated adventure for the whole family.",
+      "poster": "/posters/starfall-dreams.jpg",
+      "showtimes": ["2:00 PM", "4:15 PM", "6:30 PM"]
+    },
+    {
+      "id": "4",
+      "title": "The Last Frontier",
+      "rating": "PG-13",
+      "runtime": "2h 22m",
+      "genre": "Action, Sci-Fi",
+      "description": "Humanity's last hope lies beyond the stars.",
+      "poster": "/posters/last-frontier.jpg",
+      "showtimes": ["3:30 PM", "7:00 PM", "10:00 PM"]
+    }
+  ]
+}

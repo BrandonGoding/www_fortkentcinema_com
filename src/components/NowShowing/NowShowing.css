@@ -1,0 +1,28 @@
+.now-showing {
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  background: linear-gradient(180deg, var(--color-bg-dark) 0%, var(--color-bg-charcoal) 100%);
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-lg);
+}
+
+@media (max-width: 1200px) {
+  .movies-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .movies-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .movies-grid {
+    grid-template-columns: 1fr;
+  }
+}
