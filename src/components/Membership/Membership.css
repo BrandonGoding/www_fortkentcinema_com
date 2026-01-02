@@ -167,3 +167,27 @@
     transform: translateY(-5px);
   }
 }
+
+.membership-calculator-link {
+  text-align: center;
+  margin-top: var(--spacing-xl);
+  position: relative;
+  z-index: 1;
+}
+
+.calculator-trigger {
+  background: none;
+  border: none;
+  color: var(--color-gold);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color var(--transition-base), text-shadow var(--transition-base);
+}
+
+.calculator-trigger:hover {
+  color: var(--color-cream);
+  text-shadow: 0 0 10px var(--color-gold-glow);
+}
