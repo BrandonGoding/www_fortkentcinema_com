@@ -1,6 +1,9 @@
 import './MovieCard.css';
 
-function MovieCard({ movie, onShowtimeClick }) {
+function MovieCard({ movie, showtimes, onShowtimeClick }) {
+  // Use passed showtimes prop, or fall back to movie.showtimes for backward compatibility
+  const displayShowtimes = showtimes || (Array.isArray(movie.showtimes) ? movie.showtimes : []);
+
   const handleShowtimeClick = (showtime) => {
     if (onShowtimeClick) {
       onShowtimeClick(movie, showtime);
@@ -33,9 +36,9 @@ function MovieCard({ movie, onShowtimeClick }) {
           <span className="movie-runtime">{movie.runtime}</span>
         </div>
         <p className="movie-genre">{movie.genre}</p>
-        {movie.showtimes && movie.showtimes.length > 0 && (
+        {displayShowtimes.length > 0 && (
           <div className="movie-showtimes">
-            {movie.showtimes.map((time) => (
+            {displayShowtimes.map((time) => (
               <button
                 key={time}
                 className="showtime"

@@ -8,7 +8,11 @@
       "genre": "Action, Adventure Fantasy",
       "description": "Jake and Neytiri's family grapples with grief, encountering a new, aggressive Na'vi tribe, the Ash People, who are led by the fiery Varang, as the conflict on Pandora escalates and a new moral focus emerges.",
       "poster": "https://m.media-amazon.com/images/M/MV5BZDYxY2I1OGMtN2Y4MS00ZmU1LTgyNDAtODA0MzAyYjI0N2Y2XkEyXkFqcGc@._V1_SX300.jpg",
-      "showtimes": ["3:00 PM", "7:00 PM"]
+      "showtimes": {
+        "2026-01-02": ["3:00 PM", "7:00 PM"],
+        "2026-01-03": ["2:00 PM", "6:00 PM"],
+        "2026-01-04": ["3:00 PM"]
+      }
     },
     {
       "id": "2",
@@ -18,10 +22,11 @@
       "genre": "Animation, Adventure, Drama",
       "description": "From his mother's songs to his clash with Goliath, David's journey from humble shepherd to anointed king tests the limits of faith, courage, and love--culminating in a battle for the soul of a kingdom.",
       "poster": "https://m.media-amazon.com/images/M/MV5BODczZDkzMDgtYzRjMi00YWNkLWJhNzMtNGNiMzQxNzE1ZDc3XkEyXkFqcGc@._V1_SX300.jpg",
-      "showtimes": [
-        "3:00 PM",
-        "7:00 PM"
-      ]
+      "showtimes": {
+        "2026-01-02": ["3:00 PM", "7:00 PM"],
+        "2026-01-03": ["2:00 PM", "6:00 PM"],
+        "2026-01-04": ["3:00 PM"]
+      }
     }
   ]
 }
