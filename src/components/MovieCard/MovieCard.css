@@ -4,6 +4,9 @@
   overflow: hidden;
   transition: transform var(--transition-base), box-shadow var(--transition-base);
   border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .movie-card:hover {
@@ -72,6 +75,9 @@
 
 .movie-info {
   padding: var(--spacing-md);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .movie-title {
@@ -116,7 +122,8 @@
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
-  margin-top: var(--spacing-sm);
+  margin-top: auto;
+  padding-top: var(--spacing-sm);
 }
 
 .showtime {
