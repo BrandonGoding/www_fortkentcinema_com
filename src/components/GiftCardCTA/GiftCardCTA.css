@@ -1,0 +1,37 @@
+.gift-card-cta {
+  background: linear-gradient(135deg, var(--color-bg-charcoal) 0%, var(--color-bg-dark) 100%);
+  border-top: 1px solid var(--color-brass);
+  border-bottom: 1px solid var(--color-brass);
+  padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+.gift-card-cta__content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  flex-wrap: wrap;
+}
+
+.gift-card-cta__title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  letter-spacing: 4px;
+  color: var(--color-gold);
+  text-shadow: 0 0 10px var(--color-gold-glow);
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .gift-card-cta__content {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-md);
+  }
+
+  .gift-card-cta__title {
+    font-size: 1.5rem;
+  }
+}

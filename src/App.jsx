@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import NowShowing from './components/NowShowing';
 import ComingSoon from './components/ComingSoon';
 import Membership from './components/Membership';
+import GiftCardCTA from './components/GiftCardCTA';
 import Footer from './components/Footer';
 import {
   getNowShowing,
@@ -118,6 +119,7 @@ function App() {
       <main>
         <Hero config={siteConfig} />
         <NowShowing movies={nowShowing} onShowtimeClick={handleShowtimeClick} />
+        <GiftCardCTA />
         <ComingSoon movies={comingSoon} />
         {membership && <Membership data={membership} />}
       </main>
