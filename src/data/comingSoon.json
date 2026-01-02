@@ -2,27 +2,35 @@
   "movies": [
     {
       "id": "5",
-      "title": "Midnight in Aroostook",
-      "releaseDate": "January 15",
-      "genre": "Drama, Romance",
-      "description": "A love story set against the backdrop of rural Maine.",
-      "poster": "/posters/midnight-aroostook.jpg"
+      "title": "28 Years Later",
+      "releaseDate": "January 16",
+      "genre": "Horror, Sci-Fi, Thriller",
+      "description": "A group of survivors of the rage virus live on a small island. When one of the group leaves the island on a mission into the mainland, he discovers secrets, wonders, and horrors that have mutated not only the infected but other survivors.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNjgwYTI0YjctMWYzNS00MmI1LWI5YTctNmE1YjBkNDFlNWMxXkEyXkFqcGc@._V1_SX300.jpg"
     },
     {
       "id": "6",
-      "title": "The Ice Storm",
-      "releaseDate": "January 22",
-      "genre": "Action, Thriller",
-      "description": "When nature strikes back, survival is the only option.",
-      "poster": "/posters/ice-storm.jpg"
+      "title": "The Housemaid",
+      "releaseDate": "January 16",
+      "genre": "Drama, Thriller",
+      "description": "A struggling young woman is relieved by the chance for a fresh start as a maid for a wealthy couple. Soon, she discovers that the family's secrets are far more dangerous than her own.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMGU0ZThmMDUtYmZjMi00MDk5LWE2NTQtYzQ3NWZjNWZkZGE3XkEyXkFqcGc@._V1_SX300.jpg"
     },
     {
       "id": "7",
-      "title": "Hearts of the Forest",
-      "releaseDate": "February 1",
-      "genre": "Animation, Adventure",
-      "description": "A magical journey through an enchanted woodland.",
-      "poster": "/posters/hearts-forest.jpg"
+      "title": "Send Help",
+      "releaseDate": "January 30",
+      "genre": "Horror",
+      "description": "Two colleagues become stranded on a deserted island, the only survivors of a plane crash. On the island, they must overcome past grievances and work together to survive, but ultimately, it's a battle of wills and wits to make it out alive.",
+      "poster": ""
+    },
+    {
+      "id": "8",
+      "title": "Melania",
+      "releaseDate": "January 30",
+      "genre": "Documentary",
+      "description": "An intimate chronicle offers a rare glimpse into the life of Melania Trump, exploring her role as First Lady and her relationship with the president.",
+      "poster": ""
     }
   ]
 }
