@@ -27,5 +27,8 @@
     "facebook": "https://facebook.com/fortkentcinema"
   },
   "navigation": [
+    { "label": "Now Showing", "href": "#now-showing" },
+    { "label": "Coming Soon", "href": "#coming-soon" },
+    { "label": "Membership", "href": "#membership" }
   ]
 }
