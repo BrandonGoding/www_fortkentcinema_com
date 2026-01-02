@@ -3,6 +3,7 @@ import Nav from './components/Nav';
 import Hero from './components/Hero';
 import NowShowing from './components/NowShowing';
 import ComingSoon from './components/ComingSoon';
+import Blog from './components/Blog';
 import Membership from './components/Membership';
 import GiftCardCTA from './components/GiftCardCTA';
 import Footer from './components/Footer';
@@ -121,6 +122,7 @@ function App() {
         <NowShowing movies={nowShowing} onShowtimeClick={handleShowtimeClick} />
         <GiftCardCTA />
         <ComingSoon movies={comingSoon} />
+        <Blog />
         {membership && <Membership data={membership} />}
       </main>
       <Footer config={siteConfig} />
