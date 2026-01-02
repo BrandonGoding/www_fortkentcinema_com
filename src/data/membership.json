@@ -1,31 +1,77 @@
 {
   "title": "Cinema Club Membership",
-  "description": "Join the Fort Kent Cinema family and enjoy exclusive benefits all year long. Our Cinema Club members are the heart of our community, and we love to show our appreciation with special perks and savings.",
-  "perks": [
-    "Discounted tickets for all regular showings",
-    "Free popcorn on your birthday month",
-    "Early access to special screenings and events",
-    "Exclusive member-only movie nights",
-    "10% off all concession stand purchases"
-  ],
+  "description": "Join the Fort Kent Cinema family and enjoy exclusive benefits all year long. Our Cinema Club members are the heart of our community.",
+  "regularPricing": {
+    "matinee": 8,
+    "evening": 12
+  },
   "plans": [
     {
-      "id": "annual",
-      "name": "Annual Pass",
-      "price": 49,
+      "id": "individual",
+      "name": "Individual",
+      "price": 60,
       "period": "year",
-      "badge": "Best Value",
-      "description": "Unlimited savings for the whole family",
-      "featured": true
+      "badge": null,
+      "description": "Perfect for solo movie lovers",
+      "featured": false,
+      "perks": [
+        "$1 off small popcorns",
+        "$2 off all other popcorn sizes",
+        "Matinee tickets for $6 (save $2)",
+        "Evening tickets for $8 (save $4)"
+      ],
+      "link": "https://square.link/u/lLHJtMg7"
     },
     {
-      "id": "monthly",
-      "name": "Monthly Pass",
-      "price": 5,
-      "period": "month",
+      "id": "cinema-supporter",
+      "name": "Cinema Supporter",
+      "price": 120,
+      "period": "year",
       "badge": null,
-      "description": "Flexible month-to-month membership",
-      "featured": false
+      "description": "Support your local cinema",
+      "featured": true,
+      "perks": [
+        "$1 off small popcorns",
+        "$2 off all other popcorn sizes",
+        "Matinee tickets for $6 (save $2)",
+        "Evening tickets for $8 (save $4)",
+        "1 free movie ticket per month"
+      ],
+      "link": "https://square.link/u/bMswBXbu"
+    },
+    {
+      "id": "family",
+      "name": "Family",
+      "price": 150,
+      "period": "year",
+      "badge": null,
+      "description": "Great value for families",
+      "featured": false,
+      "perks": [
+        "$1 off small popcorns",
+        "$2 off all other popcorn sizes",
+        "Matinee tickets for $6 (save $2)",
+        "Evening tickets for $8 (save $4)",
+        "Benefits for the whole family"
+      ],
+      "link": "https://square.link/u/2dbAKhNH"
+    },
+    {
+      "id": "family-plus",
+      "name": "Family Plus",
+      "price": 250,
+      "period": "year",
+      "badge": null,
+      "description": "Ultimate family experience",
+      "featured": false,
+      "perks": [
+        "$1 off small popcorns",
+        "$2 off all other popcorn sizes",
+        "Matinee tickets for $6 (save $2)",
+        "Evening tickets for $8 (save $4)",
+        "Up to 4 free movie tickets per month"
+      ],
+      "link": "https://square.link/u/Rpaxcn2e"
     }
   ]
 }

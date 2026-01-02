@@ -2,43 +2,26 @@
   "movies": [
     {
       "id": "1",
-      "title": "The Northern Lights",
+      "title": "Avatar: Fire and Ash",
       "rating": "PG-13",
-      "runtime": "2h 14m",
-      "genre": "Drama, Adventure",
-      "description": "A breathtaking journey through the wilds of northern Maine.",
-      "poster": "/posters/northern-lights.jpg",
-      "showtimes": ["4:30 PM", "7:15 PM", "9:45 PM"]
+      "runtime": "3h 17m",
+      "genre": "Action, Adventure Fantasy",
+      "description": "Jake and Neytiri's family grapples with grief, encountering a new, aggressive Na'vi tribe, the Ash People, who are led by the fiery Varang, as the conflict on Pandora escalates and a new moral focus emerges.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZDYxY2I1OGMtN2Y4MS00ZmU1LTgyNDAtODA0MzAyYjI0N2Y2XkEyXkFqcGc@._V1_SX300.jpg",
+      "showtimes": ["3:00 PM", "7:00 PM"]
     },
     {
       "id": "2",
-      "title": "Winter's Edge",
-      "rating": "R",
-      "runtime": "1h 58m",
-      "genre": "Thriller, Mystery",
-      "description": "A gripping tale of survival in the frozen wilderness.",
-      "poster": "/posters/winters-edge.jpg",
-      "showtimes": ["5:00 PM", "8:00 PM"]
-    },
-    {
-      "id": "3",
-      "title": "Starfall Dreams",
+      "title": "David",
       "rating": "PG",
-      "runtime": "1h 45m",
-      "genre": "Animation, Family",
-      "description": "An enchanting animated adventure for the whole family.",
-      "poster": "/posters/starfall-dreams.jpg",
-      "showtimes": ["2:00 PM", "4:15 PM", "6:30 PM"]
-    },
-    {
-      "id": "4",
-      "title": "The Last Frontier",
-      "rating": "PG-13",
-      "runtime": "2h 22m",
-      "genre": "Action, Sci-Fi",
-      "description": "Humanity's last hope lies beyond the stars.",
-      "poster": "/posters/last-frontier.jpg",
-      "showtimes": ["3:30 PM", "7:00 PM", "10:00 PM"]
+      "runtime": "1h 49m",
+      "genre": "Animation, Adventure, Drama",
+      "description": "From his mother's songs to his clash with Goliath, David's journey from humble shepherd to anointed king tests the limits of faith, courage, and love--culminating in a battle for the soul of a kingdom.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BODczZDkzMDgtYzRjMi00YWNkLWJhNzMtNGNiMzQxNzE1ZDc3XkEyXkFqcGc@._V1_SX300.jpg",
+      "showtimes": [
+        "3:00 PM",
+        "7:00 PM"
+      ]
     }
   ]
 }

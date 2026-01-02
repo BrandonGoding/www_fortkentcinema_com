@@ -20,35 +20,35 @@ function Footer({ config }) {
             </address>
           </div>
 
-          <div className="footer-column">
-            <h4 className="footer-heading">QUICK LINKS</h4>
-            <ul className="footer-links">
-              <li><a href="#now-showing">Now Showing</a></li>
-              <li><a href="#coming-soon">Coming Soon</a></li>
-              <li><a href="#tickets">Buy Tickets</a></li>
-              <li><a href="#gift-cards">Gift Cards</a></li>
-            </ul>
-          </div>
+          {/*<div className="footer-column">*/}
+          {/*  <h4 className="footer-heading">QUICK LINKS</h4>*/}
+          {/*  <ul className="footer-links">*/}
+          {/*    <li><a href="#now-showing">Now Showing</a></li>*/}
+          {/*    <li><a href="#coming-soon">Coming Soon</a></li>*/}
+          {/*    <li><a href="#tickets">Buy Tickets</a></li>*/}
+          {/*    <li><a href="#gift-cards">Gift Cards</a></li>*/}
+          {/*  </ul>*/}
+          {/*</div>*/}
 
-          <div className="footer-column">
-            <h4 className="footer-heading">ABOUT US</h4>
-            <ul className="footer-links">
-              <li><a href="#about">Our Story</a></li>
-              <li><a href="#membership">Membership</a></li>
-              <li><a href="/blog">Blog</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
+          {/*<div className="footer-column">*/}
+          {/*  <h4 className="footer-heading">ABOUT US</h4>*/}
+          {/*  <ul className="footer-links">*/}
+          {/*    <li><a href="#about">Our Story</a></li>*/}
+          {/*    <li><a href="#membership">Membership</a></li>*/}
+          {/*    <li><a href="/blog">Blog</a></li>*/}
+          {/*    <li><a href="#contact">Contact</a></li>*/}
+          {/*  </ul>*/}
+          {/*</div>*/}
 
-          <div className="footer-column">
-            <h4 className="footer-heading">BOX OFFICE HOURS</h4>
-            <p className="footer-hours">
-              {hours.weekday.days}<br />
-              {hours.weekday.open} - {hours.weekday.close}<br /><br />
-              {hours.weekend.days}<br />
-              {hours.weekend.open} - {hours.weekend.close}
-            </p>
-          </div>
+          {/*<div className="footer-column">*/}
+          {/*  <h4 className="footer-heading">BOX OFFICE HOURS</h4>*/}
+          {/*  <p className="footer-hours">*/}
+          {/*    {hours.weekday.days}<br />*/}
+          {/*    {hours.weekday.open} - {hours.weekday.close}<br /><br />*/}
+          {/*    {hours.weekend.days}<br />*/}
+          {/*    {hours.weekend.open} - {hours.weekend.close}*/}
+          {/*  </p>*/}
+          {/*</div>*/}
         </div>
 
         <div className="footer-bottom">

@@ -4,13 +4,12 @@
     "tagline": "Maine's Northernmost Picture Show",
     "heroQuote": "Where the movies come to life under the northern lights",
     "address": {
-      "street": "123 Main Street",
+      "street": "13 Hall Street",
       "city": "Fort Kent",
       "state": "ME",
       "zip": "04743"
     },
-    "phone": "(207) 834-1234",
-    "email": "info@fortkentcinema.com"
+    "phone": "(207) 231-5287"
   },
   "hours": {
     "weekday": {
@@ -25,15 +24,8 @@
     }
   },
   "social": {
-    "facebook": "https://facebook.com/fortkentcinema",
-    "instagram": "https://instagram.com/fortkentcinema",
-    "twitter": "https://twitter.com/fortkentcinema"
+    "facebook": "https://facebook.com/fortkentcinema"
   },
   "navigation": [
-    { "label": "Now Showing", "href": "#now-showing" },
-    { "label": "Coming Soon", "href": "#coming-soon" },
-    { "label": "Membership", "href": "#membership" },
-    { "label": "About", "href": "#about" },
-    { "label": "Blog", "href": "/blog" }
   ]
 }

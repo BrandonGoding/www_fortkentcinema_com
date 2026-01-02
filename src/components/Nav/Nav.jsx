@@ -13,9 +13,9 @@ function Nav({ config }) {
               <a href={item.href} className="nav-link">{item.label}</a>
             </li>
           ))}
-          <li>
-            <a href="#tickets" className="nav-cta">Buy Tickets</a>
-          </li>
+          {/*<li>*/}
+          {/*  <a href="#tickets" className="nav-cta">Buy Tickets</a>*/}
+          {/*</li>*/}
         </ul>
       </div>
     </nav>
