@@ -192,10 +192,10 @@ button {
 @keyframes neon-pulse {
   0%, 100% {
     text-shadow:
-      0 0 10px var(--color-neon-red),
-      0 0 20px var(--color-neon-red),
-      0 0 40px var(--color-neon-red-glow),
-      0 0 80px var(--color-neon-red-glow),
+      0 0 0px var(--color-neon-red),
+      0 0 5px var(--color-neon-red),
+      0 0 10px var(--color-neon-red-glow),
+      0 0 20px var(--color-neon-red-glow),
       2px 2px 0 #8b0000;
   }
   50% {
