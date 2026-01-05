@@ -12,7 +12,6 @@ function Hero({ config }) {
       <div className="hero-background" />
       <div className="hero-stars" />
       <div className="hero-pines" />
-      <div className="hero-snow" />
       <div className="light-spill" />
 
       {/* Main Marquee Sign */}
