@@ -65,12 +65,9 @@ function NowShowing({ movies, onShowtimeClick }) {
     tomorrow.setDate(tomorrow.getDate() + 1);
 
     const todayStr = today.toISOString().split('T')[0];
-    const tomorrowStr = tomorrow.toISOString().split('T')[0];
 
     if (dateString === todayStr) {
       return 'Today';
-    } else if (dateString === tomorrowStr) {
-      return 'Tomorrow';
     } else {
       return date.toLocaleDateString('en-US', {
         weekday: 'long',
