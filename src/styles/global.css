@@ -99,7 +99,7 @@ button {
   transform: translateY(-50%);
   width: 12px;
   height: 12px;
-  background: var(--color-bg-dark);
+  background: var(--color-bg-charcoal-dark);
   border-radius: 50%;
 }
 

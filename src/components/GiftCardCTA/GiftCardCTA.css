@@ -1,5 +1,5 @@
 .gift-card-cta {
-  background: linear-gradient(135deg, var(--color-bg-charcoal) 0%, var(--color-bg-dark) 100%);
+  background: linear-gradient(135deg, var(--color-bg-charcoal-dark) 0%, var(--color-bg-dark) 100%);
   border-top: 1px solid var(--color-brass);
   border-bottom: 1px solid var(--color-brass);
   padding: var(--spacing-xl) var(--spacing-lg);
