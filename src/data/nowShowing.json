@@ -15,7 +15,8 @@
         "2026-01-08": ["7:30 PM"],
         "2026-01-09": ["6:00 PM"],
         "2026-01-10": ["2:00 PM", "6:00 PM"],
-        "2026-01-11": ["3:00 PM"]
+        "2026-01-11": ["3:00 PM"],
+        "2026-01-15": ["7:30 PM"]
       }
     },
     {
@@ -33,18 +34,59 @@
         "2026-01-08": ["7:30 PM"],
         "2026-01-09": ["6:00 PM"],
         "2026-01-10": ["2:00 PM", "4:00 PM", "6:00 PM"],
-        "2026-01-11": ["3:00 PM", "5:00 PM"]
+        "2026-01-11": ["3:00 PM", "5:00 PM"],
+        "2026-01-15": ["7:30 PM"]
       }
     },
     {
       "id": "9",
-      "title": "The Snows of Kilimanjaro",
+      "title": "A Star is Born (1937)",
       "rating": "Approved",
-      "genre": "Adventure, Drama, Romance",
-      "description": "Writer Harry Street reflects on his life as he lies dying from an infection while on safari in the shadow of Mount Kilamanjaro.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BNjg3ZDFmN2ItYjFkYi00OTRiLWJkNGUtMzU5Y2NjODdlZjM0XkEyXkFqcGc@._V1_SX300.jpg",
+      "genre": "Tragic Romance, Drama, Romance",
+      "description": "Young Esther Victoria Blodgett comes to Hollywood with dreams of stardom and achieves them only with the help of alcoholic leading man Norman Maine, whose best days are behind him.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjFmNGE5NzItZTI1Mi00MzFkLTg1YTctNGUxZjlmMGZiNDMwXkEyXkFqcGc@._V1_SX300.jpg",
       "showtimes": {
-        "2026-01-06": ["6:30 PM"]
+        "2026-01-20": ["6:30 PM"]
+      }
+    },
+    {
+      "id": "5",
+      "title": "28 Years Later",
+      "releaseDate": "January 16",
+      "genre": "Horror, Sci-Fi, Thriller",
+      "description": "A group of survivors of the rage virus live on a small island. When one of the group leaves the island on a mission into the mainland, he discovers secrets, wonders, and horrors that have mutated not only the infected but other survivors.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNjgwYTI0YjctMWYzNS00MmI1LWI5YTctNmE1YjBkNDFlNWMxXkEyXkFqcGc@._V1_SX300.jpg",
+      "showtimes": {
+        "2026-01-16": ["6:00 PM", "9:00 PM"],
+        "2026-01-17": ["3:00 PM","6:00 PM", "9:00 PM"],
+        "2026-01-18": ["3:00 PM","6:00 PM"],
+        "2026-01-21": ["7:30 PM"],
+        "2026-01-22": ["7:30 PM"],
+        "2026-01-23": ["6:00 PM", "9:00 PM"],
+        "2026-01-24": ["3:00 PM","6:00 PM", "9:00 PM"],
+        "2026-01-25": ["3:00 PM","6:00 PM"],
+        "2026-01-28": ["7:30 PM"],
+        "2026-01-29": ["7:30 PM"]
+      }
+    },
+    {
+      "id": "6",
+      "title": "The Housemaid",
+      "releaseDate": "January 16",
+      "genre": "Drama, Thriller",
+      "description": "A struggling young woman is relieved by the chance for a fresh start as a maid for a wealthy couple. Soon, she discovers that the family's secrets are far more dangerous than her own.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMGU0ZThmMDUtYmZjMi00MDk5LWE2NTQtYzQ3NWZjNWZkZGE3XkEyXkFqcGc@._V1_SX300.jpg",
+      "showtimes": {
+        "2026-01-16": ["6:00 PM", "9:00 PM"],
+        "2026-01-17": ["3:00 PM","6:00 PM", "9:00 PM"],
+        "2026-01-18": ["3:00 PM","6:00 PM"],
+        "2026-01-21": ["7:30 PM"],
+        "2026-01-22": ["7:30 PM"],
+        "2026-01-23": ["6:00 PM", "9:00 PM"],
+        "2026-01-24": ["3:00 PM","6:00 PM", "9:00 PM"],
+        "2026-01-25": ["3:00 PM","6:00 PM"],
+        "2026-01-28": ["7:30 PM"],
+        "2026-01-29": ["7:30 PM"]
       }
     }
   ]

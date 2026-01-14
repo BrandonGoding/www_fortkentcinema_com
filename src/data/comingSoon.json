@@ -1,22 +1,6 @@
 {
   "movies": [
     {
-      "id": "9",
-      "title": "The Snows of Kilimanjaro",
-      "releaseDate": "January 6",
-      "genre": "Adventure, Drama, Romance",
-      "description": "Writer Harry Street reflects on his life as he lies dying from an infection while on safari in the shadow of Mount Kilamanjaro.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BNjg3ZDFmN2ItYjFkYi00OTRiLWJkNGUtMzU5Y2NjODdlZjM0XkEyXkFqcGc@._V1_SX300.jpg"
-    },
-    {
-      "id": "10",
-      "title": "McLintock!",
-      "releaseDate": "January 13",
-      "genre": "Slapstick, Comedy, Western",
-      "description": "Wealthy rancher G. W. McLintock uses his power and influence in the territory to keep the peace between farmers, ranchers, land-grabbers, Indians and corrupt government officials.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BNGQwOTdlOWUtZWIxNC00NWI0LTk4MWEtNzgyOWE0M2VmZjAwXkEyXkFqcGc@._V1_SX300.jpg"
-    },
-    {
       "id": "5",
       "title": "28 Years Later",
       "releaseDate": "January 16",
