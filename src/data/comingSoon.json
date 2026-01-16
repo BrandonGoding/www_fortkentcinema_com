@@ -1,22 +1,6 @@
 {
   "movies": [
     {
-      "id": "5",
-      "title": "28 Years Later",
-      "releaseDate": "January 16",
-      "genre": "Horror, Sci-Fi, Thriller",
-      "description": "A group of survivors of the rage virus live on a small island. When one of the group leaves the island on a mission into the mainland, he discovers secrets, wonders, and horrors that have mutated not only the infected but other survivors.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BNjgwYTI0YjctMWYzNS00MmI1LWI5YTctNmE1YjBkNDFlNWMxXkEyXkFqcGc@._V1_SX300.jpg"
-    },
-    {
-      "id": "6",
-      "title": "The Housemaid",
-      "releaseDate": "January 16",
-      "genre": "Drama, Thriller",
-      "description": "A struggling young woman is relieved by the chance for a fresh start as a maid for a wealthy couple. Soon, she discovers that the family's secrets are far more dangerous than her own.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BMGU0ZThmMDUtYmZjMi00MDk5LWE2NTQtYzQ3NWZjNWZkZGE3XkEyXkFqcGc@._V1_SX300.jpg"
-    },
-    {
       "id": "11",
       "title": "A Star is Born",
       "releaseDate": "January 20",

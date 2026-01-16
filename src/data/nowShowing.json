@@ -1,44 +1,6 @@
 {
   "movies": [
     {
-      "id": "1",
-      "title": "Avatar: Fire and Ash",
-      "rating": "PG-13",
-      "runtime": "3h 17m",
-      "genre": "Action, Adventure Fantasy",
-      "description": "Jake and Neytiri's family grapples with grief, encountering a new, aggressive Na'vi tribe, the Ash People, who are led by the fiery Varang, as the conflict on Pandora escalates and a new moral focus emerges.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BZDYxY2I1OGMtN2Y4MS00ZmU1LTgyNDAtODA0MzAyYjI0N2Y2XkEyXkFqcGc@._V1_SX300.jpg",
-      "showtimes": {
-        "2026-01-02": ["7:00 PM"],
-        "2026-01-03": ["2:00 PM", "6:00 PM"],
-        "2026-01-04": ["3:00 PM"],
-        "2026-01-08": ["7:30 PM"],
-        "2026-01-09": ["6:00 PM"],
-        "2026-01-10": ["2:00 PM", "6:00 PM"],
-        "2026-01-11": ["3:00 PM"],
-        "2026-01-15": ["7:30 PM"]
-      }
-    },
-    {
-      "id": "2",
-      "title": "The SpongeBob Movie: Search for SquarePants",
-      "rating": "PG",
-      "runtime": "1h 28m",
-      "genre": "Animation",
-      "description": "Desperate to be a big guy, SpongeBob sets out to prove his bravery to Mr. Krabs by following the Flying Dutchman, a mysterious swashbuckling ghost pirate, to the deepest depths of the deep sea.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BYjMwZWNjODQtMTNkZi00NGYzLWE4NWYtODA0YmRlMGMxZGZiXkEyXkFqcGc@._V1_SX300.jpg",
-      "showtimes": {
-        "2026-01-02": ["7:00 PM"],
-        "2026-01-03": ["2:00 PM", "6:00 PM"],
-        "2026-01-04": ["3:00 PM"],
-        "2026-01-08": ["7:30 PM"],
-        "2026-01-09": ["6:00 PM"],
-        "2026-01-10": ["2:00 PM", "4:00 PM", "6:00 PM"],
-        "2026-01-11": ["3:00 PM", "5:00 PM"],
-        "2026-01-15": ["7:30 PM"]
-      }
-    },
-    {
       "id": "9",
       "title": "A Star is Born (1937)",
       "rating": "Approved",
@@ -54,8 +16,8 @@
       "title": "28 Years Later",
       "releaseDate": "January 16",
       "genre": "Horror, Sci-Fi, Thriller",
-      "description": "A group of survivors of the rage virus live on a small island. When one of the group leaves the island on a mission into the mainland, he discovers secrets, wonders, and horrors that have mutated not only the infected but other survivors.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BNjgwYTI0YjctMWYzNS00MmI1LWI5YTctNmE1YjBkNDFlNWMxXkEyXkFqcGc@._V1_SX300.jpg",
+      "description": "As Spike is inducted into Jimmy Crystal's gang on the mainland, Dr. Kelson makes a discovery that could alter the world.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYmY3MmRhMWMtY2FhNS00M2VmLWFmNzEtYTMyZWU0OTVlYzQ4XkEyXkFqcGc@._V1_SX300.jpg",
       "showtimes": {
         "2026-01-16": ["6:00 PM", "9:00 PM"],
         "2026-01-17": ["3:00 PM","6:00 PM", "9:00 PM"],
