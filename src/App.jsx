@@ -6,6 +6,7 @@ import ComingSoon from './components/ComingSoon';
 import Blog from './components/Blog';
 import Membership from './components/Membership';
 import GiftCardCTA from './components/GiftCardCTA';
+import OpenMicCTA from './components/OpenMicCTA';
 import Footer from './components/Footer';
 import {
   getNowShowing,
@@ -123,6 +124,7 @@ function App() {
         <GiftCardCTA />
         <ComingSoon movies={comingSoon} />
         <Blog />
+        <OpenMicCTA />
         {membership && <Membership data={membership} />}
       </main>
       <Footer config={siteConfig} />
