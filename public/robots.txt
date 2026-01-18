@@ -1,0 +1,6 @@
+# robots.txt for Fort Kent Cinema
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.fortkentcinema.com/sitemap.xml
