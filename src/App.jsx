@@ -7,6 +7,7 @@ import Blog from './components/Blog';
 import Membership from './components/Membership';
 import GiftCardCTA from './components/GiftCardCTA';
 import OpenMicCTA from './components/OpenMicCTA';
+import ClassicMovieCTA from './components/ClassicMovieCTA';
 import Footer from './components/Footer';
 import {
   getNowShowing,
@@ -120,11 +121,12 @@ function App() {
       <Nav config={siteConfig} />
       <main>
         <Hero config={siteConfig} />
+        <ClassicMovieCTA />
         <NowShowing movies={nowShowing} onShowtimeClick={handleShowtimeClick} />
-        <GiftCardCTA />
+        <OpenMicCTA />
         <ComingSoon movies={comingSoon} />
         <Blog />
-        <OpenMicCTA />
+         <GiftCardCTA />
         {membership && <Membership data={membership} />}
       </main>
       <Footer config={siteConfig} />
