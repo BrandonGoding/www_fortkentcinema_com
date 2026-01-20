@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import NowShowing from './components/NowShowing';
@@ -9,6 +10,8 @@ import GiftCardCTA from './components/GiftCardCTA';
 import OpenMicCTA from './components/OpenMicCTA';
 import ClassicMovieCTA from './components/ClassicMovieCTA';
 import Footer from './components/Footer';
+import BlogListPage from './pages/BlogListPage';
+import BlogDetailPage from './pages/BlogDetailPage';
 import {
   getNowShowing,
   getComingSoon,
@@ -17,6 +20,21 @@ import {
 } from './services/api';
 import './styles/global.css';
 
+function HomePage({ nowShowing, comingSoon, membership, siteConfig, onShowtimeClick }) {
+  return (
+    <>
+      <Hero config={siteConfig} />
+      <ClassicMovieCTA />
+      <NowShowing movies={nowShowing} onShowtimeClick={onShowtimeClick} />
+      <OpenMicCTA />
+      <ComingSoon movies={comingSoon} />
+      <Blog />
+      <GiftCardCTA />
+      {membership && <Membership data={membership} />}
+    </>
+  );
+}
+
 function App() {
   const [nowShowing, setNowShowing] = useState([]);
   const [comingSoon, setComingSoon] = useState([]);
@@ -24,6 +42,7 @@ function App() {
   const [siteConfig, setSiteConfig] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     async function fetchData() {
@@ -50,8 +69,12 @@ function App() {
     fetchData();
   }, []);
 
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   const handleShowtimeClick = (movie, showtime) => {
-    // TODO: Implement ticket purchase flow
     console.log(`Buying ticket for ${movie.title} at ${showtime}`);
     alert(`Ticket purchase for "${movie.title}" at ${showtime} - Coming soon!`);
   };
@@ -120,14 +143,22 @@ function App() {
     <>
       <Nav config={siteConfig} />
       <main>
-        <Hero config={siteConfig} />
-        <ClassicMovieCTA />
-        <NowShowing movies={nowShowing} onShowtimeClick={handleShowtimeClick} />
-        <OpenMicCTA />
-        <ComingSoon movies={comingSoon} />
-        <Blog />
-         <GiftCardCTA />
-        {membership && <Membership data={membership} />}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomePage
+                nowShowing={nowShowing}
+                comingSoon={comingSoon}
+                membership={membership}
+                siteConfig={siteConfig}
+                onShowtimeClick={handleShowtimeClick}
+              />
+            }
+          />
+          <Route path="/blog" element={<BlogListPage />} />
+          <Route path="/blog/:slug" element={<BlogDetailPage />} />
+        </Routes>
       </main>
       <Footer config={siteConfig} />
     </>

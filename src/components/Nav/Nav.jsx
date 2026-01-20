@@ -1,21 +1,51 @@
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Nav.css';
 
 function Nav({ config }) {
   const { cinema, navigation } = config;
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHomePage = location.pathname === '/';
+
+  const handleNavClick = (e, item) => {
+    // If it's the Blog link, use router navigation
+    if (item.label === 'Blog') {
+      e.preventDefault();
+      navigate('/blog');
+      return;
+    }
+
+    // For other links (hash links), handle based on current page
+    if (!isHomePage && item.href.startsWith('#')) {
+      e.preventDefault();
+      // Navigate to home page with hash
+      navigate('/' + item.href);
+    }
+    // If already on home page, let the default hash behavior work
+  };
 
   return (
     <nav className="nav">
       <div className="nav-container">
-        <a href="#" className="nav-logo">{cinema.name.toUpperCase()}</a>
+        <Link to="/" className="nav-logo">{cinema.name.toUpperCase()}</Link>
         <ul className="nav-links">
           {navigation.map((item) => (
             <li key={item.label}>
-              <a href={item.href} className="nav-link">{item.label}</a>
+              {item.label === 'Blog' ? (
+                <Link to="/blog" className="nav-link">
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  href={isHomePage ? item.href : '/' + item.href}
+                  className="nav-link"
+                  onClick={(e) => handleNavClick(e, item)}
+                >
+                  {item.label}
+                </a>
+              )}
             </li>
           ))}
-          {/*<li>*/}
-          {/*  <a href="#tickets" className="nav-cta">Buy Tickets</a>*/}
-          {/*</li>*/}
         </ul>
       </div>
     </nav>

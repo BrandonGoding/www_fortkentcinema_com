@@ -1,6 +1,6 @@
 import './BlogCard.css';
 
-function BlogCard({ post, onClick }) {
+function BlogCard({ post }) {
   const formatDate = (dateString) => {
     const date = new Date(dateString + 'T12:00:00');
     return date.toLocaleDateString('en-US', {
@@ -21,7 +21,7 @@ function BlogCard({ post, onClick }) {
   };
 
   return (
-    <article className="blog-card" onClick={onClick}>
+    <article className="blog-card">
       <div className="blog-card-image">
         {post.header_image ? (
           <img
@@ -58,7 +58,7 @@ function BlogCard({ post, onClick }) {
           )}
           <span className="blog-card-date">{formatDate(post.post_date)}</span>
         </div>
-        <button className="blog-card-read-more">Read More</button>
+        <span className="blog-card-read-more">Read More</span>
       </div>
     </article>
   );

@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './BlogPost.css';
 
 function BlogPost({ post, loading, onClose }) {
+  const [copied, setCopied] = useState(false);
   // Prevent body scroll when modal is open
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -45,6 +46,18 @@ function BlogPost({ post, loading, onClose }) {
       .replace(/\r/g, '\n')
       .split('\n\n')
       .filter((p) => p.trim());
+  };
+
+  const handleCopyLink = async () => {
+    if (!post?.slug) return;
+    const url = `${window.location.origin}/#blog/${post.slug}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy link:', err);
+    }
   };
 
   return (
@@ -91,6 +104,13 @@ function BlogPost({ post, loading, onClose }) {
                     </span>
                   )}
                   <span className="blog-post-date">{formatDate(post.post_date)}</span>
+                  <button
+                    className="blog-post-share"
+                    onClick={handleCopyLink}
+                    aria-label="Copy link to post"
+                  >
+                    {copied ? 'Copied!' : 'Copy Link'}
+                  </button>
                 </div>
               </header>
 
