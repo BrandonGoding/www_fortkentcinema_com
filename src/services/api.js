@@ -1,128 +1,275 @@
 /**
  * Data Service Layer
  *
- * This service abstracts data fetching to make it easy to swap
- * between local JSON files and a remote API in the future.
+ * Fetches movie data from the cinema_sass API (engagements + showtimes endpoints)
+ * and transforms responses to match frontend component expectations.
  *
- * To migrate to an API:
- * 1. Set USE_API to true
- * 2. Update API_BASE_URL to your API endpoint
- * 3. Adjust the fetch calls as needed for your API structure
+ * To switch back to local JSON data, set USE_API to false.
  */
 
-// Configuration - flip this to true when ready to use a real API
-const USE_API = false;
-const API_BASE_URL = 'https://api.fortkentcinema.com';
+// Configuration
+const USE_API = true;
+const API_BASE_URL = 'https://api.leprinceos.com/api/v1';
 
-// Import local JSON data
+// Cinema timezone for converting UTC showtimes to local display times
+const CINEMA_TIMEZONE = 'America/New_York';
+
+// Import local JSON data (fallback when USE_API is false)
 import nowShowingData from '../data/nowShowing.json';
 import comingSoonData from '../data/comingSoon.json';
 import membershipData from '../data/membership.json';
 import siteConfigData from '../data/siteConfig.json';
 
 /**
- * Simulate network delay for development
- * Remove this when using a real API
+ * Helper to fetch from the API and unwrap paginated responses
  */
-const simulateDelay = (ms = 100) => {
-  return new Promise(resolve => setTimeout(resolve, ms));
-};
-
-/**
- * Fetch now showing movies
- * @returns {Promise<Array>} Array of currently showing movies
- */
-export async function getNowShowing() {
-  if (USE_API) {
-    const response = await fetch(`${API_BASE_URL}/movies/now-showing`);
-    if (!response.ok) throw new Error('Failed to fetch now showing movies');
-    return response.json();
+async function apiFetch(path) {
+  const response = await fetch(`${API_BASE_URL}${path}`);
+  if (!response.ok) throw new Error(`API error ${response.status}: ${path}`);
+  const data = await response.json();
+  // Handle DRF paginated responses (have a "results" key)
+  if (data && typeof data === 'object' && Array.isArray(data.results)) {
+    return data.results;
   }
-
-  await simulateDelay();
-  return nowShowingData.movies;
+  return data;
 }
 
 /**
- * Fetch coming soon movies
- * @returns {Promise<Array>} Array of upcoming movies
+ * Format a UTC datetime string to a local time string (e.g. "6:00 PM")
  */
-export async function getComingSoon() {
-  if (USE_API) {
-    const response = await fetch(`${API_BASE_URL}/movies/coming-soon`);
-    if (!response.ok) throw new Error('Failed to fetch coming soon movies');
-    return response.json();
+function formatShowtime(utcDatetime) {
+  return new Date(utcDatetime).toLocaleTimeString('en-US', {
+    timeZone: CINEMA_TIMEZONE,
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  });
+}
+
+/**
+ * Get the local date string (YYYY-MM-DD) for a UTC datetime in the cinema's timezone
+ */
+function getLocalDate(utcDatetime) {
+  return new Date(utcDatetime).toLocaleDateString('en-CA', {
+    timeZone: CINEMA_TIMEZONE,
+  });
+}
+
+/**
+ * Format runtime minutes to a display string (e.g. "2h 16min")
+ */
+function formatRuntime(minutes) {
+  if (!minutes) return '';
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  if (h === 0) return `${m}min`;
+  if (m === 0) return `${h}h`;
+  return `${h}h ${m}min`;
+}
+
+/**
+ * Fetch now showing movies from the engagements + showtimes endpoints.
+ * Returns data shaped to match what NowShowing/MovieCard components expect.
+ */
+export async function getNowShowing() {
+  if (!USE_API) {
+    return nowShowingData.movies;
   }
 
-  await simulateDelay();
-  return comingSoonData.movies;
+  try {
+    const today = new Date().toLocaleDateString('en-CA', { timeZone: CINEMA_TIMEZONE });
+
+    // Fetch confirmed engagements that are currently active (today falls within their date range)
+    const engagements = await apiFetch(
+      `/engagements/?status=CONFIRMED&start_date_before=${today}&end_date_after=${today}`
+    );
+
+    if (!engagements.length) return [];
+
+    // For each engagement, fetch its showtimes (and optionally film details)
+    const movies = await Promise.all(
+      engagements.map(async (engagement) => {
+        // Fetch showtimes — this is the critical data
+        let showtimes = [];
+        try {
+          showtimes = await apiFetch(`/showtimes/?engagement=${engagement.id}&is_cancelled=false`);
+        } catch {
+          // If showtimes fetch fails, movie will be filtered out below
+        }
+
+        // Fetch film details separately — optional, for rating/runtime
+        let film = null;
+        try {
+          film = await apiFetch(`/films/${engagement.film}/`);
+        } catch {
+          // Film details are optional; engagement already has title and poster
+        }
+
+        // Group showtimes by local date
+        const showtimesByDate = {};
+        showtimes.forEach((st) => {
+          const localDate = getLocalDate(st.starts_at);
+          const localTime = formatShowtime(st.starts_at);
+          if (!showtimesByDate[localDate]) {
+            showtimesByDate[localDate] = [];
+          }
+          showtimesByDate[localDate].push(localTime);
+        });
+
+        return {
+          id: String(engagement.id),
+          title: engagement.film_title,
+          rating: film?.rating || '',
+          runtime: formatRuntime(film?.runtime_minutes),
+          genre: '',
+          poster: engagement.film_poster_url || film?.poster_url || '',
+          showtimes: showtimesByDate,
+        };
+      })
+    );
+
+    // Filter out engagements that have no upcoming showtimes
+    return movies.filter((m) => Object.keys(m.showtimes).length > 0);
+  } catch (err) {
+    console.error('Failed to fetch now showing from API, using local data:', err);
+    return nowShowingData.movies;
+  }
+}
+
+/**
+ * Fetch coming soon movies from the engagements endpoint.
+ * Returns data shaped to match what ComingSoon component expects.
+ */
+export async function getComingSoon() {
+  if (!USE_API) {
+    return comingSoonData.movies;
+  }
+
+  try {
+    // Use tomorrow's date so engagements starting today appear in "now playing" not here
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowStr = tomorrow.toLocaleDateString('en-CA', { timeZone: CINEMA_TIMEZONE });
+
+    // Fetch confirmed engagements that start after today
+    const engagements = await apiFetch(
+      `/engagements/?status=CONFIRMED&start_date_after=${tomorrowStr}`
+    );
+
+    if (!engagements.length) return [];
+
+    // Deduplicate by film (same film might have multiple future engagements)
+    const seenFilms = new Set();
+    const uniqueEngagements = engagements.filter((e) => {
+      if (seenFilms.has(e.film)) return false;
+      seenFilms.add(e.film);
+      return true;
+    });
+
+    // Fetch film details for extra metadata
+    const movies = await Promise.all(
+      uniqueEngagements.map(async (engagement) => {
+        let film = null;
+        try {
+          film = await apiFetch(`/films/${engagement.film}/`);
+        } catch {
+          // Use engagement data if film fetch fails
+        }
+
+        const releaseDate = new Date(engagement.start_date + 'T12:00:00');
+        const formattedDate = releaseDate.toLocaleDateString('en-US', {
+          month: 'long',
+          day: 'numeric',
+        });
+
+        return {
+          id: String(engagement.id),
+          title: engagement.film_title,
+          releaseDate: formattedDate,
+          genre: '',
+          poster: engagement.film_poster_url || film?.poster_url || '',
+          description: film?.synopsis || '',
+        };
+      })
+    );
+
+    return movies;
+  } catch (err) {
+    console.error('Failed to fetch coming soon from API, using local data:', err);
+    return comingSoonData.movies;
+  }
 }
 
 /**
  * Fetch membership information
- * @returns {Promise<Object>} Membership plans and perks
  */
 export async function getMembership() {
-  if (USE_API) {
-    const response = await fetch(`${API_BASE_URL}/membership`);
-    if (!response.ok) throw new Error('Failed to fetch membership info');
-    return response.json();
-  }
-
-  await simulateDelay();
+  // Membership data is local-only for now
   return membershipData;
 }
 
 /**
  * Fetch site configuration
- * @returns {Promise<Object>} Site configuration data
  */
 export async function getSiteConfig() {
-  if (USE_API) {
-    const response = await fetch(`${API_BASE_URL}/config`);
-    if (!response.ok) throw new Error('Failed to fetch site config');
-    return response.json();
-  }
-
-  await simulateDelay();
+  // Site config is local-only for now
   return siteConfigData;
 }
 
 /**
- * Fetch a single movie by ID
- * @param {string} id - Movie ID
- * @returns {Promise<Object|null>} Movie object or null if not found
+ * Fetch a single movie by ID (engagement ID)
  */
 export async function getMovieById(id) {
-  if (USE_API) {
-    const response = await fetch(`${API_BASE_URL}/movies/${id}`);
-    if (!response.ok) return null;
-    return response.json();
+  if (!USE_API) {
+    const allMovies = [...nowShowingData.movies, ...comingSoonData.movies];
+    return allMovies.find((movie) => movie.id === id) || null;
   }
 
-  await simulateDelay();
-  const allMovies = [...nowShowingData.movies, ...comingSoonData.movies];
-  return allMovies.find(movie => movie.id === id) || null;
+  try {
+    const engagement = await apiFetch(`/engagements/${id}/`);
+    const film = await apiFetch(`/films/${engagement.film}/`);
+    return {
+      id: String(engagement.id),
+      title: engagement.film_title,
+      rating: film?.rating || '',
+      runtime: formatRuntime(film?.runtime_minutes),
+      genre: '',
+      poster: engagement.film_poster_url || film?.poster_url || '',
+    };
+  } catch {
+    return null;
+  }
 }
 
 /**
- * Fetch showtimes for a specific movie
- * @param {string} movieId - Movie ID
- * @returns {Promise<Array>} Array of showtime strings
+ * Fetch showtimes for a specific engagement
  */
-export async function getShowtimes(movieId) {
-  if (USE_API) {
-    const response = await fetch(`${API_BASE_URL}/movies/${movieId}/showtimes`);
-    if (!response.ok) throw new Error('Failed to fetch showtimes');
-    return response.json();
+export async function getShowtimes(engagementId) {
+  if (!USE_API) {
+    const movie = nowShowingData.movies.find((m) => m.id === engagementId);
+    return movie?.showtimes || [];
   }
 
-  await simulateDelay();
-  const movie = nowShowingData.movies.find(m => m.id === movieId);
-  return movie?.showtimes || [];
+  try {
+    const showtimes = await apiFetch(
+      `/showtimes/?engagement=${engagementId}&is_cancelled=false`
+    );
+    // Group by date, same as getNowShowing
+    const showtimesByDate = {};
+    showtimes.forEach((st) => {
+      const localDate = getLocalDate(st.starts_at);
+      const localTime = formatShowtime(st.starts_at);
+      if (!showtimesByDate[localDate]) {
+        showtimesByDate[localDate] = [];
+      }
+      showtimesByDate[localDate].push(localTime);
+    });
+    return showtimesByDate;
+  } catch {
+    return {};
+  }
 }
 
-// Export all functions as a single object for convenience
 export default {
   getNowShowing,
   getComingSoon,

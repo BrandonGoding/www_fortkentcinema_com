@@ -25,25 +25,14 @@
 }
 
 .classic-movie-cta__details {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  color: var(--color-cream);
-  font-size: 1.25rem;
+  color: var(--color-cream-muted);
+  font-size: 1.1rem;
   margin: 0;
 }
 
-.classic-movie-cta__day {
-  font-weight: 600;
-  color: var(--color-cream);
-}
-
-.classic-movie-cta__separator {
-  color: var(--color-brass);
-}
-
-.classic-movie-cta__time {
-  color: var(--color-cream-muted);
+.classic-movie-cta__btn {
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
 }
 
 @media (max-width: 600px) {
@@ -55,14 +44,5 @@
 
   .classic-movie-cta__title {
     font-size: 1.5rem;
-  }
-
-  .classic-movie-cta__details {
-    flex-direction: column;
-    gap: var(--spacing-xs);
-  }
-
-  .classic-movie-cta__separator {
-    display: none;
   }
 }

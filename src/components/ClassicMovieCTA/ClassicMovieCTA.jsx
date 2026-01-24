@@ -1,15 +1,17 @@
+import { Link } from 'react-router-dom';
 import './ClassicMovieCTA.css';
 
 function ClassicMovieCTA() {
   return (
     <section className="classic-movie-cta">
       <div className="classic-movie-cta__content">
-        <h2 className="classic-movie-cta__title">CLASSIC MOVIE NIGHT</h2>
+        <h2 className="classic-movie-cta__title">PRIVATE RENTALS</h2>
         <p className="classic-movie-cta__details">
-          <span className="classic-movie-cta__day">Every Tuesday</span>
-          <span className="classic-movie-cta__separator">•</span>
-          <span className="classic-movie-cta__time">6:30 PM</span>
+          Birthday parties, private screenings, gaming events &amp; more
         </p>
+        <Link to="/rentals" className="btn btn-secondary classic-movie-cta__btn">
+          Learn More
+        </Link>
       </div>
     </section>
   );

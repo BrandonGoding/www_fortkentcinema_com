@@ -1,14 +1,6 @@
 {
   "movies": [
     {
-      "id": "11",
-      "title": "A Star is Born",
-      "releaseDate": "January 20",
-      "genre": "Tragic Romance, Drama, Romance",
-      "description": "Young Esther Victoria Blodgett comes to Hollywood with dreams of stardom and achieves them only with the help of alcoholic leading man Norman Maine, whose best days are behind him.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BMjFmNGE5NzItZTI1Mi00MzFkLTg1YTctNGUxZjlmMGZiNDMwXkEyXkFqcGc@._V1_SX300.jpg"
-    },
-    {
       "id": "12",
       "title": "A Farewell to Arms",
       "releaseDate": "January 27",
@@ -23,6 +15,14 @@
       "genre": "Horror",
       "description": "Two colleagues become stranded on a deserted island, the only survivors of a plane crash. On the island, they must overcome past grievances and work together to survive, but ultimately, it's a battle of wills and wits to make it out alive.",
       "poster": "https://m.media-amazon.com/images/M/MV5BNTk0YTYyZjctOTZhZS00YjZkLTlhYTctZmJmM2ZjZjRiZTQ1XkEyXkFqcGc@._V1_SX300.jpg"
+    },
+    {
+      "id": "14",
+      "title": "Iron Lung",
+      "releaseDate": "January 30",
+      "genre": "Horror",
+      "description": "In a post-apocalyptic future after \"The Quiet Rapture\" event, a convict explores a blood ocean on a desolate moon using a submarine called the \"Iron Lung\" to search for missing stars/planets.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYzkxOGU1YmQtNDc0Ni00M2JhLWFlZjktODMzOGU3MjQxMTQ0XkEyXkFqcGc@._V1_SX300.jpg"
     }
   ]
 }
