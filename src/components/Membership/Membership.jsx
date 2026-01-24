@@ -22,6 +22,9 @@ function Membership({ data }) {
               {plan.badge && (
                 <span className="card-badge">{plan.badge.toUpperCase()}</span>
               )}
+              {plan.emoji && (
+                <span className="card-emoji">{plan.emoji}</span>
+              )}
               <h3 className="card-title">{plan.name.toUpperCase()}</h3>
               <p className="card-price">
                 ${plan.price} <span>/ {plan.period}</span>
@@ -32,10 +35,17 @@ function Membership({ data }) {
                   <li key={index}>{perk}</li>
                 ))}
               </ul>
+              {plan.valueCallout && (
+                <p className="card-value-callout">{plan.valueCallout}</p>
+              )}
               <a href={plan.link} target="_blank" className="btn btn-ticket card-btn">Join Now</a>
             </div>
           ))}
         </div>
+
+        {data.footer && (
+          <p className="membership-footer">{data.footer}</p>
+        )}
 
         <div className="membership-calculator-link">
           <button

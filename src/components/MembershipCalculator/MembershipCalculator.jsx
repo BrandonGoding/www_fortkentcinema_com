@@ -2,28 +2,42 @@ import { useState, useEffect } from 'react';
 import './MembershipCalculator.css';
 
 const MEMBERSHIP_TYPES = [
-  { id: 'individual', name: 'Individual', price: 60, freeTickets: 0, isFamily: false },
-  { id: 'cinema-supporter', name: 'Cinema Supporter', price: 120, freeTickets: 1, isFamily: false },
-  { id: 'family', name: 'Family', price: 150, freeTickets: 0, isFamily: true },
-  { id: 'family-plus', name: 'Family Plus', price: 250, freeTickets: 4, isFamily: true },
+  { id: 'movie-lover', name: 'Movie Lover', price: 35, freeTicketsMonthly: 0, welcomeTickets: 0, isFamily: false },
+  { id: 'cinema-fan', name: 'Cinema Fan', price: 60, freeTicketsMonthly: 0, welcomeTickets: 1, isFamily: false },
+  { id: 'family-pass', name: 'Family Pass', price: 120, freeTicketsMonthly: 0, welcomeTickets: 2, isFamily: true },
+  { id: 'cinema-supporter', name: 'Cinema Supporter', price: 150, freeTicketsMonthly: 1, welcomeTickets: 1, isFamily: false },
+  { id: 'cinema-champion', name: 'Cinema Champion', price: 250, freeTicketsMonthly: 4, welcomeTickets: 1, isFamily: false },
 ];
 
 const PRICING = {
   tickets: {
     regular: { matinee: 8, evening: 12 },
-    member: { matinee: 6, evening: 8 },
+    member: {
+      'movie-lover': { matinee: 7, evening: 11 },
+      'cinema-fan': { matinee: 7, evening: 10 },
+      'family-pass': { matinee: 6, evening: 10 },
+      'cinema-supporter': { matinee: 7, evening: 10 },
+      'cinema-champion': { matinee: 7, evening: 10 },
+    },
   },
   popcorn: {
-    small: { regular: 4.25, member: 3.25 },
-    medium: { regular: 5.50, member: 3.50 },
-    large: { regular: 6.75, member: 4.75 },
-    jumbo: { regular: 8.50, member: 6.50 },
+    small: { regular: 4.25 },
+    medium: { regular: 5.50 },
+    large: { regular: 6.75 },
+    jumbo: { regular: 8.50 },
+    member: {
+      'movie-lover': { small: 3.25, medium: 4.50, large: 5.75, jumbo: 7.50 },
+      'cinema-fan': { small: 3.25, medium: 3.50, large: 4.75, jumbo: 6.50 },
+      'family-pass': { small: 2.25, medium: 3.50, large: 4.75, jumbo: 6.50 },
+      'cinema-supporter': { small: 3.25, medium: 3.50, large: 4.75, jumbo: 6.50 },
+      'cinema-champion': { small: 3.25, medium: 3.50, large: 4.75, jumbo: 6.50 },
+    },
   },
 };
 
 function MembershipCalculator({ isOpen, onClose }) {
-  const [membershipType, setMembershipType] = useState('individual');
-  const [familyMembers, setFamilyMembers] = useState(2);
+  const [membershipType, setMembershipType] = useState('cinema-fan');
+  const [familyMembers, setFamilyMembers] = useState(4);
   const [moviesPerMonth, setMoviesPerMonth] = useState(2);
   const [ticketType, setTicketType] = useState('evening');
   const [popcornSize, setPopcornSize] = useState('medium');
@@ -51,18 +65,18 @@ function MembershipCalculator({ isOpen, onClose }) {
 
   const calculateSavings = () => {
     const membership = selectedMembership;
-    const people = membership.isFamily ? familyMembers : 1;
+    const people = membership.isFamily ? Math.min(familyMembers, 4) : 1;
     const popcornCount = membership.isFamily ? popcornsPerVisit : (buyPopcorn ? 1 : 0);
     const monthlyMovies = moviesPerMonth;
     const yearlyMovies = monthlyMovies * 12;
 
     // Ticket prices
     const regularTicketPrice = PRICING.tickets.regular[ticketType];
-    const memberTicketPrice = PRICING.tickets.member[ticketType];
+    const memberTicketPrice = PRICING.tickets.member[membership.id][ticketType];
 
     // Popcorn prices
     const regularPopcornPrice = buyPopcorn ? PRICING.popcorn[popcornSize].regular : 0;
-    const memberPopcornPrice = buyPopcorn ? PRICING.popcorn[popcornSize].member : 0;
+    const memberPopcornPrice = buyPopcorn ? PRICING.popcorn.member[membership.id][popcornSize] : 0;
 
     // Calculate yearly costs without membership
     const yearlyTicketCostRegular = yearlyMovies * people * regularTicketPrice;
@@ -70,10 +84,21 @@ function MembershipCalculator({ isOpen, onClose }) {
     const totalRegularCost = yearlyTicketCostRegular + yearlyPopcornCostRegular;
 
     // Calculate yearly costs with membership
-    const freeTicketsPerYear = membership.freeTickets * 12;
+    const freeTicketsPerYear = (membership.freeTicketsMonthly * 12) + membership.welcomeTickets;
     const paidTickets = Math.max(0, (yearlyMovies * people) - freeTicketsPerYear);
     const yearlyTicketCostMember = paidTickets * memberTicketPrice;
-    const yearlyPopcornCostMember = yearlyMovies * popcornCount * memberPopcornPrice;
+
+    // Family Pass gets 1 free large popcorn per visit
+    let yearlyPopcornCostMember;
+    if (membership.id === 'family-pass' && buyPopcorn) {
+      const freePopcornValue = yearlyMovies * PRICING.popcorn.large.regular;
+      const paidPopcorns = Math.max(0, popcornCount - 1);
+      yearlyPopcornCostMember = (yearlyMovies * paidPopcorns * memberPopcornPrice) - 0;
+      yearlyPopcornCostMember = yearlyMovies * paidPopcorns * memberPopcornPrice;
+    } else {
+      yearlyPopcornCostMember = yearlyMovies * popcornCount * memberPopcornPrice;
+    }
+
     const totalMemberCost = yearlyTicketCostMember + yearlyPopcornCostMember + membership.price;
 
     const savings = totalRegularCost - totalMemberCost;
@@ -119,14 +144,14 @@ function MembershipCalculator({ isOpen, onClose }) {
 
           {selectedMembership.isFamily && (
             <div className="calculator-field">
-              <label htmlFor="family-members">Number of Family Members</label>
+              <label htmlFor="family-members">Number of Family Members (up to 4)</label>
               <input
                 type="number"
                 id="family-members"
                 min="2"
-                max="10"
+                max="4"
                 value={familyMembers}
-                onChange={(e) => setFamilyMembers(Math.max(2, parseInt(e.target.value) || 2))}
+                onChange={(e) => setFamilyMembers(Math.max(2, Math.min(4, parseInt(e.target.value) || 2)))}
               />
             </div>
           )}
@@ -150,8 +175,8 @@ function MembershipCalculator({ isOpen, onClose }) {
               value={ticketType}
               onChange={(e) => setTicketType(e.target.value)}
             >
-              <option value="matinee">Matinee ($8 regular / $6 member)</option>
-              <option value="evening">Evening ($12 regular / $8 member)</option>
+              <option value="matinee">Matinee ($8 regular)</option>
+              <option value="evening">Evening ($12 regular)</option>
             </select>
           </div>
 
@@ -170,10 +195,10 @@ function MembershipCalculator({ isOpen, onClose }) {
               }}
             >
               <option value="none">No popcorn</option>
-              <option value="small">Small ($4.25 / $3.25 member)</option>
-              <option value="medium">Medium ($5.50 / $3.50 member)</option>
-              <option value="large">Large ($6.75 / $4.75 member)</option>
-              <option value="jumbo">Jumbo ($8.50 / $6.50 member)</option>
+              <option value="small">Small ($4.25)</option>
+              <option value="medium">Medium ($5.50)</option>
+              <option value="large">Large ($6.75)</option>
+              <option value="jumbo">Jumbo ($8.50)</option>
             </select>
           </div>
 
@@ -188,7 +213,7 @@ function MembershipCalculator({ isOpen, onClose }) {
                 value={popcornsPerVisit}
                 onChange={(e) => setPopcornsPerVisit(Math.max(0, Math.min(familyMembers, parseInt(e.target.value) || 0)))}
               />
-              <span className="field-hint">How many popcorns does your family typically share?</span>
+              <span className="field-hint">How many popcorns does your family typically share? (1 free large popcorn included per visit)</span>
             </div>
           )}
         </div>

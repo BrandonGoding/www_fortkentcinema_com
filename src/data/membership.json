@@ -7,71 +7,111 @@
   },
   "plans": [
     {
-      "id": "individual",
-      "name": "Individual",
-      "price": 60,
+      "id": "movie-lover",
+      "name": "Movie Lover",
+      "emoji": "\ud83c\udfac",
+      "price": 35,
       "period": "year",
       "badge": null,
-      "description": "Perfect for solo movie lovers",
+      "description": "Perfect entry point for occasional moviegoers",
       "featured": false,
       "perks": [
-        "$1 off small popcorns",
-        "$2 off all other popcorn sizes",
-        "Matinee tickets for $6 (save $2)",
-        "Evening tickets for $8 (save $4)"
+        "$1 off ALL movie tickets (matinee & evening)",
+        "$1 off ALL popcorn sizes",
+        "FREE small popcorn on your birthday month",
+        "Member pricing on private rentals (10% off)",
+        "Early email notice of special screenings"
       ],
+      "valueCallout": "See just 3 movies with popcorn and you\u2019ve already saved your membership cost!",
+      "link": "#"
+    },
+    {
+      "id": "cinema-fan",
+      "name": "Cinema Fan",
+      "emoji": "\ud83c\udfa5",
+      "price": 60,
+      "period": "year",
+      "badge": "Most Popular",
+      "description": "For regular moviegoers who want real savings",
+      "featured": true,
+      "perks": [
+        "$2 off ALL evening tickets ($10 instead of $12)",
+        "$1 off matinee tickets ($7 instead of $8)",
+        "$1 off small popcorn",
+        "$2 off medium & large popcorn",
+        "FREE small popcorn on your birthday month",
+        "1 FREE movie pass upon joining",
+        "Member pricing on private rentals (15% off)",
+        "Invitation to 2 members-only screenings per year"
+      ],
+      "valueCallout": "Your FREE welcome ticket plus 4 evening movies = membership paid for!",
       "link": "https://square.link/u/lLHJtMg7"
+    },
+    {
+      "id": "family-pass",
+      "name": "Family Pass",
+      "emoji": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc66",
+      "price": 120,
+      "period": "year",
+      "badge": "Best for Families",
+      "description": "Real savings for families who love movie nights",
+      "featured": true,
+      "perks": [
+        "All Cinema Fan benefits for up to 4 family members",
+        "$2 off ALL tickets for up to 4 people per visit",
+        "$2 off ALL popcorn sizes",
+        "2 FREE movie passes upon joining",
+        "1 FREE large popcorn per family visit",
+        "Member pricing on birthday party packages (15% off)",
+        "Priority booking for private rentals",
+        "Invitation to all members-only screenings"
+      ],
+      "valueCallout": "Family of 4 sees ONE movie? You just saved $10. See 2 movies and the membership is nearly paid for!",
+      "link": "https://square.link/u/bMswBXbu"
     },
     {
       "id": "cinema-supporter",
       "name": "Cinema Supporter",
-      "price": 120,
-      "period": "year",
-      "badge": null,
-      "description": "Support your local cinema",
-      "featured": true,
-      "perks": [
-        "$1 off small popcorns",
-        "$2 off all other popcorn sizes",
-        "Matinee tickets for $6 (save $2)",
-        "Evening tickets for $8 (save $4)",
-        "1 free movie ticket per month"
-      ],
-      "link": "https://square.link/u/bMswBXbu"
-    },
-    {
-      "id": "family",
-      "name": "Family",
+      "emoji": "\u2764\ufe0f",
       "price": 150,
       "period": "year",
       "badge": null,
-      "description": "Great value for families",
+      "description": "For those who want to keep the theater thriving",
       "featured": false,
       "perks": [
-        "$1 off small popcorns",
-        "$2 off all other popcorn sizes",
-        "Matinee tickets for $6 (save $2)",
-        "Evening tickets for $8 (save $4)",
-        "Benefits for the whole family"
+        "All Cinema Fan benefits",
+        "1 FREE movie ticket per month (12 tickets/year)",
+        "Name displayed on Supporter Wall in lobby",
+        "Special thank you in end-of-year newsletter",
+        "20% off private rentals & birthday packages",
+        "Behind-the-scenes annual tour or Q&A",
+        "Invitation to all members-only events"
       ],
+      "valueCallout": "Your monthly free ticket nearly covers the membership. Everything else is pure savings\u2014plus you\u2019re keeping your community cinema alive.",
       "link": "https://square.link/u/2dbAKhNH"
     },
     {
-      "id": "family-plus",
-      "name": "Family Plus",
+      "id": "cinema-champion",
+      "name": "Cinema Champion",
+      "emoji": "\ud83c\udf1f",
       "price": 250,
       "period": "year",
       "badge": null,
-      "description": "Ultimate family experience",
+      "description": "Ultimate support for your biggest fans",
       "featured": false,
       "perks": [
-        "$1 off small popcorns",
-        "$2 off all other popcorn sizes",
-        "Matinee tickets for $6 (save $2)",
-        "Evening tickets for $8 (save $4)",
-        "Up to 4 free movie tickets per month"
+        "All Supporter benefits",
+        "4 FREE movie tickets per month",
+        "Premium Supporter Wall recognition with custom message",
+        "1 FREE private screening per year (off-peak, 2 hours)",
+        "Reserved \u201cChampion Seats\u201d option",
+        "First choice on special event tickets",
+        "Annual appreciation gift",
+        "25% off all private rentals & birthday packages"
       ],
+      "valueCallout": "48 free tickets per year is worth nearly $500. You\u2019re getting $250+ in value while being the reason Fort Kent Cinema exists.",
       "link": "https://square.link/u/Rpaxcn2e"
     }
-  ]
+  ],
+  "footer": "Every membership keeps our projector running and our doors open. Thank you, Fort Kent."
 }
