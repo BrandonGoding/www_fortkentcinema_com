@@ -8,20 +8,11 @@ function Nav({ config }) {
   const isHomePage = location.pathname === '/';
 
   const handleNavClick = (e, item) => {
-    // If it's the Blog link, use router navigation
-    if (item.label === 'Blog') {
-      e.preventDefault();
-      navigate('/blog');
-      return;
-    }
-
-    // For other links (hash links), handle based on current page
+    // For hash links, handle based on current page
     if (!isHomePage && item.href.startsWith('#')) {
       e.preventDefault();
-      // Navigate to home page with hash
       navigate('/' + item.href);
     }
-    // If already on home page, let the default hash behavior work
   };
 
   return (
@@ -31,8 +22,8 @@ function Nav({ config }) {
         <ul className="nav-links">
           {navigation.map((item) => (
             <li key={item.label}>
-              {item.label === 'Blog' ? (
-                <Link to="/blog" className="nav-link">
+              {item.href.startsWith('/') ? (
+                <Link to={item.href} className="nav-link">
                   {item.label}
                 </Link>
               ) : (

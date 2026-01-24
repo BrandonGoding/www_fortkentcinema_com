@@ -12,6 +12,7 @@ import ClassicMovieCTA from './components/ClassicMovieCTA';
 import Footer from './components/Footer';
 import BlogListPage from './pages/BlogListPage';
 import BlogDetailPage from './pages/BlogDetailPage';
+import PrivateRentalsPage from './pages/PrivateRentalsPage';
 import {
   getNowShowing,
   getComingSoon,
@@ -41,29 +42,22 @@ function App() {
   const [membership, setMembership] = useState(null);
   const [siteConfig, setSiteConfig] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const location = useLocation();
 
   useEffect(() => {
     async function fetchData() {
-      try {
-        const [nowShowingData, comingSoonData, membershipData, configData] = await Promise.all([
-          getNowShowing(),
-          getComingSoon(),
-          getMembership(),
-          getSiteConfig(),
-        ]);
+      const [nowShowingData, comingSoonData, membershipData, configData] = await Promise.all([
+        getNowShowing(),
+        getComingSoon(),
+        getMembership(),
+        getSiteConfig(),
+      ]);
 
-        setNowShowing(nowShowingData);
-        setComingSoon(comingSoonData);
-        setMembership(membershipData);
-        setSiteConfig(configData);
-      } catch (err) {
-        setError(err.message);
-        console.error('Failed to fetch data:', err);
-      } finally {
-        setLoading(false);
-      }
+      setNowShowing(nowShowingData);
+      setComingSoon(comingSoonData);
+      setMembership(membershipData);
+      setSiteConfig(configData);
+      setLoading(false);
     }
 
     fetchData();
@@ -113,32 +107,6 @@ function App() {
     );
   }
 
-  if (error) {
-    return (
-      <div className="error-screen">
-        <h1>Something went wrong</h1>
-        <p>{error}</p>
-        <style>{`
-          .error-screen {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: var(--color-bg-dark);
-            color: var(--color-cream);
-            text-align: center;
-            padding: 2rem;
-          }
-          .error-screen h1 {
-            color: var(--color-neon-red);
-            margin-bottom: 1rem;
-          }
-        `}</style>
-      </div>
-    );
-  }
-
   return (
     <>
       <Nav config={siteConfig} />
@@ -158,6 +126,7 @@ function App() {
           />
           <Route path="/blog" element={<BlogListPage />} />
           <Route path="/blog/:slug" element={<BlogDetailPage />} />
+          <Route path="/rentals" element={<PrivateRentalsPage />} />
         </Routes>
       </main>
       <Footer config={siteConfig} />
