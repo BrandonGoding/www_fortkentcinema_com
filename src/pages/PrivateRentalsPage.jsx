@@ -23,7 +23,6 @@ function PrivateRentalsPage() {
                 <li>2-hour private theater rental</li>
                 <li>Movie of your choice (DVD or Blu-Ray)</li>
                 <li>Popcorn for up to 15 guests</li>
-                <li>Birthday banner displayed on screen</li>
               </ul>
             </div>
             <div className="rental-card rental-card--featured">
@@ -34,9 +33,6 @@ function PrivateRentalsPage() {
                 <li>3-hour private theater rental</li>
                 <li>Movie of your choice (DVD or Blu-Ray)</li>
                 <li>Popcorn for up to 25 guests</li>
-                <li>Birthday banner displayed on screen</li>
-                <li>Dedicated party host</li>
-                <li>Custom birthday message on the marquee</li>
               </ul>
             </div>
             <div className="rental-card">
@@ -106,7 +102,6 @@ function PrivateRentalsPage() {
                 <li>Bring your own console — we put it on the big screen</li>
                 <li>Up to 20 guests</li>
                 <li>Popcorn included</li>
-                <li>Tournament bracket on screen between games</li>
               </ul>
             </div>
           </div>
