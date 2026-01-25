@@ -2,15 +2,21 @@ import { useState, useMemo } from 'react';
 import MovieCard from '../MovieCard';
 import './NowShowing.css';
 
+// Cinema timezone for date comparisons
+const CINEMA_TIMEZONE = 'America/New_York';
+
+function getTodayInEastern() {
+  return new Date().toLocaleDateString('en-CA', { timeZone: CINEMA_TIMEZONE });
+}
+
 function NowShowing({ movies, onShowtimeClick }) {
   const [selectedDate, setSelectedDate] = useState(() => {
-    const today = new Date();
-    return today.toISOString().split('T')[0];
+    return getTodayInEastern();
   });
 
   // Get all available dates from all movies (today or later only)
   const availableDates = useMemo(() => {
-    const today = new Date().toISOString().split('T')[0];
+    const today = getTodayInEastern();
     const datesSet = new Set();
 
     movies.forEach((movie) => {
@@ -59,20 +65,17 @@ function NowShowing({ movies, onShowtimeClick }) {
   };
 
   const formatDate = (dateString) => {
-    const date = new Date(dateString + 'T12:00:00');
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-
-    const todayStr = today.toISOString().split('T')[0];
+    const todayStr = getTodayInEastern();
 
     if (dateString === todayStr) {
       return 'Today';
     } else {
+      const date = new Date(dateString + 'T12:00:00');
       return date.toLocaleDateString('en-US', {
         weekday: 'long',
         month: 'short',
         day: 'numeric',
+        timeZone: CINEMA_TIMEZONE,
       });
     }
   };

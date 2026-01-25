@@ -1,10 +1,6 @@
-import { useState } from 'react';
-import MembershipCalculator from '../MembershipCalculator';
 import './Membership.css';
 
 function Membership({ data }) {
-  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
-
   return (
     <section className="membership" id="membership">
       <div className="section-container">
@@ -46,21 +42,7 @@ function Membership({ data }) {
         {data.footer && (
           <p className="membership-footer">{data.footer}</p>
         )}
-
-        <div className="membership-calculator-link">
-          <button
-            className="calculator-trigger"
-            onClick={() => setIsCalculatorOpen(true)}
-          >
-            Use our membership calculator to see if a membership is right for you
-          </button>
-        </div>
       </div>
-
-      <MembershipCalculator
-        isOpen={isCalculatorOpen}
-        onClose={() => setIsCalculatorOpen(false)}
-      />
     </section>
   );
 }
