@@ -58,8 +58,19 @@
   letter-spacing: 4px;
   color: var(--color-gold);
   text-shadow: 0 0 15px var(--color-gold-glow);
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-sm);
   text-align: center;
+}
+
+.rentals-section-note {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--color-cream-muted);
+  font-style: italic;
+  margin-bottom: var(--spacing-lg);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .rentals-grid {
