@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import './BlogDetailPage.css';
 
 function BlogDetailPage() {
@@ -87,8 +88,25 @@ function BlogDetailPage() {
     );
   }
 
+  const getExcerpt = (content, maxLength = 160) => {
+    if (!content) return '';
+    const plainText = content.replace(/\r\n/g, ' ').replace(/\n/g, ' ').trim();
+    if (plainText.length <= maxLength) return plainText;
+    return plainText.substring(0, maxLength).trim() + '...';
+  };
+
   return (
     <div className="blog-detail-page">
+      <Helmet>
+        <title>{post.title} | Fort Kent Cinema</title>
+        <meta name="description" content={post.subtitle || getExcerpt(post.content)} />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.subtitle || getExcerpt(post.content)} />
+        <meta property="og:url" content={`https://www.fortkentcinema.com/blog/${slug}`} />
+        <meta property="og:type" content="article" />
+        {post.header_image && <meta property="og:image" content={post.header_image} />}
+        <link rel="canonical" href={`https://www.fortkentcinema.com/blog/${slug}`} />
+      </Helmet>
       {post.header_image && (
         <div className="blog-detail-hero">
           <img

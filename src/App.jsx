@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import NowShowing from './components/NowShowing';
@@ -24,6 +25,14 @@ import './styles/global.css';
 function HomePage({ nowShowing, comingSoon, membership, siteConfig, onShowtimeClick }) {
   return (
     <>
+      <Helmet>
+        <title>Fort Kent Cinema | Movies in the St. John Valley</title>
+        <meta name="description" content="Fort Kent Cinema - Your local movie theater in Fort Kent, Maine. Check showtimes, coming soon, and join our membership program." />
+        <meta property="og:title" content="Fort Kent Cinema | Movies in the St. John Valley" />
+        <meta property="og:description" content="Your local movie theater in Fort Kent, Maine. Check showtimes, coming soon, and join our membership program." />
+        <meta property="og:url" content="https://www.fortkentcinema.com/" />
+        <link rel="canonical" href="https://www.fortkentcinema.com/" />
+      </Helmet>
       <Hero config={siteConfig} />
       <ClassicMovieCTA />
       <NowShowing movies={nowShowing} onShowtimeClick={onShowtimeClick} />

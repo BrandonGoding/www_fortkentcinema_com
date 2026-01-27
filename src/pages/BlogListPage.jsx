@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import BlogCard from '../components/BlogCard';
 import './BlogListPage.css';
 
@@ -97,6 +98,14 @@ function BlogListPage() {
 
   return (
     <div className="blog-list-page">
+      <Helmet>
+        <title>Blog | Fort Kent Cinema</title>
+        <meta name="description" content="News, reviews, and updates from Fort Kent Cinema. Stay up to date with the latest movie announcements, events, and community news." />
+        <meta property="og:title" content="Blog | Fort Kent Cinema" />
+        <meta property="og:description" content="News, reviews, and updates from Fort Kent Cinema." />
+        <meta property="og:url" content="https://www.fortkentcinema.com/blog" />
+        <link rel="canonical" href="https://www.fortkentcinema.com/blog" />
+      </Helmet>
       <div className="blog-list-container">
         <div className="blog-list-header">
           <Link to="/" className="blog-list-back">&larr; Back to Home</Link>

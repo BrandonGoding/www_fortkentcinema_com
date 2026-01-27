@@ -9,7 +9,7 @@
 
 // Configuration
 const USE_API = true;
-const API_BASE_URL = 'https://api.leprinceos.com/api/v1';
+const API_BASE_URL = 'https://www.leprinceos.com/api/v1';
 
 // Cinema timezone for converting UTC showtimes to local display times
 const CINEMA_TIMEZONE = 'America/New_York';
