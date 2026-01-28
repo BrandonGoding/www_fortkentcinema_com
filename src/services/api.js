@@ -79,9 +79,14 @@ export async function getNowShowing() {
   try {
     const today = new Date().toLocaleDateString('en-CA', { timeZone: CINEMA_TIMEZONE });
 
-    // Fetch confirmed engagements that are currently active (today falls within their date range)
+    // Calculate 7 days from now for the "now showing" window
+    const sevenDaysFromNow = new Date();
+    sevenDaysFromNow.setDate(sevenDaysFromNow.getDate() + 7);
+    const sevenDaysStr = sevenDaysFromNow.toLocaleDateString('en-CA', { timeZone: CINEMA_TIMEZONE });
+
+    // Fetch confirmed engagements active within the next 7 days
     const engagements = await apiFetch(
-      `/engagements/?status=CONFIRMED&start_date_before=${today}&end_date_after=${today}`
+      `/engagements/?status=CONFIRMED&start_date_before=${sevenDaysStr}&end_date_after=${today}`
     );
 
     if (!engagements.length) return [];
@@ -146,12 +151,12 @@ export async function getComingSoon() {
   }
 
   try {
-    // Use tomorrow's date so engagements starting today appear in "now playing" not here
+    // Use tomorrow's date for coming soon
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     const tomorrowStr = tomorrow.toLocaleDateString('en-CA', { timeZone: CINEMA_TIMEZONE });
 
-    // Fetch confirmed engagements that start after today
+    // Fetch confirmed engagements that start tomorrow or later
     const engagements = await apiFetch(
       `/engagements/?status=CONFIRMED&start_date_after=${tomorrowStr}`
     );
