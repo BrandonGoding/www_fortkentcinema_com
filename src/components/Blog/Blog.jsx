@@ -13,11 +13,11 @@ function Blog() {
       setLoading(true);
       setError(null);
       try {
-        // Fetch only the 2 most recent posts for the home page preview
-        const response = await fetch('https://api.fortkentcinema.com/api/posts/?limit=2');
+        // Fetch only the 3 most recent posts for the home page preview
+        const response = await fetch('https://api.fortkentcinema.com/api/posts/?limit=3');
         if (!response.ok) throw new Error('Failed to fetch blog posts');
         const data = await response.json();
-        setPosts(data.results.slice(0, 2));
+        setPosts(data.results.slice(0, 3));
       } catch (err) {
         setError(err.message);
         console.error('Failed to fetch blog posts:', err);
