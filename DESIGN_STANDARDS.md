@@ -22,7 +22,7 @@ The theme draws inspiration from classic movie theater interiors: deep burgundy 
 | Token | Hex | Usage |
 |-------|-----|-------|
 | `--color-gold` | `#f0c34a` | Primary accent, headings, buttons, icons |
-| `--color-gold-warm` | `#d4a040` | Secondary accent, borders, subtle text |
+| `--color-gold-warm` | `#d8a844` | Secondary accent, borders, subtle text |
 | `--color-gold-light` | `#ffe8a0` | Highlighted/emphasized text, hover states |
 | `--color-gold-glow` | `rgba(240, 195, 74, 0.35)` | Box-shadow glow effects |
 
