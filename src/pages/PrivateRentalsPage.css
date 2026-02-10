@@ -139,7 +139,8 @@
   gap: var(--spacing-xs);
   padding: var(--spacing-xs) 0;
   color: var(--color-cream);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 600;
   line-height: 1.4;
 }
 

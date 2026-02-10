@@ -100,7 +100,8 @@
 
 .footer-copyright {
   color: var(--color-cream-muted);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 600;
 }
 
 .footer-social {

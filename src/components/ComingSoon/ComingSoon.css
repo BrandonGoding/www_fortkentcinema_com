@@ -76,7 +76,8 @@
 }
 
 .coming-movie-genre {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--color-cream-muted);
 }
 
