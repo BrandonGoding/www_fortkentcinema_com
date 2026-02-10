@@ -21,7 +21,7 @@ function ComingSoon({ movies }) {
                   />
                 ) : (
                   <div className="coming-poster-placeholder">
-                    <span className="coming-poster-icon">🎬</span>
+                    <span className="coming-poster-icon" role="img" aria-label="Movie poster placeholder">🎬</span>
                   </div>
                 )}
               </div>

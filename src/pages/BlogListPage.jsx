@@ -114,7 +114,7 @@ function BlogListPage() {
         </div>
 
         {loading ? (
-          <div className="blog-list-loading">
+          <div className="blog-list-loading" aria-live="polite" role="status">
             <p>Loading posts...</p>
           </div>
         ) : (
@@ -134,7 +134,7 @@ function BlogListPage() {
             {/* Infinite scroll trigger element */}
             <div ref={loadMoreRef} className="blog-list-load-more">
               {loadingMore && (
-                <div className="blog-list-loading-more">
+                <div className="blog-list-loading-more" aria-live="polite" role="status">
                   <p>Loading more posts...</p>
                 </div>
               )}
@@ -145,7 +145,7 @@ function BlogListPage() {
               )}
             </div>
 
-            <div className="blog-list-count">
+            <div className="blog-list-count" aria-live="polite" role="status">
               Showing {posts.length} of {totalCount} posts
             </div>
           </>

@@ -38,7 +38,7 @@ function BlogCard({ post }) {
           className="blog-card-placeholder"
           style={{ display: post.header_image ? 'none' : 'flex' }}
         >
-          <div className="blog-card-placeholder-icon">📝</div>
+          <div className="blog-card-placeholder-icon" role="img" aria-label="Blog post placeholder">📝</div>
         </div>
         {post.category && (
           <span className="blog-card-category">{post.category.name}</span>

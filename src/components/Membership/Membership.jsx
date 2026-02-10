@@ -34,7 +34,7 @@ function Membership({ data }) {
               {plan.valueCallout && (
                 <p className="card-value-callout">{plan.valueCallout}</p>
               )}
-              <a href={plan.link} target="_blank" className="btn btn-ticket card-btn">Join Now</a>
+              <a href={plan.link} target="_blank" rel="noopener noreferrer" className="btn btn-ticket card-btn">Join Now</a>
             </div>
           ))}
         </div>

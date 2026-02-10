@@ -10,6 +10,7 @@ function GiftCardCTA() {
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn-ticket"
+          aria-label="Purchase An E-Gift Card (opens in new window)"
         >
           Purchase An E-Gift Card
         </a>

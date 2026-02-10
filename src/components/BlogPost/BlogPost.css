@@ -52,6 +52,11 @@
   box-shadow: 0 0 15px var(--color-gold-glow);
 }
 
+.blog-post-close:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
 .blog-post-loading,
 .blog-post-error {
   text-align: center;
@@ -155,6 +160,11 @@
 .blog-post-share:hover {
   background: var(--color-gold);
   color: var(--color-bg-dark);
+}
+
+.blog-post-share:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
 }
 
 .blog-post-meta::before {

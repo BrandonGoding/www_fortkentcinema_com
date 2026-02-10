@@ -144,3 +144,8 @@
   color: var(--color-bg-dark);
   box-shadow: 0 0 10px var(--color-gold-glow);
 }
+
+.showtime:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}

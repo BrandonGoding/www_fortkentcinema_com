@@ -95,7 +95,7 @@ function NowShowing({ movies, onShowtimeClick }) {
             disabled={!canGoPrev}
             aria-label="Previous day"
           >
-            <span>&#8249;</span>
+            <span aria-hidden="true">&#8249;</span>
           </button>
           <span className="date-nav__current">{formatDate(selectedDate)}</span>
           <button
@@ -104,7 +104,7 @@ function NowShowing({ movies, onShowtimeClick }) {
             disabled={!canGoNext}
             aria-label="Next day"
           >
-            <span>&#8250;</span>
+            <span aria-hidden="true">&#8250;</span>
           </button>
         </div>
 

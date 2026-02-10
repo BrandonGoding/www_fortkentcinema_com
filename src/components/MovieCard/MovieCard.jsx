@@ -25,7 +25,7 @@ function MovieCard({ movie, showtimes, onShowtimeClick }) {
           />
         ) : null}
         <div className="poster-placeholder" style={{ display: movie.poster ? 'none' : 'flex' }}>
-          <div className="poster-placeholder-icon">🎬</div>
+          <div className="poster-placeholder-icon" role="img" aria-label="Movie poster placeholder">🎬</div>
           <div className="poster-placeholder-text">Movie Poster</div>
         </div>
       </div>

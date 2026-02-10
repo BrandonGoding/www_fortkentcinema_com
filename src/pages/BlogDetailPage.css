@@ -33,6 +33,11 @@
   color: var(--color-bg-dark);
 }
 
+.blog-detail-back-btn:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
 .blog-detail-hero {
   position: relative;
   width: 100%;
@@ -78,6 +83,11 @@
 .blog-detail-back:hover {
   color: var(--color-gold-warm);
   text-shadow: 0 0 10px var(--color-gold-glow);
+}
+
+.blog-detail-back:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
 }
 
 .blog-detail-article {
@@ -161,6 +171,11 @@
   color: var(--color-bg-dark);
 }
 
+.blog-detail-share:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
 .blog-detail-body {
   font-size: 1.1rem;
   line-height: 1.9;
@@ -199,6 +214,11 @@
   background: var(--color-gold);
   color: var(--color-bg-dark);
   box-shadow: 0 0 20px var(--color-gold-glow);
+}
+
+.blog-detail-footer-link:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
 }
 
 @media (max-width: 768px) {

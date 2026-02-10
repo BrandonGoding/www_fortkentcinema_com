@@ -54,7 +54,7 @@ function Blog() {
         </div>
 
         {loading ? (
-          <div className="blog-loading">
+          <div className="blog-loading" aria-live="polite" role="status">
             <p>Loading posts...</p>
           </div>
         ) : (

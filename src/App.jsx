@@ -140,8 +140,9 @@ function App() {
       <div className="vignette" />
       <div className="curtain-left" />
       <div className="curtain-right" />
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <Nav config={siteConfig} />
-      <main>
+      <main id="main-content">
         <Routes>
           <Route
             path="/"

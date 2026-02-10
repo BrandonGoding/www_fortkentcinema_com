@@ -1,25 +1,54 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import './BlogPost.css';
 
 function BlogPost({ post, loading, onClose }) {
   const [copied, setCopied] = useState(false);
-  // Prevent body scroll when modal is open
+  const modalRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const previouslyFocusedRef = useRef(null);
+
+  // Prevent body scroll when modal is open and manage focus
   useEffect(() => {
+    previouslyFocusedRef.current = document.activeElement;
     document.body.style.overflow = 'hidden';
+    // Focus the close button when modal opens
+    if (closeButtonRef.current) {
+      closeButtonRef.current.focus();
+    }
     return () => {
       document.body.style.overflow = 'unset';
+      // Restore focus to the element that opened the modal
+      if (previouslyFocusedRef.current) {
+        previouslyFocusedRef.current.focus();
+      }
     };
   }, []);
 
-  // Close on escape key
-  useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape') {
-        onClose();
+  // Focus trap within modal
+  const handleKeyDown = useCallback((e) => {
+    if (e.key === 'Escape') {
+      onClose();
+      return;
+    }
+    if (e.key === 'Tab' && modalRef.current) {
+      const focusableElements = modalRef.current.querySelectorAll(
+        'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusableElements.length === 0) return;
+      const firstEl = focusableElements[0];
+      const lastEl = focusableElements[focusableElements.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === firstEl) {
+          e.preventDefault();
+          lastEl.focus();
+        }
+      } else {
+        if (document.activeElement === lastEl) {
+          e.preventDefault();
+          firstEl.focus();
+        }
       }
-    };
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
+    }
   }, [onClose]);
 
   const handleBackdropClick = (e) => {
@@ -61,12 +90,21 @@ function BlogPost({ post, loading, onClose }) {
   };
 
   return (
-    <div className="blog-post-overlay" onClick={handleBackdropClick}>
+    <div
+      className="blog-post-overlay"
+      onClick={handleBackdropClick}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="blog-post-dialog-title"
+      ref={modalRef}
+      onKeyDown={handleKeyDown}
+    >
       <div className="blog-post-modal">
         <button
           className="blog-post-close"
           onClick={onClose}
           aria-label="Close"
+          ref={closeButtonRef}
         >
           &times;
         </button>
@@ -93,7 +131,7 @@ function BlogPost({ post, loading, onClose }) {
                 {post.category && (
                   <span className="blog-post-category">{post.category.name}</span>
                 )}
-                <h1 className="blog-post-title">{post.title}</h1>
+                <h1 className="blog-post-title" id="blog-post-dialog-title">{post.title}</h1>
                 {post.subtitle && (
                   <p className="blog-post-subtitle">{post.subtitle}</p>
                 )}
