@@ -4,9 +4,9 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: linear-gradient(180deg, rgba(26, 29, 41, 0.98) 0%, rgba(26, 29, 41, 0.95) 100%);
+  background: linear-gradient(180deg, rgba(26, 10, 13, 0.98) 0%, rgba(26, 10, 13, 0.95) 100%);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+  border-bottom: 1px solid rgba(240, 195, 74, 0.2);
 }
 
 .nav-container {
@@ -34,11 +34,11 @@
 }
 
 .nav-link {
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.95rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   color: var(--color-cream);
   transition: color var(--transition-base), text-shadow var(--transition-base);
   position: relative;
@@ -65,20 +65,22 @@
 }
 
 .nav-cta {
-  background: linear-gradient(135deg, var(--color-neon-red) 0%, #cc2f3f 100%);
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-warm) 100%);
+  color: var(--color-bg-dark);
   padding: 0.6rem 1.5rem;
   border-radius: var(--radius-sm);
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-weight: 400;
   font-size: 0.9rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow: 0 4px 15px var(--color-neon-red-glow);
+  letter-spacing: 2px;
+  box-shadow: 0 4px 15px var(--color-gold-glow);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .nav-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--color-neon-red-glow);
+  box-shadow: 0 6px 20px var(--color-gold-glow);
 }
 
 /* Mobile responsiveness */

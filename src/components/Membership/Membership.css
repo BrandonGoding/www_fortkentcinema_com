@@ -13,8 +13,8 @@
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 50%, rgba(255, 59, 78, 0.05) 0%, transparent 50%);
+    radial-gradient(circle at 20% 50%, rgba(240, 195, 74, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(107, 21, 32, 0.08) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -52,7 +52,7 @@
 
 .membership-card {
   background: linear-gradient(135deg, var(--color-bg-card) 0%, var(--color-bg-charcoal) 100%);
-  border: 2px solid var(--color-brass);
+  border: 2px solid var(--color-gold-warm);
   border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
   text-align: center;
@@ -63,7 +63,7 @@
 
 .membership-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 15px var(--color-gold-glow);
 }
 
 .membership-card--featured {
@@ -82,8 +82,8 @@
   font-family: var(--font-display);
   font-size: 0.75rem;
   letter-spacing: 2px;
-  color: var(--color-neon-red);
-  background: rgba(255, 59, 78, 0.1);
+  color: var(--color-gold);
+  background: rgba(240, 195, 74, 0.12);
   padding: 0.4rem 0.8rem;
   border-radius: 20px;
   display: inline-block;
@@ -151,13 +151,13 @@
 }
 
 .card-value-callout {
-  background: rgba(255, 215, 0, 0.08);
-  border: 1px solid rgba(255, 215, 0, 0.25);
+  background: rgba(240, 195, 74, 0.08);
+  border: 1px solid rgba(240, 195, 74, 0.2);
   border-radius: var(--radius-sm);
   padding: var(--spacing-sm) var(--spacing-md);
   margin-bottom: var(--spacing-lg);
   font-size: 0.8rem;
-  color: var(--color-gold);
+  color: var(--color-gold-light);
   font-style: italic;
   line-height: 1.5;
 }

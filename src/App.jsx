@@ -22,6 +22,18 @@ import {
 } from './services/api';
 import './styles/global.css';
 
+function OrnamentDivider() {
+  return (
+    <div className="ornament-divider" aria-hidden="true">
+      <div className="ornament-line" />
+      <div className="ornament-diamond" />
+      <span className="ornament-star">{'\u2726'}</span>
+      <div className="ornament-diamond" />
+      <div className="ornament-line" />
+    </div>
+  );
+}
+
 function HomePage({ nowShowing, comingSoon, membership, siteConfig, onShowtimeClick }) {
   return (
     <>
@@ -34,12 +46,19 @@ function HomePage({ nowShowing, comingSoon, membership, siteConfig, onShowtimeCl
         <link rel="canonical" href="https://www.fortkentcinema.com/" />
       </Helmet>
       <Hero config={siteConfig} />
+      <OrnamentDivider />
       <ClassicMovieCTA />
+      <OrnamentDivider />
       <NowShowing movies={nowShowing} onShowtimeClick={onShowtimeClick} />
+      <OrnamentDivider />
       <OpenMicCTA />
+      <OrnamentDivider />
       <ComingSoon movies={comingSoon} />
+      <OrnamentDivider />
       <Blog />
+      <OrnamentDivider />
       <GiftCardCTA />
+      <OrnamentDivider />
       {membership && <Membership data={membership} />}
     </>
   );
@@ -118,6 +137,9 @@ function App() {
 
   return (
     <>
+      <div className="vignette" />
+      <div className="curtain-left" />
+      <div className="curtain-right" />
       <Nav config={siteConfig} />
       <main>
         <Routes>

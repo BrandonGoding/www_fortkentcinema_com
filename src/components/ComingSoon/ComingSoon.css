@@ -19,8 +19,8 @@
 }
 
 .coming-movie-card:hover {
-  border-color: var(--color-brass);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  border-color: var(--color-gold-warm);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 20px var(--color-gold-glow);
 }
 
 .coming-movie-poster {
@@ -28,7 +28,7 @@
   flex-shrink: 0;
   aspect-ratio: 2/3;
   background: var(--color-bg-dark);
-  border-right: 2px solid var(--color-brass);
+  border-right: 2px solid var(--color-gold-warm);
   overflow: hidden;
 }
 

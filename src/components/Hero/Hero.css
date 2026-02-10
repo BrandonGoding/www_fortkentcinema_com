@@ -9,7 +9,7 @@
   overflow: hidden;
 }
 
-/* Maine Night Sky Background */
+/* Warm Theater Background */
 .hero-background {
   position: absolute;
   top: 0;
@@ -17,15 +17,15 @@
   right: 0;
   bottom: 0;
   background: linear-gradient(180deg,
-    #0a0c14 0%,
-    #1a1d29 30%,
-    #252836 70%,
-    #1a1d29 100%
+    #120609 0%,
+    #1a0a0d 30%,
+    #2a1015 70%,
+    #1a0a0d 100%
   );
   z-index: -3;
 }
 
-/* Stars */
+/* Stars (warm-tinted) */
 .hero-stars {
   position: absolute;
   top: 0;
@@ -34,18 +34,18 @@
   height: 50%;
   z-index: -2;
   background-image:
-    radial-gradient(2px 2px at 20px 30px, white, transparent),
-    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1px 1px at 90px 40px, white, transparent),
-    radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.6), transparent),
-    radial-gradient(1px 1px at 160px 120px, white, transparent),
-    radial-gradient(2px 2px at 200px 50px, rgba(255,255,255,0.7), transparent),
-    radial-gradient(1px 1px at 250px 160px, white, transparent),
-    radial-gradient(2px 2px at 300px 90px, rgba(255,255,255,0.5), transparent),
-    radial-gradient(1px 1px at 350px 30px, white, transparent),
-    radial-gradient(2px 2px at 400px 140px, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1px 1px at 450px 70px, white, transparent),
-    radial-gradient(2px 2px at 500px 110px, rgba(255,255,255,0.6), transparent);
+    radial-gradient(2px 2px at 20px 30px, #fff8ec, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,248,236,0.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, #ffe8a0, transparent),
+    radial-gradient(2px 2px at 130px 80px, rgba(255,232,160,0.6), transparent),
+    radial-gradient(1px 1px at 160px 120px, #fff8ec, transparent),
+    radial-gradient(2px 2px at 200px 50px, rgba(240,195,74,0.5), transparent),
+    radial-gradient(1px 1px at 250px 160px, #fff8ec, transparent),
+    radial-gradient(2px 2px at 300px 90px, rgba(255,232,160,0.5), transparent),
+    radial-gradient(1px 1px at 350px 30px, #ffe8a0, transparent),
+    radial-gradient(2px 2px at 400px 140px, rgba(255,248,236,0.8), transparent),
+    radial-gradient(1px 1px at 450px 70px, #fff8ec, transparent),
+    radial-gradient(2px 2px at 500px 110px, rgba(240,195,74,0.4), transparent);
   background-size: 550px 200px;
   animation: twinkle 4s ease-in-out infinite alternate;
 }
@@ -58,11 +58,11 @@
   right: 0;
   height: 300px;
   z-index: -1;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%230d0f14' d='M0,320 L0,200 L30,200 L40,120 L50,180 L60,100 L70,160 L80,80 L90,140 L100,60 L110,130 L120,200 L150,200 L160,140 L170,190 L180,130 L190,170 L200,110 L210,160 L220,200 L280,200 L290,150 L300,190 L310,120 L320,170 L330,90 L340,150 L350,70 L360,140 L370,200 L430,200 L440,160 L450,190 L460,140 L470,180 L480,120 L490,170 L500,200 L560,200 L570,130 L580,180 L590,110 L600,160 L610,80 L620,150 L630,200 L700,200 L710,170 L720,195 L730,150 L740,185 L750,130 L760,175 L770,200 L830,200 L840,140 L850,185 L860,120 L870,170 L880,90 L890,160 L900,70 L910,145 L920,200 L980,200 L990,165 L1000,190 L1010,145 L1020,180 L1030,125 L1040,170 L1050,200 L1110,200 L1120,150 L1130,185 L1140,130 L1150,175 L1160,100 L1170,160 L1180,200 L1240,200 L1250,155 L1260,190 L1270,140 L1280,180 L1290,110 L1300,165 L1310,200 L1370,200 L1380,145 L1390,185 L1400,125 L1410,170 L1420,95 L1430,155 L1440,200 L1440,320 Z'/%3E%3C/svg%3E") no-repeat bottom center;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23120609' d='M0,320 L0,200 L30,200 L40,120 L50,180 L60,100 L70,160 L80,80 L90,140 L100,60 L110,130 L120,200 L150,200 L160,140 L170,190 L180,130 L190,170 L200,110 L210,160 L220,200 L280,200 L290,150 L300,190 L310,120 L320,170 L330,90 L340,150 L350,70 L360,140 L370,200 L430,200 L440,160 L450,190 L460,140 L470,180 L480,120 L490,170 L500,200 L560,200 L570,130 L580,180 L590,110 L600,160 L610,80 L620,150 L630,200 L700,200 L710,170 L720,195 L730,150 L740,185 L750,130 L760,175 L770,200 L830,200 L840,140 L850,185 L860,120 L870,170 L880,90 L890,160 L900,70 L910,145 L920,200 L980,200 L990,165 L1000,190 L1010,145 L1020,180 L1030,125 L1040,170 L1050,200 L1110,200 L1120,150 L1130,185 L1140,130 L1150,175 L1160,100 L1170,160 L1180,200 L1240,200 L1250,155 L1260,190 L1270,140 L1280,180 L1290,110 L1300,165 L1310,200 L1370,200 L1380,145 L1390,185 L1400,125 L1410,170 L1420,95 L1430,155 L1440,200 L1440,320 Z'/%3E%3C/svg%3E") no-repeat bottom center;
   background-size: cover;
 }
 
-/* Light Spill Effect */
+/* Spotlight Glow Effect */
 .light-spill {
   position: absolute;
   top: 50%;
@@ -71,8 +71,8 @@
   width: 800px;
   height: 600px;
   background: radial-gradient(ellipse at center,
-    rgba(255, 215, 0, 0.08) 0%,
-    rgba(255, 215, 0, 0.03) 30%,
+    rgba(240, 195, 74, 0.06) 0%,
+    rgba(212, 160, 64, 0.03) 30%,
     transparent 70%
   );
   pointer-events: none;
@@ -88,13 +88,13 @@
 
 .marquee-outer {
   position: relative;
-  background: #32270a;
-  border: 4px solid var(--color-brass);
+  background: #2a1015;
+  border: 4px solid var(--color-gold-warm);
   border-radius: var(--radius-lg);
   padding: 25px;
   box-shadow:
     0 0 30px rgba(0,0,0,0.8),
-    inset 0 2px 4px rgba(255,255,255,0.1),
+    inset 0 2px 4px rgba(255,248,236,0.05),
     0 0 60px var(--color-gold-glow);
 }
 
@@ -151,8 +151,8 @@
 }
 
 .marquee-inner {
-  background: linear-gradient(180deg, #1a0505 0%, #0a0202 100%);
-  border: 3px solid var(--color-brass-light);
+  background: linear-gradient(180deg, #1a0a0d 0%, #120609 100%);
+  border: 3px solid var(--color-gold-warm);
   border-radius: 6px;
   padding: 30px 60px;
   text-align: center;

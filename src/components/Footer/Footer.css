@@ -1,6 +1,6 @@
 .footer {
-  background: linear-gradient(180deg, var(--color-bg-dark) 0%, #0d0f14 100%);
-  border-top: 1px solid rgba(255, 215, 0, 0.2);
+  background: linear-gradient(180deg, var(--color-bg-dark) 0%, var(--color-bg-charcoal-dark) 100%);
+  border-top: 2px solid var(--color-gold-warm);
   padding: var(--spacing-2xl) var(--spacing-lg) var(--spacing-lg);
 }
 
@@ -82,7 +82,7 @@
 
 .footer-bottom {
   padding-top: var(--spacing-lg);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(240, 195, 74, 0.2);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -104,7 +104,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--color-brass);
+  border: 1px solid var(--color-gold-warm);
   border-radius: 50%;
   color: var(--color-cream);
   font-family: var(--font-body);
