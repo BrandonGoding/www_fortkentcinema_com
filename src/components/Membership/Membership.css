@@ -114,13 +114,14 @@
 }
 
 .card-price span {
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
   color: var(--color-cream-muted);
 }
 
 .card-description {
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--color-cream-muted);
   font-style: italic;
   margin-bottom: var(--spacing-md);
@@ -139,8 +140,8 @@
   gap: var(--spacing-xs);
   padding: var(--spacing-xs) 0;
   color: var(--color-cream);
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
   line-height: 1.4;
 }
 
@@ -158,8 +159,8 @@
   border-radius: var(--radius-sm);
   padding: var(--spacing-sm) var(--spacing-md);
   margin-bottom: var(--spacing-lg);
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--color-gold-light);
   font-style: italic;
   line-height: 1.5;

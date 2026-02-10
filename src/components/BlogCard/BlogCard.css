@@ -84,14 +84,16 @@
 
 .blog-card-subtitle {
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--color-gold);
   font-style: italic;
   margin-bottom: var(--spacing-sm);
 }
 
 .blog-card-excerpt {
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
   color: var(--color-cream-muted);
   line-height: 1.6;
   margin-bottom: var(--spacing-sm);

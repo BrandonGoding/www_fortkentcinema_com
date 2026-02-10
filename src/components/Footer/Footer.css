@@ -35,7 +35,8 @@
 .footer-address {
   color: var(--color-cream-muted);
   line-height: 1.8;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -71,7 +72,8 @@
 
 .footer-links a {
   color: var(--color-cream-muted);
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
   transition: color var(--transition-fast);
 }
 
@@ -86,7 +88,8 @@
 
 .footer-hours {
   color: var(--color-cream-muted);
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
   line-height: 1.8;
 }
 
@@ -100,8 +103,8 @@
 
 .footer-copyright {
   color: var(--color-cream-muted);
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
 .footer-social {
@@ -119,7 +122,8 @@
   border-radius: 50%;
   color: var(--color-cream);
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
   font-weight: 600;
   transition: all var(--transition-fast);
 }

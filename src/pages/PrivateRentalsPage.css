@@ -117,12 +117,14 @@
 }
 
 .rental-card-price span {
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
   color: var(--color-cream-muted);
 }
 
 .rental-card-description {
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
   color: var(--color-cream-muted);
   margin-bottom: var(--spacing-md);
   line-height: 1.6;
@@ -139,8 +141,8 @@
   gap: var(--spacing-xs);
   padding: var(--spacing-xs) 0;
   color: var(--color-cream);
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
   line-height: 1.4;
 }
 
@@ -207,7 +209,8 @@
 .rentals-policies-content li {
   padding: var(--spacing-xs) 0;
   color: var(--color-cream-muted);
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
   line-height: 1.6;
   border-bottom: 1px solid rgba(240, 195, 74, 0.15);
 }

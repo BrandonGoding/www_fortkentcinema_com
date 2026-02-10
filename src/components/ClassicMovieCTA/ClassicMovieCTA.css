@@ -47,7 +47,8 @@
 }
 
 .classic-movie-cta__pricing {
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
   color: var(--color-cream-muted);
   margin: 0;
 }
