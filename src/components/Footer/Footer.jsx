@@ -7,13 +7,6 @@ function Footer({ config }) {
   return (
     <footer className="footer">
       <div className="footer-container">
-        <div className="ornament-divider" aria-hidden="true" style={{ paddingBottom: '2rem' }}>
-          <div className="ornament-line" />
-          <div className="ornament-diamond" />
-          <span className="ornament-star">{'\u2726'}</span>
-          <div className="ornament-diamond" />
-          <div className="ornament-line" />
-        </div>
         <div className="footer-grid">
           <div className="footer-brand">
             <h3 className="footer-logo">{cinema.name.toUpperCase()}</h3>

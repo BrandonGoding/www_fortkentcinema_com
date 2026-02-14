@@ -46,20 +46,22 @@ function HomePage({ nowShowing, comingSoon, membership, siteConfig, onShowtimeCl
         <link rel="canonical" href="https://www.fortkentcinema.com/" />
       </Helmet>
       <Hero config={siteConfig} />
-      <OrnamentDivider />
-      <ClassicMovieCTA />
-      <OrnamentDivider />
+{/*       <OrnamentDivider /> */}
+      {/* TEMPORARILY DISABLED - uncomment to restore classic movie night */}
+      {/* <ClassicMovieCTA /> */}
+      {/* <OrnamentDivider /> */}
       <NowShowing movies={nowShowing} onShowtimeClick={onShowtimeClick} />
       <OrnamentDivider />
       <OpenMicCTA />
       <OrnamentDivider />
       <ComingSoon movies={comingSoon} />
       <OrnamentDivider />
-      <Blog />
-      <OrnamentDivider />
       <GiftCardCTA />
       <OrnamentDivider />
-      {membership && <Membership data={membership} />}
+      <Blog />
+{/*       <OrnamentDivider /> */}
+      {/* TEMPORARILY DISABLED - uncomment to restore membership section */}
+      {/* {membership && <Membership data={membership} />} */}
     </>
   );
 }
@@ -158,7 +160,7 @@ function App() {
           />
           <Route path="/blog" element={<BlogListPage />} />
           <Route path="/blog/:slug" element={<BlogDetailPage />} />
-          <Route path="/rentals" element={<PrivateRentalsPage />} />
+{/*           <Route path="/rentals" element={<PrivateRentalsPage />} /> */}
         </Routes>
       </main>
       <Footer config={siteConfig} />

@@ -29,8 +29,6 @@
   "navigation": [
     { "label": "Now Showing", "href": "#now-showing" },
     { "label": "Coming Soon", "href": "#coming-soon" },
-    { "label": "Blog", "href": "/blog" },
-    { "label": "Rentals", "href": "/rentals" },
-    { "label": "Membership", "href": "#membership" }
+    { "label": "Blog", "href": "/blog" }
   ]
 }
