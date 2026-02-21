@@ -32,6 +32,10 @@
   overflow: hidden;
 }
 
+.movie-poster--playable {
+  cursor: pointer;
+}
+
 .movie-poster-img {
   width: 100%;
   height: 100%;
@@ -71,6 +75,31 @@
   letter-spacing: 2px;
   color: var(--color-cream-muted);
   text-align: center;
+}
+
+.movie-poster-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-base);
+}
+
+.movie-poster--playable:hover .movie-poster-play-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.movie-poster-play-icon {
+  width: 56px;
+  height: 56px;
+  opacity: 0.85;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.movie-poster--playable:hover .movie-poster-play-icon {
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .movie-info {

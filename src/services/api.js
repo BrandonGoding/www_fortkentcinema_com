@@ -129,6 +129,7 @@ export async function getNowShowing() {
           genre: '',
           poster: engagement.film_poster_url || film?.poster_url || '',
           showtimes: showtimesByDate,
+          youtube_id: film?.youtube_id || '',
         };
       })
     );
@@ -194,6 +195,7 @@ export async function getComingSoon() {
           genre: '',
           poster: engagement.film_poster_url || film?.poster_url || '',
           description: film?.synopsis || '',
+          youtube_id: film?.youtube_id || '',
         };
       })
     );

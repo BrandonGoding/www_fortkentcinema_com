@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import MovieCard from '../MovieCard';
 import './NowShowing.css';
 
@@ -13,6 +13,16 @@ function NowShowing({ movies, onShowtimeClick }) {
   const [selectedDate, setSelectedDate] = useState(() => {
     return getTodayInEastern();
   });
+  const [activeTrailer, setActiveTrailer] = useState(null);
+
+  useEffect(() => {
+    if (activeTrailer) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [activeTrailer]);
 
   // Get all available dates from all movies (today or later only)
   const availableDates = useMemo(() => {
@@ -116,6 +126,7 @@ function NowShowing({ movies, onShowtimeClick }) {
                 movie={movie}
                 showtimes={movie.showtimesForDate}
                 onShowtimeClick={onShowtimeClick}
+                onTrailerClick={setActiveTrailer}
               />
             ))}
           </div>
@@ -125,6 +136,31 @@ function NowShowing({ movies, onShowtimeClick }) {
           </div>
         )}
       </div>
+
+      {activeTrailer && (
+        <div className="now-trailer-overlay" role="dialog" aria-label={`${activeTrailer.title} trailer`}>
+          <div className="now-trailer-content">
+            <button
+              className="now-trailer-close"
+              onClick={() => setActiveTrailer(null)}
+              aria-label="Close trailer"
+            >
+              <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+                <line x1="4" y1="4" x2="20" y2="20" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+                <line x1="20" y1="4" x2="4" y2="20" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+              </svg>
+            </button>
+            <div className="now-trailer-player">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${activeTrailer.youtube_id}?autoplay=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3`}
+                title={`${activeTrailer.title} trailer`}
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
