@@ -148,7 +148,22 @@ export async function getNowShowing() {
  */
 export async function getComingSoon() {
   if (!USE_API) {
-    return comingSoonData.movies;
+    return comingSoonData.movies.map((movie) => {
+      if (!movie.releaseDate) return { ...movie, startDate: '' };
+      try {
+        const now = new Date();
+        const parsed = new Date(`${movie.releaseDate} ${now.getFullYear()}`);
+        if (isNaN(parsed.getTime())) return { ...movie, startDate: '' };
+        // If the month has already passed, assume next year
+        if (parsed < new Date(now.getFullYear(), now.getMonth(), 1)) {
+          parsed.setFullYear(now.getFullYear() + 1);
+        }
+        const startDate = parsed.toLocaleDateString('en-CA');
+        return { ...movie, startDate };
+      } catch {
+        return { ...movie, startDate: '' };
+      }
+    });
   }
 
   try {
@@ -191,6 +206,7 @@ export async function getComingSoon() {
         return {
           id: String(engagement.id),
           title: engagement.film_title,
+          startDate: engagement.start_date,
           releaseDate: formattedDate,
           genre: '',
           poster: engagement.film_poster_url || film?.poster_url || '',
