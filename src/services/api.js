@@ -149,19 +149,19 @@ export async function getNowShowing() {
 export async function getComingSoon() {
   if (!USE_API) {
     return comingSoonData.movies.map((movie) => {
-      if (!movie.releaseDate) return { ...movie, startDate: '' };
+      if (!movie.releaseDate) return { ...movie, startDate: '', showtimeDates: [] };
       try {
         const now = new Date();
         const parsed = new Date(`${movie.releaseDate} ${now.getFullYear()}`);
-        if (isNaN(parsed.getTime())) return { ...movie, startDate: '' };
+        if (isNaN(parsed.getTime())) return { ...movie, startDate: '', showtimeDates: [] };
         // If the month has already passed, assume next year
         if (parsed < new Date(now.getFullYear(), now.getMonth(), 1)) {
           parsed.setFullYear(now.getFullYear() + 1);
         }
         const startDate = parsed.toLocaleDateString('en-CA');
-        return { ...movie, startDate };
+        return { ...movie, startDate, showtimeDates: [startDate] };
       } catch {
-        return { ...movie, startDate: '' };
+        return { ...movie, startDate: '', showtimeDates: [] };
       }
     });
   }
@@ -187,7 +187,7 @@ export async function getComingSoon() {
       return true;
     });
 
-    // Fetch film details for extra metadata
+    // Fetch film details and showtimes for extra metadata
     const movies = await Promise.all(
       uniqueEngagements.map(async (engagement) => {
         let film = null;
@@ -195,6 +195,19 @@ export async function getComingSoon() {
           film = await apiFetch(`/films/${engagement.film}/`);
         } catch {
           // Use engagement data if film fetch fails
+        }
+
+        // Fetch showtimes so the calendar can show posters on every screening day
+        let showtimeDates = [];
+        try {
+          const showtimes = await apiFetch(`/showtimes/?engagement=${engagement.id}&is_cancelled=false`);
+          const dateSet = new Set();
+          showtimes.forEach((st) => {
+            if (st.starts_at) dateSet.add(getLocalDate(st.starts_at));
+          });
+          showtimeDates = [...dateSet].sort();
+        } catch {
+          // Fall back to just the start date
         }
 
         const releaseDate = new Date(engagement.start_date + 'T12:00:00');
@@ -207,6 +220,7 @@ export async function getComingSoon() {
           id: String(engagement.id),
           title: engagement.film_title,
           startDate: engagement.start_date,
+          showtimeDates,
           releaseDate: formattedDate,
           genre: '',
           poster: engagement.film_poster_url || film?.poster_url || '',

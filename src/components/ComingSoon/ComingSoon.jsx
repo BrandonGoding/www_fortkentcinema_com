@@ -3,12 +3,16 @@ import './ComingSoon.css';
 
 function getInitialMonth(movies) {
   if (!movies || !movies.length) return new Date();
-  const withDates = movies.filter((m) => m.startDate);
-  if (!withDates.length) return new Date();
-  const earliest = withDates.reduce((min, m) =>
-    m.startDate < min.startDate ? m : min
-  );
-  const parts = earliest.startDate.split('-').map(Number);
+  // Find the earliest date across all showtime dates
+  let earliest = null;
+  for (const m of movies) {
+    const dates = m.showtimeDates?.length ? m.showtimeDates : (m.startDate ? [m.startDate] : []);
+    for (const d of dates) {
+      if (!earliest || d < earliest) earliest = d;
+    }
+  }
+  if (!earliest) return new Date();
+  const parts = earliest.split('-').map(Number);
   if (parts.length < 2 || isNaN(parts[0]) || isNaN(parts[1])) return new Date();
   return new Date(parts[0], parts[1] - 1, 1);
 }
@@ -27,20 +31,26 @@ function ComingSoon({ movies = [] }) {
     return () => { document.body.style.overflow = ''; };
   }, [activeTrailer]);
 
-  // Build a map of day → movies for the current calendar month
+  // Build a map of day → movies for the current calendar month using showtime dates
   const moviesByDay = useMemo(() => {
     if (!calendarMonth) return {};
     const year = calendarMonth.getFullYear();
     const month = calendarMonth.getMonth();
+    const monthStr = `${year}-${String(month + 1).padStart(2, '0')}`;
     const map = {};
     movies.forEach((movie) => {
-      if (!movie.startDate) return;
-      const [y, m, d] = movie.startDate.split('-').map(Number);
-      if (y === year && m - 1 === month) {
-        const day = d;
+      // Use showtimeDates if available, fall back to startDate
+      const dates = movie.showtimeDates?.length ? movie.showtimeDates : (movie.startDate ? [movie.startDate] : []);
+      dates.forEach((date) => {
+        if (!date.startsWith(monthStr)) return;
+        const day = parseInt(date.split('-')[2], 10);
+        if (isNaN(day)) return;
         if (!map[day]) map[day] = [];
-        map[day].push(movie);
-      }
+        // Avoid duplicate entries for the same movie on the same day
+        if (!map[day].some((m) => m.id === movie.id)) {
+          map[day].push(movie);
+        }
+      });
     });
     return map;
   }, [movies, calendarMonth]);
