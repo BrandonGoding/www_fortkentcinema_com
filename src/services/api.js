@@ -333,13 +333,12 @@ export async function getCalendarMonth(year, month) {
       const day = parseInt(localDate.split('-')[2], 10);
       if (isNaN(day)) return;
       if (!map[day]) map[day] = [];
-      // The showtime serializer returns film_title, poster_url, youtube_id
-      const movieId = st.film_title; // Use title as dedup key since we don't have engagement id
-      if (!map[day].some((m) => m.title === movieId)) {
+      const title = st.film_title || '';
+      if (!map[day].some((m) => m.title === title)) {
         map[day].push({
           id: `${st.id}`,
-          title: st.film_title || '',
-          poster: st.poster_url || '',
+          title,
+          poster: st.film_poster_url || '',
           youtube_id: st.youtube_id || '',
         });
       }
