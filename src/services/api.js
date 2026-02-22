@@ -149,19 +149,19 @@ export async function getNowShowing() {
 export async function getComingSoon() {
   if (!USE_API) {
     return comingSoonData.movies.map((movie) => {
-      if (!movie.releaseDate) return { ...movie, startDate: '', showtimeDates: [] };
+      if (!movie.releaseDate) return { ...movie, startDate: '' };
       try {
         const now = new Date();
         const parsed = new Date(`${movie.releaseDate} ${now.getFullYear()}`);
-        if (isNaN(parsed.getTime())) return { ...movie, startDate: '', showtimeDates: [] };
+        if (isNaN(parsed.getTime())) return { ...movie, startDate: '' };
         // If the month has already passed, assume next year
         if (parsed < new Date(now.getFullYear(), now.getMonth(), 1)) {
           parsed.setFullYear(now.getFullYear() + 1);
         }
         const startDate = parsed.toLocaleDateString('en-CA');
-        return { ...movie, startDate, showtimeDates: [startDate] };
+        return { ...movie, startDate };
       } catch {
-        return { ...movie, startDate: '', showtimeDates: [] };
+        return { ...movie, startDate: '' };
       }
     });
   }
@@ -187,7 +187,7 @@ export async function getComingSoon() {
       return true;
     });
 
-    // Fetch film details and showtimes for extra metadata
+    // Fetch film details for extra metadata
     const movies = await Promise.all(
       uniqueEngagements.map(async (engagement) => {
         let film = null;
@@ -195,19 +195,6 @@ export async function getComingSoon() {
           film = await apiFetch(`/films/${engagement.film}/`);
         } catch {
           // Use engagement data if film fetch fails
-        }
-
-        // Fetch showtimes so the calendar can show posters on every screening day
-        let showtimeDates = [];
-        try {
-          const showtimes = await apiFetch(`/showtimes/?engagement=${engagement.id}&is_cancelled=false`);
-          const dateSet = new Set();
-          showtimes.forEach((st) => {
-            if (st.starts_at) dateSet.add(getLocalDate(st.starts_at));
-          });
-          showtimeDates = [...dateSet].sort();
-        } catch {
-          // Fall back to just the start date
         }
 
         const releaseDate = new Date(engagement.start_date + 'T12:00:00');
@@ -220,7 +207,6 @@ export async function getComingSoon() {
           id: String(engagement.id),
           title: engagement.film_title,
           startDate: engagement.start_date,
-          showtimeDates,
           releaseDate: formattedDate,
           genre: '',
           poster: engagement.film_poster_url || film?.poster_url || '',
@@ -307,9 +293,69 @@ export async function getShowtimes(engagementId) {
   }
 }
 
+/**
+ * Fetch showtimes for a calendar month, grouped by day with movie info.
+ * Returns { [day: number]: [{ id, title, poster, youtube_id }] }
+ */
+export async function getCalendarMonth(year, month) {
+  if (!USE_API) {
+    // For local fallback, place movies on their startDate within this month
+    const monthStr = `${year}-${String(month + 1).padStart(2, '0')}`;
+    const map = {};
+    const movies = await getComingSoon();
+    movies.forEach((movie) => {
+      if (!movie.startDate || !movie.startDate.startsWith(monthStr)) return;
+      const day = parseInt(movie.startDate.split('-')[2], 10);
+      if (isNaN(day)) return;
+      if (!map[day]) map[day] = [];
+      map[day].push(movie);
+    });
+    return map;
+  }
+
+  try {
+    // Build date range for the month (in cinema timezone)
+    const startOfMonth = `${year}-${String(month + 1).padStart(2, '0')}-01T00:00:00`;
+    const lastDay = new Date(year, month + 1, 0).getDate();
+    const endOfMonth = `${year}-${String(month + 1).padStart(2, '0')}-${String(lastDay).padStart(2, '0')}T23:59:59`;
+
+    const showtimes = await apiFetch(
+      `/showtimes/?is_cancelled=false&starts_at_after=${startOfMonth}&starts_at_before=${endOfMonth}`
+    );
+
+    if (!showtimes.length) return {};
+
+    // Group by day, dedup movies per day
+    const map = {};
+    showtimes.forEach((st) => {
+      if (!st.starts_at) return;
+      const localDate = getLocalDate(st.starts_at);
+      const day = parseInt(localDate.split('-')[2], 10);
+      if (isNaN(day)) return;
+      if (!map[day]) map[day] = [];
+      // The showtime serializer returns film_title, poster_url, youtube_id
+      const movieId = st.film_title; // Use title as dedup key since we don't have engagement id
+      if (!map[day].some((m) => m.title === movieId)) {
+        map[day].push({
+          id: `${st.id}`,
+          title: st.film_title || '',
+          poster: st.poster_url || '',
+          youtube_id: st.youtube_id || '',
+        });
+      }
+    });
+
+    return map;
+  } catch (err) {
+    console.error('Failed to fetch calendar month data:', err);
+    return {};
+  }
+}
+
 export default {
   getNowShowing,
   getComingSoon,
+  getCalendarMonth,
   getMembership,
   getSiteConfig,
   getMovieById,

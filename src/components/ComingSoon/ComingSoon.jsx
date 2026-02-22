@@ -1,18 +1,15 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
+import { getCalendarMonth } from '../../services/api';
 import './ComingSoon.css';
 
 function getInitialMonth(movies) {
   if (!movies || !movies.length) return new Date();
-  // Find the earliest date across all showtime dates
-  let earliest = null;
-  for (const m of movies) {
-    const dates = m.showtimeDates?.length ? m.showtimeDates : (m.startDate ? [m.startDate] : []);
-    for (const d of dates) {
-      if (!earliest || d < earliest) earliest = d;
-    }
-  }
-  if (!earliest) return new Date();
-  const parts = earliest.split('-').map(Number);
+  const withDates = movies.filter((m) => m.startDate);
+  if (!withDates.length) return new Date();
+  const earliest = withDates.reduce((min, m) =>
+    m.startDate < min.startDate ? m : min
+  );
+  const parts = earliest.startDate.split('-').map(Number);
   if (parts.length < 2 || isNaN(parts[0]) || isNaN(parts[1])) return new Date();
   return new Date(parts[0], parts[1] - 1, 1);
 }
@@ -21,6 +18,9 @@ function ComingSoon({ movies = [] }) {
   const [activeTrailer, setActiveTrailer] = useState(null);
   const [viewMode, setViewMode] = useState('grid');
   const [calendarMonth, setCalendarMonth] = useState(() => getInitialMonth(movies));
+  const [calendarData, setCalendarData] = useState({});
+  const [calendarLoading, setCalendarLoading] = useState(false);
+  const monthCache = useRef({});
 
   useEffect(() => {
     if (activeTrailer) {
@@ -31,44 +31,44 @@ function ComingSoon({ movies = [] }) {
     return () => { document.body.style.overflow = ''; };
   }, [activeTrailer]);
 
-  // Build a map of day → movies for the current calendar month using showtime dates
-  const moviesByDay = useMemo(() => {
-    if (!calendarMonth) return {};
-    const year = calendarMonth.getFullYear();
-    const month = calendarMonth.getMonth();
-    const monthStr = `${year}-${String(month + 1).padStart(2, '0')}`;
-    const map = {};
-    movies.forEach((movie) => {
-      // Use showtimeDates if available, fall back to startDate
-      const dates = movie.showtimeDates?.length ? movie.showtimeDates : (movie.startDate ? [movie.startDate] : []);
-      dates.forEach((date) => {
-        if (!date.startsWith(monthStr)) return;
-        const day = parseInt(date.split('-')[2], 10);
-        if (isNaN(day)) return;
-        if (!map[day]) map[day] = [];
-        // Avoid duplicate entries for the same movie on the same day
-        if (!map[day].some((m) => m.id === movie.id)) {
-          map[day].push(movie);
-        }
-      });
-    });
-    return map;
-  }, [movies, calendarMonth]);
+  // Fetch calendar data when month changes or when switching to calendar view
+  const fetchMonth = useCallback(async () => {
+    if (!calendarMonth) return;
+    const key = `${calendarMonth.getFullYear()}-${calendarMonth.getMonth()}`;
+    if (monthCache.current[key]) {
+      setCalendarData(monthCache.current[key]);
+      return;
+    }
+    setCalendarLoading(true);
+    try {
+      const data = await getCalendarMonth(calendarMonth.getFullYear(), calendarMonth.getMonth());
+      monthCache.current[key] = data;
+      setCalendarData(data);
+    } catch {
+      setCalendarData({});
+    } finally {
+      setCalendarLoading(false);
+    }
+  }, [calendarMonth]);
+
+  useEffect(() => {
+    if (viewMode === 'calendar') {
+      fetchMonth();
+    }
+  }, [viewMode, fetchMonth]);
 
   // Calendar grid helpers
   const calendarDays = useMemo(() => {
     if (!calendarMonth) return [];
     const year = calendarMonth.getFullYear();
     const month = calendarMonth.getMonth();
-    const firstDay = new Date(year, month, 1).getDay(); // 0=Sun
+    const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
     const cells = [];
-    // Leading empty cells
     for (let i = 0; i < firstDay; i++) {
       cells.push({ day: null, key: `empty-${i}` });
     }
-    // Day cells
     for (let d = 1; d <= daysInMonth; d++) {
       cells.push({ day: d, key: `day-${d}` });
     }
@@ -188,49 +188,53 @@ function ComingSoon({ movies = [] }) {
               </button>
             </div>
 
-            <div className="coming-calendar-grid">
-              {DAY_NAMES.map((name, i) => (
-                <div key={name} className="coming-calendar-dayheader">
-                  <span className="coming-calendar-dayheader--full">{name}</span>
-                  <span className="coming-calendar-dayheader--short">{DAY_NAMES_SHORT[i]}</span>
-                </div>
-              ))}
+            {calendarLoading ? (
+              <div className="coming-calendar-loading">Loading...</div>
+            ) : (
+              <div className="coming-calendar-grid">
+                {DAY_NAMES.map((name, i) => (
+                  <div key={name} className="coming-calendar-dayheader">
+                    <span className="coming-calendar-dayheader--full">{name}</span>
+                    <span className="coming-calendar-dayheader--short">{DAY_NAMES_SHORT[i]}</span>
+                  </div>
+                ))}
 
-              {calendarDays.map((cell) => (
-                <div
-                  key={cell.key}
-                  className={`coming-calendar-cell${cell.day === null ? ' coming-calendar-cell--empty' : ''}${moviesByDay[cell.day] ? ' coming-calendar-cell--has-movie' : ''}`}
-                >
-                  {cell.day !== null && (
-                    <>
-                      <span className="coming-calendar-cell__day">{cell.day}</span>
-                      {moviesByDay[cell.day] && (
-                        <div className="coming-calendar-cell__movies">
-                          {moviesByDay[cell.day].map((movie) => (
-                            <div
-                              key={movie.id}
-                              className={`coming-calendar-cell__poster${movie.youtube_id ? ' coming-calendar-cell__poster--playable' : ''}`}
-                              title={movie.title}
-                              onClick={movie.youtube_id ? () => setActiveTrailer(movie) : undefined}
-                              role={movie.youtube_id ? 'button' : undefined}
-                              tabIndex={movie.youtube_id ? 0 : undefined}
-                              aria-label={movie.youtube_id ? `Watch ${movie.title} trailer` : movie.title}
-                              onKeyDown={movie.youtube_id ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActiveTrailer(movie); } } : undefined}
-                            >
-                              {movie.poster ? (
-                                <img src={movie.poster} alt={movie.title} className="coming-calendar-cell__img" />
-                              ) : (
-                                <div className="coming-calendar-cell__placeholder">🎬</div>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </>
-                  )}
-                </div>
-              ))}
-            </div>
+                {calendarDays.map((cell) => (
+                  <div
+                    key={cell.key}
+                    className={`coming-calendar-cell${cell.day === null ? ' coming-calendar-cell--empty' : ''}${calendarData[cell.day] ? ' coming-calendar-cell--has-movie' : ''}`}
+                  >
+                    {cell.day !== null && (
+                      <>
+                        <span className="coming-calendar-cell__day">{cell.day}</span>
+                        {calendarData[cell.day] && (
+                          <div className="coming-calendar-cell__movies">
+                            {calendarData[cell.day].map((movie) => (
+                              <div
+                                key={movie.id}
+                                className={`coming-calendar-cell__poster${movie.youtube_id ? ' coming-calendar-cell__poster--playable' : ''}`}
+                                title={movie.title}
+                                onClick={movie.youtube_id ? () => setActiveTrailer(movie) : undefined}
+                                role={movie.youtube_id ? 'button' : undefined}
+                                tabIndex={movie.youtube_id ? 0 : undefined}
+                                aria-label={movie.youtube_id ? `Watch ${movie.title} trailer` : movie.title}
+                                onKeyDown={movie.youtube_id ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActiveTrailer(movie); } } : undefined}
+                              >
+                                {movie.poster ? (
+                                  <img src={movie.poster} alt={movie.title} className="coming-calendar-cell__img" />
+                                ) : (
+                                  <div className="coming-calendar-cell__placeholder">🎬</div>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
